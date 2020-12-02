@@ -5,8 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_WeSplit"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="WeSplit - Chia tiền đi chơi chung" Height="500" Width="900" Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
         
+        <Frame x:Name="MainFrame"
+               NavigationUIVisibility="Hidden"
+               Grid.Row="1"></Frame>
     </Grid>
 </Window>

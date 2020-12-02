@@ -24,5 +24,12 @@ namespace GUI_WeSplit
         {
             InitializeComponent();
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            //MemberListPage memberList = new MemberListPage();
+            TripDetailPage tripPage = new TripDetailPage();
+            MainFrame.Navigate(tripPage);
+        }
     }
 }
