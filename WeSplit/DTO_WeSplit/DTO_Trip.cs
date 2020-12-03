@@ -14,6 +14,7 @@ namespace DTO_WeSplit
         private string _tripDescription;
         private double _tripBudget;
         private double _tripAverage;
+        private List<DTO_Place> _tripDestinationList;
 
         public int TripId { get => _tripId; set => _tripId = value; }
         public string TripName { get => _tripName; set => _tripName = value; }
@@ -21,6 +22,7 @@ namespace DTO_WeSplit
         public string TripDescription { get => _tripDescription; set => _tripDescription = value; }
         public double TripBudget { get => _tripBudget; set => _tripBudget = value; }
         public double TripAverage { get => _tripAverage; set => _tripAverage = value; }
+        public List<DTO_Place> TripDestinationList { get => _tripDestinationList; }
 
         public DTO_Trip()
         {
@@ -35,6 +37,11 @@ namespace DTO_WeSplit
             TripDescription = description;
             TripBudget = budget;
             TripAverage = average;
+        }
+
+        public void AddDestination(DTO_Place newDestination)
+        {
+            _tripDestinationList.Add(newDestination);
         }
     }
 }

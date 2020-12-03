@@ -1,0 +1,9 @@
+C:\Users\Kem\Source\Repos\duclam227\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DAO_WeSplit.dll
+C:\Users\Kem\Source\Repos\duclam227\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DAO_WeSplit.pdb
+C:\Users\Kem\Source\Repos\duclam227\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DTO_WeSplit.dll
+C:\Users\Kem\Source\Repos\duclam227\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DTO_WeSplit.pdb
+C:\Users\Kem\Source\Repos\duclam227\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csprojAssemblyReference.cache
+C:\Users\Kem\Source\Repos\duclam227\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csproj.CoreCompileInputs.cache
+C:\Users\Kem\Source\Repos\duclam227\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csproj.CopyComplete
+C:\Users\Kem\Source\Repos\duclam227\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.dll
+C:\Users\Kem\Source\Repos\duclam227\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.pdb
