@@ -11,12 +11,12 @@
     <Page.Resources>
         <Style x:Key="SidebarStyle"
                TargetType="TextBlock">
-            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Foreground" Value="White"/>
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
-            <!--<Setter Property="Margin" Value="5"/>-->
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
 
             <Style.Triggers>
                 <EventTrigger RoutedEvent="TextBlock.MouseEnter">
@@ -63,6 +63,7 @@
 
         <StackPanel x:Name="Sidebar"
                  HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
                  Width="50"
                  Panel.ZIndex="5"
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled">
@@ -91,13 +92,6 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </StackPanel.Triggers>
-
-            <!--<StackPanel.Background>
-                <LinearGradientBrush StartPoint="0, 0" EndPoint="1, 1" SpreadMethod="Pad">
-                    <GradientStop Color="DimGray" Offset="0.6"/>
-                    <GradientStop Color="Gray" Offset="0.75"/>
-                </LinearGradientBrush>
-            </StackPanel.Background>-->
 
             <StackPanel x:Name="GeneralInfoButton"
                         Orientation="Horizontal"
@@ -159,9 +153,10 @@
                 <Border Height="50" Background="Transparent">
                     <TextBlock Style="{DynamicResource SidebarStyle}">Lịch sử chi tiêu</TextBlock>
                 </Border>
-                
+
             </StackPanel>
         </StackPanel>
+
 
         <Grid Grid.Column="1"
               Width="4">
@@ -181,7 +176,7 @@
         <Frame x:Name="TripDetailFrame"
                NavigationUIVisibility="Hidden"
                Grid.Column="2">
-            
+
         </Frame>
     </Grid>
 </Page>

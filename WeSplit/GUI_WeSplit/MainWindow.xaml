@@ -5,27 +5,106 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_WeSplit"
         mc:Ignorable="d"
-        Title="WeSplit - Chia tiền đi chơi chung" Height="500" Width="900" Loaded="Window_Loaded"
-        WindowStartupLocation="CenterScreen">
-    
+        Title="WeSplit - Chia tiền đi chơi chung" Height="600" Width="900" 
+        Loaded="Window_Loaded" WindowStyle="None"
+        AllowsTransparency="True" Background="Transparent"
+        WindowStartupLocation="CenterScreen" ResizeMode="CanResize">
+
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="white"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Window.Resources>
+
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+        <Border CornerRadius="20"
+                Panel.ZIndex="2">
 
-        <StackPanel x:Name="TopBar"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Stretch">
+            <Border.Background>
+                <SolidColorBrush Color="Black" Opacity="0.6"/>
+            </Border.Background>
 
-            <Button>tyu</Button>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                </Grid.ColumnDefinitions>
 
-            <Button>tyuty</Button>
+                <StackPanel HorizontalAlignment="Left"
+                            Grid.Row="1" Grid.Column="1">
+                    <Border x:Name="ExitButton"
+                            Height="40"
+                            Width="40"
+                            Background="White"
+                            CornerRadius="50"
+                            PreviewMouseDown="ExitButton_PreviewMouseDown">
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="Border.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                From="White"
+                                                To="OrangeRed"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="ExitButton"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
 
-        </StackPanel>
-        
-        <Frame x:Name="MainFrame"
-               NavigationUIVisibility="Hidden"
-               Grid.Row="1"></Frame>
+                            <EventTrigger RoutedEvent="Border.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                From="OrangeRed"
+                                                To="White"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="ExitButton"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Border.Triggers>
+                        <Image x:Name="ExitImage"
+                       Source="Images/powerIcon.png"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Height="30" Margin="0 0 0 1"/>
+                    </Border>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal"
+                            Grid.Row="1" Grid.Column="1">
+                    <TextBlock>Trang chủ</TextBlock>
+                    <TextBlock Text="     "/>
+                    <TextBlock>Danh sách chuyến đi</TextBlock>
+                    <TextBlock Text="     "/>
+                    <TextBlock>Danh sách thành viên</TextBlock>
+                    <TextBlock Text="     "/>
+                    <TextBlock>About Us</TextBlock>
+                </StackPanel>
+
+                <Frame x:Name="MainFrame"
+                       Grid.Column="1" Grid.Row="2"
+                       NavigationUIVisibility="Hidden">
+                </Frame>
+                
+            </Grid>
+
+        </Border>
+        <Border x:Name="WindowBackgroundImage"
+                CornerRadius="20">
+            <Border.Background>
+                <ImageBrush ImageSource="Images/Rina002.png"
+                        Stretch="UniformToFill"/>
+            </Border.Background>
+        </Border>
     </Grid>
+   
 </Window>

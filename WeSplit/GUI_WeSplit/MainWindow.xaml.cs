@@ -31,5 +31,23 @@ namespace GUI_WeSplit
             TripDetailPage tripPage = new TripDetailPage();
             MainFrame.Navigate(tripPage);
         }
+
+        private void ExitButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            MessageBoxResult result = MessageBox.Show("Bạn thực sự muốn thoát WeSplit?", "Thoát WeSplit", MessageBoxButton.YesNo);
+
+            switch (result)
+            {
+                case MessageBoxResult.Yes:
+                    {
+                        this.Close();
+                        break;
+                    }
+                default:
+                    {
+                        return;
+                    }
+            }
+        }
     }
 }
