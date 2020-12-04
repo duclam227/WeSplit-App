@@ -7,11 +7,22 @@
         mc:Ignorable="d"
         Title="WeSplit - Chia tiền đi chơi chung" Height="500" Width="900" Loaded="Window_Loaded"
         WindowStartupLocation="CenterScreen">
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
+        <StackPanel x:Name="TopBar"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Stretch">
+
+            <Button>tyu</Button>
+
+            <Button>tyuty</Button>
+
+        </StackPanel>
         
         <Frame x:Name="MainFrame"
                NavigationUIVisibility="Hidden"
