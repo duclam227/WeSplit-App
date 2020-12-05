@@ -5,7 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI_WeSplit"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="{Binding SystemParameters.PrimaryScreenHeight}" 
+      d:DesignWidth="{Binding SystemParameters.PrimaryScreenWidth}"
       Title="TripDetailPage" Loaded="Page_Loaded">
 
     <Page.Resources>

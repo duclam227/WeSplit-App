@@ -49,5 +49,39 @@ namespace GUI_WeSplit
                     }
             }
         }
+
+        private void HomePageButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Visibility = Visibility.Collapsed;
+
+            ActiveIndicator.Visibility = Visibility.Visible;
+            Grid.SetColumn(ActiveIndicator, 0);
+
+
+        }
+
+        private void UnfinishedButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Visibility = Visibility.Collapsed;
+
+            ActiveIndicator.Visibility = Visibility.Visible;
+            Grid.SetColumn(ActiveIndicator, 1);
+        }
+
+        private void FinishedButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Visibility = Visibility.Collapsed;
+
+            ActiveIndicator.Visibility = Visibility.Visible;
+            Grid.SetColumn(ActiveIndicator, 2);
+        }
+
+        private void AboutUsButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            MainFrame.Visibility = Visibility.Collapsed;
+
+            ActiveIndicator.Visibility = Visibility.Visible;
+            Grid.SetColumn(ActiveIndicator, 3);
+        }
     }
 }
