@@ -5,14 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI_WeSplit"
       mc:Ignorable="d" 
-      d:DesignHeight="500" d:DesignWidth="800"
+      d:DesignHeight="600" d:DesignWidth="900"
       Title="CreateTripPage"
       Background="White" Loaded="Page_Loaded">
 
     <Page.Resources>
-        <local:NullReplaceConverter x:Key="NullReplaceConverter"/>
-        
-        
+
         <DataTemplate x:Key="BlueHeader">
             <WrapPanel>
                 <WrapPanel.Background>
@@ -51,10 +49,12 @@
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
                 <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
             <Label 
@@ -130,38 +130,34 @@
             <!--Destination column-->
             <Label 
             Grid.Row="0" Grid.Column="1"
+            Grid.ColumnSpan="2"
             Content="Destinations"
             HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
 
             <ListView Name="ListView_Destination"
             Grid.Row="1" Grid.Column="1" 
-            Grid.RowSpan="2"
-            BorderBrush="Transparent" Background="Transparent">
+            Grid.ColumnSpan="2"
+            BorderBrush="Transparent" Background="Transparent" SelectionChanged="ListView_Destination_SelectionChanged_1">
                 <ListView.View>
                     <GridView ColumnHeaderTemplate="{StaticResource BlueHeader}"
                           ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
                         <GridViewColumn Header="Location" Width="300" DisplayMemberBinding="{Binding PlaceName}" />
-                        <GridViewColumn Header="Description" Width="250" DisplayMemberBinding="{Binding PlaceDescription}" />
+                        <GridViewColumn Header="Description" Width="300" DisplayMemberBinding="{Binding PlaceDescription}" />
                     </GridView>
                 </ListView.View>
             </ListView>
-            <StackPanel Grid.Row="2" Margin="20">
-                <ComboBox Name="ComboBox_MemberList" 
-                          Width="200">
-                    <ComboBox.Resources>
-                        <CollectionViewSource x:Key="MemberList" Source="{Binding MemberList}" />
-                    </ComboBox.Resources>
-                    <ComboBox.ItemsSource>
-                        <CompositeCollection>
-                            <local:MemberItem MemberName="None selected"/>
-                            <CollectionContainer Collection="{Binding Source={StaticResource MemberList}}"/>
-                        </CompositeCollection>
-                    </ComboBox.ItemsSource>
-                </ComboBox>
-                <Button Name="Button_AddMember"
-                Width="150" Height="35"
-                Margin="30"
-                Content="Add New Member"></Button>
+            
+            <StackPanel Grid.Row="2" Margin="0 20 0 0">
+                <Label Content="Add New Member" HorizontalAlignment="Center"/>
+                <StackPanel  Margin="20 0 20 0" Orientation="Horizontal">
+                    <ComboBox Name="ComboBox_MemberList" 
+                          Width="200" Height="30">
+                    </ComboBox>
+                    <Button Name="Button_AddMember"
+                    Width="50" Height="30"
+                    Margin="10"
+                    Content="Add"></Button>
+                </StackPanel>
             </StackPanel>
 
             <ListView
@@ -172,10 +168,61 @@
                     <GridView ColumnHeaderTemplate="{StaticResource BlueHeader}"
                           ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
                         <GridViewColumn Header="Member Name" Width="300" DisplayMemberBinding="{Binding MemberName}" />
-                        <GridViewColumn Header="Budget" Width="250" DisplayMemberBinding="{Binding Budget}" />
                     </GridView>
                 </ListView.View>
             </ListView>
+
+            <ListView
+            Grid.Row="2" Grid.Column="2" 
+            Grid.RowSpan="2"
+            BorderBrush="Transparent" Background="Transparent">
+                <ListView.View>
+                    <GridView ColumnHeaderTemplate="{StaticResource BlueHeader}"
+                          ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="Expense" Width="300" DisplayMemberBinding="{Binding ExpenseName}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Grid.Row="3" Margin="0 20 0 0">
+                <Label Content="Add New Expense" HorizontalAlignment="Center"/>
+                <StackPanel  Margin="20 0 20 0" Orientation="Vertical">
+                    <TextBox Name="TextBox_ExpenseDescription"
+                        Height="30" Width="200" Margin="10"
+                        Text="Description"
+                        Foreground="DimGray">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter Property="TextDecorations" Value="Underline" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <TextBox Name="TextBox_ExpenseAmount"
+                        Height="30" Width="200" Margin="10"
+                        Text="Amount" 
+                        Foreground="DimGray">
+                        <TextBox.Style>
+                            <Style TargetType="TextBox">
+                                <Style.Triggers>
+                                    <Trigger Property="IsFocused" Value="True">
+                                        <Setter Property="Foreground" Value="Black" />
+                                        <Setter Property="TextDecorations" Value="Underline" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBox.Style>
+                    </TextBox>
+                    <Button Name="Button_AddExpense"
+                    Width="50" Height="30"
+                    Margin="10"
+                    Content="Add"></Button>
+                </StackPanel>
+            </StackPanel>
 
         </Grid>
 

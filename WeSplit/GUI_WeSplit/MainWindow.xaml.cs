@@ -28,8 +28,10 @@ namespace GUI_WeSplit
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //MemberListPage memberList = new MemberListPage();
-            TripDetailPage tripPage = new TripDetailPage();
-            MainFrame.Navigate(tripPage);
+            //TripDetailPage tripPage = new TripDetailPage();
+            //MainFrame.Navigate(tripPage);
+            CreateTripPage createTripPage = new CreateTripPage(1);
+            MainFrame.Navigate(createTripPage);
         }
     }
 }

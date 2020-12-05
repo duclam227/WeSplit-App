@@ -16,35 +16,18 @@ using System.Windows.Shapes;
 using System.ComponentModel;
 using System.Globalization;
 using System.Collections.ObjectModel;
+using BUS_WeSplit;
 
 namespace GUI_WeSplit
 {
     /// <summary>
     /// Interaction logic for CreateTripPage.xaml
     /// </summary>
-    public partial class CreateTripPage : Page, INotifyPropertyChanged
+    public partial class CreateTripPage : Page
     {
         public EventHandler<AddNewTripEventArgs> AddNewTripEventHandler;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         private DTO_Trip newTrip;
-        private MemberItem selectedItem;
-
-        public MemberItem SelectedItem
-        {
-            get
-            {
-                return selectedItem;
-            }
-            set
-            {
-                selectedItem = value;
-                this.RaisePropertyChanged("Selectedmodel");
-            }
-        }
-
-        public ObservableCollection<MemberItem> Items { get; set; }
-
 
         private CreateTripPage()
         {
@@ -60,6 +43,7 @@ namespace GUI_WeSplit
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ListView_Destination.ItemsSource = newTrip.TripDestinationList;
+            ComboBox_MemberList.ItemsSource = BUS_Member.Instance.GetAllMembers();
         }
         private void CheckBox_Description_Checked(object sender, RoutedEventArgs e)
         {
@@ -90,41 +74,14 @@ namespace GUI_WeSplit
             }
         }
 
-        public void RaisePropertyChanged(string propertyName)
+        private void ListView_Destination_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (this.PropertyChanged != null)
-            {
-                this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
 
-    public class NullReplaceConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            return value;
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        private void ListView_Destination_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-            DTO_Trip com = (DTO_Trip)value;
-            if (com.TripName == "None selected")
-            {
-                return null;
-            }
-            else
-            {
-                return value;
-            }
-            //return value.Equals(parameter) ? null : value;
+
         }
     }
-
-    public class MemberItem
-    {
-        public string MemberName;
-        public string MemberAvatar;
-    }
-       
 }

@@ -20,7 +20,7 @@ namespace BUS_WeSplit
             }
         }
 
-        public static List<DTO_Member> GetAllMembers()
+        public List<DTO_Member> GetAllMembers()
         {
             List<DTO_Member> result = new List<DTO_Member>();
 

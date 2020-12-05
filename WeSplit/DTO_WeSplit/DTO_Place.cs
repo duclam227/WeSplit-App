@@ -12,7 +12,6 @@ namespace DTO_WeSplit
         private string _placeName;
         private string _placeAddress;
         private string _placeDescription;
-        private List<DTO_Expense> _expenseList;
         private List<string> _placeImages;
 
         public int PlaceId { get => _placeId; set => _placeId = value; }
@@ -20,8 +19,6 @@ namespace DTO_WeSplit
         public string PlaceAddress { get => _placeAddress; set => _placeAddress = value; }
         public string PlaceDescription { get => _placeDescription; set => _placeDescription = value; }
         public List<string> PlaceImages { get => _placeImages;}
-        public List<DTO_Expense> ExpenseList { get => _expenseList;}
-
         public DTO_Place()
         {
 
@@ -40,9 +37,5 @@ namespace DTO_WeSplit
             _placeImages.Add(imagePath);
         }
 
-        public void AddExpense(DTO_Expense newExpense)
-        {
-            _expenseList.Add(newExpense);
-        }
     }
 }
