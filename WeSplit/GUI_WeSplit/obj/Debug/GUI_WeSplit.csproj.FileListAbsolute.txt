@@ -24,3 +24,5 @@ C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - 
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\DAO_WeSplit.pdb
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\TripDetailPage.g.cs
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\TripDetailPage.baml
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\HomePage.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\HomePage.baml

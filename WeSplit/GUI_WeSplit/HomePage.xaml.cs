@@ -12,23 +12,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BUS_WeSplit;
 
 namespace GUI_WeSplit
 {
     /// <summary>
-    /// Interaction logic for MemberListPage.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class MemberListPage : Page
+    public partial class HomePage : Page
     {
-        public MemberListPage()
+        public HomePage()
         {
             InitializeComponent();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            MemberList.ItemsSource = BUS_Member.Instance.GetAllMembers().ToList();
         }
     }
 }

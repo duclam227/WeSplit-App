@@ -16,11 +16,14 @@
     <Window.Resources>
 
         <SolidColorBrush x:Key="IndicatorColor">Black</SolidColorBrush>
+        
         <Color x:Key="ContentBorderBG">Black</Color>
+        <SolidColorBrush x:Key="ContentForeground">white</SolidColorBrush>
 
         <SolidColorBrush x:Key="MenuForeground">Black</SolidColorBrush>
         <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
         <System:Double x:Key="MainBorderOpacity">0.8</System:Double>
+        <System:Double x:Key="ButtonSize">18</System:Double>
         
         
         <Style TargetType="TextBlock">
@@ -36,10 +39,6 @@
     <Grid ShowGridLines="False">
         <Border CornerRadius="20"
                 Panel.ZIndex="2">
-
-            <!--<Border.Background>
-                <SolidColorBrush Color="White" Opacity="0.6"/>
-            </Border.Background>-->
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -57,11 +56,12 @@
 
                 <StackPanel HorizontalAlignment="Left"
                             VerticalAlignment="Center"
+                            Orientation="Horizontal"
                             Grid.Row="1" Grid.Column="1">
                     <Border x:Name="ExitButton"
-                            Height="40"
-                            Width="40"
-                            Background="White"
+                            Height="{DynamicResource ButtonSize}"
+                            Width="{DynamicResource ButtonSize}"
+                            Background="#FE2525"
                             CornerRadius="50"
                             PreviewMouseDown="ExitButton_PreviewMouseDown">
                         <Border.Triggers>
@@ -69,8 +69,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="White"
-                                                To="OrangeRed"
+                                                From="#FE2525"
+                                                To="White"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="ExitButton"></ColorAnimation>
                                     </Storyboard>
@@ -81,18 +81,92 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="OrangeRed"
-                                                To="White"
+                                                From="White"
+                                                To="#FE2525"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="ExitButton"></ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                         </Border.Triggers>
-                        <Image x:Name="ExitImage"
+                        <!--<Image x:Name="ExitIcon"
                        Source="Images/powerIcon.png"
                        RenderOptions.BitmapScalingMode="HighQuality"
-                       Height="30" Margin="0 0 0 1"/>
+                       Height="15" Margin="0 0 0 1"/>-->
+                    </Border>
+                    <TextBlock Text=" "/>
+                    <Border x:Name="ResizeButton"
+                            Height="{DynamicResource ButtonSize}"
+                            Width="{DynamicResource ButtonSize}"
+                            Background="#FEEA25"
+                            CornerRadius="50"
+                            PreviewMouseDown="ResizeButton_PreviewMouseDown">
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="Border.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                From="#FEEA25"
+                                                To="White"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="ResizeButton"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="Border.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                From="White"
+                                                To="#FEEA25"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="ResizeButton"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Border.Triggers>
+                        <!--<Image x:Name="ResizeIcon"
+                       Source="Images/powerIcon.png"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Height="15" Margin="0 0 0 1"/>-->
+                    </Border>
+                    <TextBlock Text=" "/>
+                    <Border x:Name="MinimizeButton"
+                            Height="{DynamicResource ButtonSize}"
+                            Width="{DynamicResource ButtonSize}"
+                            Background="#54FF27"
+                            CornerRadius="50"
+                            PreviewMouseDown="MinimizeButton_PreviewMouseDown">
+                        <Border.Triggers>
+                            <EventTrigger RoutedEvent="Border.MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                From="#54FF27"
+                                                To="White"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="MinimizeButton"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+
+                            <EventTrigger RoutedEvent="Border.MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Duration="0:0:0.3"
+                                                From="White"
+                                                To="#54FF27"
+                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                Storyboard.TargetName="MinimizeButton"></ColorAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </Border.Triggers>
+                        <!--<Image x:Name="MinimizeIcon"
+                       Source="Images/powerIcon.png"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Height="15" Margin="0 0 0 1"/>-->
                     </Border>
                 </StackPanel>
                
@@ -117,24 +191,28 @@
 
                     <Border Grid.Row="0" 
                             Grid.Column="0"
+                            Background="Transparent"
                             PreviewMouseDown="HomePageButton_Click">
                         <TextBlock >Trang chủ</TextBlock>
                     </Border>
 
                     <Border Grid.Row="0" 
                             Grid.Column="1"
-                            PreviewMouseDown="UnfinishedButton_Click">
+                            PreviewMouseDown="UnfinishedButton_Click"
+                            Background="Transparent">
                         <TextBlock >Chưa hoàn thành</TextBlock>
                     </Border>
 
                     <Border Grid.Row="0" 
                             Grid.Column="2"
+                            Background="Transparent"
                             PreviewMouseDown="FinishedButton_Click">
                         <TextBlock >Đã hoàn thành</TextBlock>
                     </Border>
 
                     <Border Grid.Row="0" 
                             Grid.Column="3"
+                            Background="Transparent"
                             PreviewMouseDown="AboutUsButton_Click">
                         <TextBlock >About us</TextBlock>
                     </Border>
@@ -158,16 +236,21 @@
                         Grid.Column="1" Grid.Row="3"
                         CornerRadius="20"
                         BorderThickness="0">
-                   
+
                     <Border.Background>
                         <SolidColorBrush Color="{StaticResource ContentBorderBG}" 
                                          Opacity="{DynamicResource MainBorderOpacity}"/>
                     </Border.Background>
-                    
-                    <Frame x:Name="MainFrame"
+                    <Grid Margin="10">
+                        <Frame x:Name="MainFrame"
                            NavigationUIVisibility="Hidden"
-                           Margin="10">
-                    </Frame>
+                               Grid.Column="0"
+                               Grid.Row="0"
+                               Panel.ZIndex="2">
+                        </Frame>
+                    </Grid>
+                   
+                    
                 </Border>
                 
 

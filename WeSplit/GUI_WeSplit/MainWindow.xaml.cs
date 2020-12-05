@@ -27,9 +27,8 @@ namespace GUI_WeSplit
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //MemberListPage memberList = new MemberListPage();
-            TripDetailPage tripPage = new TripDetailPage();
-            MainFrame.Navigate(tripPage);
+            HomePage hp = new HomePage();
+            MainFrame.Navigate(hp);
         }
 
         private void ExitButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -50,27 +49,49 @@ namespace GUI_WeSplit
             }
         }
 
+        private void MinimizeButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void ResizeButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+            }
+            else
+            {
+                WindowState = WindowState.Maximized;
+            }
+        }
+
         private void HomePageButton_Click(object sender, MouseButtonEventArgs e)
         {
-            MainFrame.Visibility = Visibility.Collapsed;
+            //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 0);
 
-
+            HomePage hp = new HomePage();
+            MainFrame.Navigate(hp);
         }
 
         private void UnfinishedButton_Click(object sender, MouseButtonEventArgs e)
         {
-            MainFrame.Visibility = Visibility.Collapsed;
+            //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 1);
+
+            //MemberListPage memberList = new MemberListPage();
+            TripDetailPage tripPage = new TripDetailPage();
+            MainFrame.Navigate(tripPage);
         }
 
         private void FinishedButton_Click(object sender, MouseButtonEventArgs e)
         {
-            MainFrame.Visibility = Visibility.Collapsed;
+            //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 2);
@@ -78,10 +99,12 @@ namespace GUI_WeSplit
 
         private void AboutUsButton_Click(object sender, MouseButtonEventArgs e)
         {
-            MainFrame.Visibility = Visibility.Collapsed;
+            //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 3);
         }
+
+        
     }
 }
