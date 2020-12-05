@@ -6,12 +6,13 @@ using System.Threading.Tasks;
 
 namespace DTO_WeSplit
 {
-    class DTO_Place
+    public class DTO_Place
     {
         private int _placeId;
         private string _placeName;
         private string _placeAddress;
         private string _placeDescription;
+        private List<DTO_Expense> _expenseList;
         private List<string> _placeImages;
 
         public int PlaceId { get => _placeId; set => _placeId = value; }
@@ -19,6 +20,7 @@ namespace DTO_WeSplit
         public string PlaceAddress { get => _placeAddress; set => _placeAddress = value; }
         public string PlaceDescription { get => _placeDescription; set => _placeDescription = value; }
         public List<string> PlaceImages { get => _placeImages;}
+        public List<DTO_Expense> ExpenseList { get => _expenseList;}
 
         public DTO_Place()
         {
@@ -31,6 +33,16 @@ namespace DTO_WeSplit
             PlaceName = name;
             PlaceAddress = address;
             PlaceDescription = description;
+        }
+
+        public void AddImage(string imagePath)
+        {
+            _placeImages.Add(imagePath);
+        }
+
+        public void AddExpense(DTO_Expense newExpense)
+        {
+            _expenseList.Add(newExpense);
         }
     }
 }

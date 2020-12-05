@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DTO_WeSplit
 {
-    class DTO_Expense
+    public class DTO_Expense
     {
         private int _tripId;
         private double _expenseMoney;

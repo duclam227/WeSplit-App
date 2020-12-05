@@ -1,0 +1,183 @@
+﻿<Page x:Class="GUI_WeSplit.CreateTripPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GUI_WeSplit"
+      mc:Ignorable="d" 
+      d:DesignHeight="500" d:DesignWidth="800"
+      Title="CreateTripPage"
+      Background="White" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <local:NullReplaceConverter x:Key="NullReplaceConverter"/>
+        
+        
+        <DataTemplate x:Key="BlueHeader">
+            <WrapPanel>
+                <WrapPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF223B84" Offset="1"/>
+                        <GradientStop Color="#FF57A0F4" Offset="0.5"/>
+                        <GradientStop Color="#FF4B94EC" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </WrapPanel.Background>
+                <TextBlock Margin="10,10,10,10" Text="{Binding}"
+		        VerticalAlignment="Center"  Foreground="White"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="LightBlue"/>
+        </Style>
+
+    </Page.Resources>
+
+    <!-- Main UI -->
+    <DockPanel>
+        <Label
+            Height="50"
+            DockPanel.Dock="Top"
+            VerticalContentAlignment="Center"
+            HorizontalAlignment="Center" VerticalAlignment="Center"
+            Content="Create new trip"/>
+        <Button Name="Button_CreateNewTrip" 
+            Margin="10" DockPanel.Dock="Bottom"
+            Width="150" Height="35"
+            Click="Button_CreateNewTrip_Click">Create New Trip</Button>
+
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label 
+            Content="Trip Information"
+            HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+
+            <StackPanel 
+                Grid.Row="1"
+                Orientation="Vertical">
+                <!--Trip Name-->
+                <StackPanel Grid.Row="0" Margin="30 20 30 10">
+                    <TextBlock 
+                    HorizontalAlignment="Left"
+                    TextWrapping="NoWrap">
+                    Trip Name
+                    </TextBlock>
+                    <TextBox Name="TextBox_TripName"
+                Width="200" Height="Auto"
+                HorizontalAlignment="Left">
+                    </TextBox>
+                </StackPanel>
+
+                <!--Date Picker-->
+                <StackPanel
+                Grid.Row="1" Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                    <StackPanel Margin="10">
+                        <TextBlock 
+                HorizontalAlignment="Center"
+                TextWrapping="NoWrap">
+                Start Date
+                        </TextBlock>
+                        <DatePicker Name="DatePicker_StartDate">
+                        </DatePicker>
+                    </StackPanel>
+
+                    <StackPanel Margin="10">
+                        <TextBlock 
+                HorizontalAlignment="Center"
+                TextWrapping="NoWrap">
+                End Date
+                        </TextBlock>
+                        <DatePicker Name="DatePicker_EndDate">
+                        </DatePicker>
+                    </StackPanel>
+                </StackPanel>
+
+                <!--Description Box-->
+                <StackPanel
+                    Grid.Row="3" Grid.Column="0">
+                    <CheckBox Name="CheckBox_Description"
+                Margin="35 15 15 0"
+                Content="Add Description"
+                Checked="CheckBox_Description_Checked"
+                Unchecked="CheckBox_Description_Unchecked"></CheckBox>
+                    <StackPanel Name="StackPanel_Description"
+                Visibility="Collapsed">
+                        <TextBlock 
+                HorizontalAlignment="Left"
+                TextWrapping="NoWrap"
+                Margin="30 5 0 0">
+                Description
+                        </TextBlock>
+                        <TextBox Name="TextBox_TripDescription"
+                Width="200" MinHeight="50" Height="Auto"
+                HorizontalAlignment="Left"
+                Margin="30 0 0 0">
+                        </TextBox>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+            <!--Destination column-->
+            <Label 
+            Grid.Row="0" Grid.Column="1"
+            Content="Destinations"
+            HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+
+            <ListView Name="ListView_Destination"
+            Grid.Row="1" Grid.Column="1" 
+            Grid.RowSpan="2"
+            BorderBrush="Transparent" Background="Transparent">
+                <ListView.View>
+                    <GridView ColumnHeaderTemplate="{StaticResource BlueHeader}"
+                          ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="Location" Width="300" DisplayMemberBinding="{Binding PlaceName}" />
+                        <GridViewColumn Header="Description" Width="250" DisplayMemberBinding="{Binding PlaceDescription}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <StackPanel Grid.Row="2" Margin="20">
+                <ComboBox Name="ComboBox_MemberList" 
+                          Width="200">
+                    <ComboBox.Resources>
+                        <CollectionViewSource x:Key="MemberList" Source="{Binding MemberList}" />
+                    </ComboBox.Resources>
+                    <ComboBox.ItemsSource>
+                        <CompositeCollection>
+                            <local:MemberItem MemberName="None selected"/>
+                            <CollectionContainer Collection="{Binding Source={StaticResource MemberList}}"/>
+                        </CompositeCollection>
+                    </ComboBox.ItemsSource>
+                </ComboBox>
+                <Button Name="Button_AddMember"
+                Width="150" Height="35"
+                Margin="30"
+                Content="Add New Member"></Button>
+            </StackPanel>
+
+            <ListView
+            Grid.Row="2" Grid.Column="1" 
+            Grid.RowSpan="2"
+            BorderBrush="Transparent" Background="Transparent">
+                <ListView.View>
+                    <GridView ColumnHeaderTemplate="{StaticResource BlueHeader}"
+                          ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="Member Name" Width="300" DisplayMemberBinding="{Binding MemberName}" />
+                        <GridViewColumn Header="Budget" Width="250" DisplayMemberBinding="{Binding Budget}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </Grid>
+
+    </DockPanel>
+</Page>
