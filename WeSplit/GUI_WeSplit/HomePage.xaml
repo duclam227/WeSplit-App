@@ -24,7 +24,7 @@
 
 
         <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="{DynamicResource MenuForeground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource ContentForeground}"/>
             <Setter Property="FontSize" Value="17.5"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
@@ -34,53 +34,79 @@
     </Page.Resources>
 
     <Grid>
-        <Border x:Name="HomePageContent"
-                            Grid.Column="0"
-                                Grid.Row="0"
-                                Panel.ZIndex="1">
-            <Border x:Name="SeachBorder"
-                Height="25"
-                    Width="400"
-                    CornerRadius="5"
-                    BorderBrush="{DynamicResource ContentForeground}"
-                    BorderThickness="0 0 0 0.2"
-                    Padding="5 0 0 0"
-                    Background="Transparent">
 
-                <Border.Triggers>
-                    <EventTrigger RoutedEvent="Border.MouseEnter">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ThicknessAnimation Duration="0:0:0.1"
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Row="1"
+                   Grid.Column="1" Grid.ColumnSpan="4">
+            <TextBlock  HorizontalAlignment="Stretch"
+                   FontSize="50" FontWeight="Black">WeSplit</TextBlock>
+
+            <TextBlock 
+                   HorizontalAlignment="Stretch"
+                   FontSize="30">Lưu giữ những chuyến đi tuyệt vời!</TextBlock>
+        </StackPanel>
+
+
+        <Border x:Name="SeachBorder"
+                Grid.Column="1" Grid.ColumnSpan="4"
+                Grid.Row="2"
+                Height="25"
+                Width="400"
+                CornerRadius="5"
+                BorderBrush="{DynamicResource ContentForeground}"
+                BorderThickness="0 0 0 0.2"
+                Padding="5 0 0 0"
+                Background="Transparent">
+
+            <Border.Triggers>
+                <EventTrigger RoutedEvent="Border.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation Duration="0:0:0.1"
                                                  From="0 0 0 0.2"
                                                  To="0 0 0 0.5"
                                                  Storyboard.TargetProperty="(Border.BorderThickness)"
                                                  Storyboard.TargetName="SeachBorder"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                    <EventTrigger RoutedEvent="Border.MouseLeave">
-                        <BeginStoryboard>
-                            <Storyboard>
-                                <ThicknessAnimation Duration="0:0:0.1"
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Border.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ThicknessAnimation Duration="0:0:0.1"
                                                  From="0 0 0 0.5"
                                                  To="0 0 0 0.2"
                                                  Storyboard.TargetProperty="(Border.BorderThickness)"
                                                  Storyboard.TargetName="SeachBorder"/>
-                            </Storyboard>
-                        </BeginStoryboard>
-                    </EventTrigger>
-                </Border.Triggers>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Border.Triggers>
 
-                <TextBox x:Name="SearchTextBox"
+            <TextBox x:Name="SearchTextBox"
                          BorderThickness="0"
                          Foreground="{DynamicResource ContentForeground}"
                          Background="Transparent"
                          HorizontalContentAlignment="Center"
                          CaretBrush="White"
                          Margin="0 5 0 0">
-                </TextBox>
-            </Border>
+            </TextBox>
         </Border>
+
     </Grid>
+
 </Page>

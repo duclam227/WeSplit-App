@@ -22,7 +22,7 @@
 
         <SolidColorBrush x:Key="MenuForeground">Black</SolidColorBrush>
         <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
-        <System:Double x:Key="MainBorderOpacity">0.8</System:Double>
+        <System:Double x:Key="MainBorderOpacity">0.6</System:Double>
         <System:Double x:Key="ButtonSize">18</System:Double>
         
         
@@ -38,7 +38,9 @@
 
     <Grid ShowGridLines="False">
         <Border CornerRadius="20"
-                Panel.ZIndex="2">
+                Panel.ZIndex="2"
+                BorderBrush="White"
+                BorderThickness="2">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -183,8 +185,8 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
-                        <ColumnDefinition Width="2*"/>
-                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -203,14 +205,14 @@
                             Grid.Column="1"
                             PreviewMouseDown="UnfinishedButton_Click"
                             Background="Transparent">
-                        <TextBlock >Chưa hoàn thành</TextBlock>
+                        <TextBlock >Chuyến đi</TextBlock>
                     </Border>
 
                     <Border Grid.Row="0" 
                             Grid.Column="2"
                             Background="Transparent"
                             PreviewMouseDown="FinishedButton_Click">
-                        <TextBlock >Đã hoàn thành</TextBlock>
+                        <TextBlock >Thành viên</TextBlock>
                     </Border>
 
                     <Border Grid.Row="0" 
