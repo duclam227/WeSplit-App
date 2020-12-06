@@ -23,6 +23,7 @@ namespace GUI_WeSplit
         public MainWindow()
         {
             InitializeComponent();
+            HandyControl.Tools.ConfigHelper.Instance.SetLang("en");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

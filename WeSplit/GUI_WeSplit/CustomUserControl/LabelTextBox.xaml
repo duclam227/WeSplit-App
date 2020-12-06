@@ -12,7 +12,7 @@
         </Grid.RowDefinitions>
         <Label Name="BaseLabel" 
             Content="Label" HorizontalAlignment="Left"
-            FontSize="10"/>
+            FontSize="10" BorderBrush="Transparent" Background="Transparent"/>
         <TextBox Name="BaseTextBox"
             Grid.Row="1"
             VerticalContentAlignment="Center" GotFocus="BaseTextBox_GotFocus" LostFocus="BaseTextBox_LostFocus">

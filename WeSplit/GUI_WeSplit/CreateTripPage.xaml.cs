@@ -30,7 +30,9 @@ namespace GUI_WeSplit
         private DTO_Trip newTrip;
 
         private ObservableCollection<DTO_Member> AddedMemberList;
+        private ObservableCollection<DTO_Member> MemberList;
         private ObservableCollection<DTO_Member> AvailableMemberList;
+        private ObservableCollection<DTO_Expense> ExpenseList;
 
         private CreateTripPage()
         {
@@ -42,24 +44,28 @@ namespace GUI_WeSplit
         {
             InitializeComponent();
             AddedMemberList = new ObservableCollection<DTO_Member>();
+            MemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAllMembers());
             AvailableMemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAllMembers());
+            ExpenseList = new ObservableCollection<DTO_Expense>();
             newTrip = new DTO_Trip();
+            newTrip.TripId = tripID;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ListView_Destination.ItemsSource = newTrip.TripDestinationList;
             ListView_MemberList.ItemsSource = AddedMemberList;
             ComboBox_MemberList.ItemsSource = AvailableMemberList;
+            ComboBox_MemberListExpense.ItemsSource = MemberList;
+            ListView_Expense.ItemsSource = ExpenseList;
         }
         private void CheckBox_Description_Checked(object sender, RoutedEventArgs e)
         {
-            StackPanel_Description.Visibility = Visibility.Visible;
+            LabelTextBox_Description.Visibility = Visibility.Visible;
         }
 
         private void CheckBox_Description_Unchecked(object sender, RoutedEventArgs e)
         {
-            StackPanel_Description.Visibility = Visibility.Collapsed;
-            TextBox_TripDescription.Clear();
+            LabelTextBox_Description.Visibility = Visibility.Collapsed;
         }
         private void Button_CreateNewTrip_Click(object sender, RoutedEventArgs e)
         {
@@ -92,7 +98,16 @@ namespace GUI_WeSplit
 
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
         {
-
+            double amount = Convert.ToDouble(LabelTextBox_ExpenseAmount.TextBox);
+            int memberId = ((DTO_Member)ComboBox_MemberListExpense.SelectedItem).MemberID;
+            string description = LabelTextBox_ExpenseDescription.TextBox;
+            DTO_Expense expense;
+            if (description != "" && amount != -1)
+            {
+                expense = new DTO_Expense(newTrip.TripId, amount, memberId, description);
+                ExpenseList.Add(expense);
+            }
+            
         }
 
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)

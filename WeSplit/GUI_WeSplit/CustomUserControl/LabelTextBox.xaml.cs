@@ -49,6 +49,23 @@ namespace GUI_WeSplit.CustomUserControl
             }
         }
 
+        public string TextBox
+        {
+            get 
+            {
+                if (BaseTextBox.Text.Equals(DefaultText))
+                    return "";
+                else
+                    return BaseTextBox.Text; 
+            }
+        }
+
+        public void Clear()
+        {
+            _localTextBox = "";
+            BaseTextBox.Text = _defaultText;
+        }
+
         private void BaseTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (BaseTextBox.Text.Equals(DefaultText))

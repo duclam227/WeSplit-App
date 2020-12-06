@@ -29,3 +29,12 @@ D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.cs
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CoreCompileInputs.cache
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CopyComplete
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GeneratedInternalTypeHelper.g.cs
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\HandyControl.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\HandyControl.xml
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\en\HandyControl.resources.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\fa\HandyControl.resources.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\fr\HandyControl.resources.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\ko-KR\HandyControl.resources.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\ru\HandyControl.resources.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\tr\HandyControl.resources.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\App.baml
