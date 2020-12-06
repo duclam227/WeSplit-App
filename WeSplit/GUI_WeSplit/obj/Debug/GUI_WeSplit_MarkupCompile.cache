@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\
 GUI_WeSplit
 none
 false
 DEBUG;TRACE
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\App.xaml
-4545138105
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\App.xaml
+5-1413554113
 
-8-110569146
-16-1573822859
-HomePage.xaml;MainWindow.xaml;MemberListPage.xaml;TripDetailPage.xaml;
+91066712744
+161205179943
+CreateTripPage.xaml;CustomUserControl\LabelTextBox.xaml;MainWindow.xaml;MemberListPage.xaml;TripDetailPage.xaml;
 
 False
 
