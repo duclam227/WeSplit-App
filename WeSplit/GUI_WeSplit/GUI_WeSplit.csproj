@@ -37,6 +37,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -55,20 +56,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="CreateTripPage.xaml.cs">
-      <DependentUpon>CreateTripPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="CustomUserControl\LabelTextBox.xaml.cs">
-      <DependentUpon>LabelTextBox.xaml</DependentUpon>
+    <Compile Include="HomePage.xaml.cs">
+      <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="TripDetailPage.xaml.cs">
       <DependentUpon>TripDetailPage.xaml</DependentUpon>
     </Compile>
-    <Page Include="CreateTripPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="CustomUserControl\LabelTextBox.xaml">
+    <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -133,7 +127,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\thumbnail.png" />
+    <Resource Include="Images\Rina002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\powerIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\closeIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
