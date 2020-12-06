@@ -18,6 +18,7 @@ namespace DTO_WeSplit
         private double _tripBudget;
         private double _tripAverage;
         private List<DTO_Place> _tripDestinationList;
+        private List<DTO_Member> _tripMemberList;
         #endregion
 
         #region Public Properties
@@ -29,16 +30,26 @@ namespace DTO_WeSplit
         public double TripAverage { get => _tripAverage; set => _tripAverage = value; }
         public List<DTO_Place> TripDestinationList { get => _tripDestinationList; }
         public string TripEndDate { get => _tripEndDate; set => _tripEndDate = value; }
+        public List<DTO_Member> TripMemberList { get => _tripMemberList;}
         #endregion
 
         #region Constructor
         public DTO_Trip()
         {
-
+            _tripDestinationList = new List<DTO_Place>();
+            _tripMemberList = new List<DTO_Member>();
         }
 
         #endregion
 
+        public void AddDestination(DTO_Place newDestination)
+        {
+            _tripDestinationList.Add(newDestination);
+        }
 
+        public void AddMember(DTO_Member newMember)
+        {
+            _tripMemberList.Add(newMember);
+        }
     }
 }

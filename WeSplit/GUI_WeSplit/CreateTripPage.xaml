@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI_WeSplit"
+      xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
       mc:Ignorable="d" 
       d:DesignHeight="600" d:DesignWidth="900"
       Title="CreateTripPage"
@@ -65,7 +66,7 @@
                 Grid.Row="1"
                 Orientation="Vertical">
                 <!--Trip Name-->
-                <StackPanel Grid.Row="0" Margin="30 20 30 10">
+                <!--<StackPanel Grid.Row="0" Margin="30 20 30 10">
                     <TextBlock 
                     HorizontalAlignment="Left"
                     TextWrapping="NoWrap">
@@ -75,7 +76,12 @@
                 Width="200" Height="Auto"
                 HorizontalAlignment="Left">
                     </TextBox>
-                </StackPanel>
+                </StackPanel>-->
+
+                <uc:LabelTextBox x:Name="LabelTextBox_TripName" 
+                                 Label="Trip Name" DefaultText="Trip Name"
+                                 Margin="20 0 20 0"></uc:LabelTextBox>
+
 
                 <!--Date Picker-->
                 <StackPanel
@@ -141,33 +147,56 @@
                 <ListView.View>
                     <GridView ColumnHeaderTemplate="{StaticResource BlueHeader}"
                           ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="No." Width="50" DisplayMemberBinding="{Binding PlaceId}" />
                         <GridViewColumn Header="Location" Width="300" DisplayMemberBinding="{Binding PlaceName}" />
                         <GridViewColumn Header="Description" Width="300" DisplayMemberBinding="{Binding PlaceDescription}" />
                     </GridView>
                 </ListView.View>
             </ListView>
-            
-            <StackPanel Grid.Row="2" Margin="0 20 0 0">
-                <Label Content="Add New Member" HorizontalAlignment="Center"/>
-                <StackPanel  Margin="20 0 20 0" Orientation="Horizontal">
-                    <ComboBox Name="ComboBox_MemberList" 
-                          Width="200" Height="30">
-                    </ComboBox>
-                    <Button Name="Button_AddMember"
-                    Width="50" Height="30"
-                    Margin="10"
-                    Content="Add"></Button>
-                </StackPanel>
-            </StackPanel>
 
-            <ListView
+            <Grid Grid.Row="2" Margin="0 20 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Add New Member" HorizontalAlignment="Center"/>
+
+                <ComboBox Name="ComboBox_MemberList" 
+                          Grid.Row="1"
+                          Width="200" Height="30" Margin="20 0 5 0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="1" Text="{Binding MemberName}"></TextBlock>
+                                
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Name="Button_AddMember"
+                    Width="50" Height="30"
+                    Grid.Row="1" Grid.Column="1" Margin="5 0 20 0"
+                    Content="Add" Click="Button_AddMember_Click"></Button>
+
+            </Grid>
+
+            <ListView Name="ListView_MemberList"
             Grid.Row="2" Grid.Column="1" 
             Grid.RowSpan="2"
             BorderBrush="Transparent" Background="Transparent">
                 <ListView.View>
-                    <GridView ColumnHeaderTemplate="{StaticResource BlueHeader}"
-                          ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
-                        <GridViewColumn Header="Member Name" Width="300" DisplayMemberBinding="{Binding MemberName}" />
+                    <GridView 
+                        ColumnHeaderTemplate="{StaticResource BlueHeader}"
+                         ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="Member Name" Width="300" DisplayMemberBinding="{Binding Path=MemberName}" />
                     </GridView>
                 </ListView.View>
             </ListView>
@@ -187,40 +216,14 @@
             <StackPanel Grid.Row="3" Margin="0 20 0 0">
                 <Label Content="Add New Expense" HorizontalAlignment="Center"/>
                 <StackPanel  Margin="20 0 20 0" Orientation="Vertical">
-                    <TextBox Name="TextBox_ExpenseDescription"
-                        Height="30" Width="200" Margin="10"
-                        Text="Description"
-                        Foreground="DimGray">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Style.Triggers>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Foreground" Value="Black" />
-                                        <Setter Property="TextDecorations" Value="Underline" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
-                    <TextBox Name="TextBox_ExpenseAmount"
-                        Height="30" Width="200" Margin="10"
-                        Text="Amount" 
-                        Foreground="DimGray">
-                        <TextBox.Style>
-                            <Style TargetType="TextBox">
-                                <Style.Triggers>
-                                    <Trigger Property="IsFocused" Value="True">
-                                        <Setter Property="Foreground" Value="Black" />
-                                        <Setter Property="TextDecorations" Value="Underline" />
-                                    </Trigger>
-                                </Style.Triggers>
-                            </Style>
-                        </TextBox.Style>
-                    </TextBox>
+                    <uc:LabelTextBox x:Name="LabelTextBox_ExpenseDescription"
+                        Label="Description" DefaultText="Description"></uc:LabelTextBox>
+                    <uc:LabelTextBox x:Name="LabelTextBox_ExpenseAmount"
+                        Label="Amount" DefaultText="Amount"></uc:LabelTextBox>
                     <Button Name="Button_AddExpense"
                     Width="50" Height="30"
                     Margin="10"
-                    Content="Add"></Button>
+                    Content="Add" Click="Button_AddExpense_Click"></Button>
                 </StackPanel>
             </StackPanel>
 

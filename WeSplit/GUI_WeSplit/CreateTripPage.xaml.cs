@@ -29,6 +29,9 @@ namespace GUI_WeSplit
 
         private DTO_Trip newTrip;
 
+        private ObservableCollection<DTO_Member> AddedMemberList;
+        private ObservableCollection<DTO_Member> AvailableMemberList;
+
         private CreateTripPage()
         {
             InitializeComponent();
@@ -38,12 +41,15 @@ namespace GUI_WeSplit
         public CreateTripPage(int tripID)
         {
             InitializeComponent();
+            AddedMemberList = new ObservableCollection<DTO_Member>();
+            AvailableMemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAllMembers());
             newTrip = new DTO_Trip();
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ListView_Destination.ItemsSource = newTrip.TripDestinationList;
-            ComboBox_MemberList.ItemsSource = BUS_Member.Instance.GetAllMembers();
+            ListView_MemberList.ItemsSource = AddedMemberList;
+            ComboBox_MemberList.ItemsSource = AvailableMemberList;
         }
         private void CheckBox_Description_Checked(object sender, RoutedEventArgs e)
         {
@@ -82,6 +88,21 @@ namespace GUI_WeSplit
         private void ListView_Destination_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_AddMember_Click(object sender, RoutedEventArgs e)
+        {
+            DTO_Member selected = (DTO_Member)ComboBox_MemberList.SelectedItem;
+            if (selected != null)
+            {
+                AddedMemberList.Add(selected);
+                AvailableMemberList.Remove(selected);
+            }
         }
     }
 }

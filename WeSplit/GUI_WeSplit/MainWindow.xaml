@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GUI_WeSplit"
         mc:Ignorable="d"
-        Title="WeSplit - Chia tiền đi chơi chung" Height="500" Width="900" Loaded="Window_Loaded"
+        Title="WeSplit - Chia tiền đi chơi chung" Height="500" Width="900" Loaded="Window_Loaded" WindowState="Maximized"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>

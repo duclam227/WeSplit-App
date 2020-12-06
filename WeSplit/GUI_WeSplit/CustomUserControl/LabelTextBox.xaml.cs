@@ -25,27 +25,55 @@ namespace GUI_WeSplit.CustomUserControl
             InitializeComponent();
         }
 
-        string LocalLabel = "";
-        string LocalTextBox = "";
+        string _defaultText = "";
+        string _localLabel = "";
+        string _localTextBox = "";
 
         public string Label
         {
-            get { return LocalLabel; }
+            get { return _localLabel; }
             set
             {
-                LocalLabel = value;
+                _localLabel = value;
                 BaseLabel.Content = value;
             }
         }
 
-        public string TextBox
+        public string DefaultText
         {
-            get { return LocalTextBox; }
+            get { return _defaultText; }
             set
             {
-                LocalTextBox = value;
+                _defaultText = value;
                 BaseTextBox.Text = value;
             }
+        }
+
+        private void BaseTextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            if (BaseTextBox.Text.Equals(DefaultText))
+                BaseTextBox.Clear();
+            BaseLabel.Foreground = Brushes.BlueViolet;
+        }
+
+        private void BaseTextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (BaseTextBox.Text == "")
+            {
+                if (_localTextBox == "")
+                {
+                    BaseTextBox.Text = _defaultText;
+                }
+                else
+                {
+                    BaseTextBox.Text = _localTextBox;
+                }
+            }
+            else
+            {
+                _localTextBox = BaseTextBox.Text;
+            }
+            BaseLabel.Foreground = Brushes.Black;
         }
     }
 }
