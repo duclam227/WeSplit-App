@@ -63,7 +63,8 @@
                             Width="{DynamicResource ButtonSize}"
                             Background="#FE2525"
                             CornerRadius="50"
-                            PreviewMouseDown="ExitButton_PreviewMouseDown">
+                            PreviewMouseDown="ExitButton_PreviewMouseDown"
+                            ToolTip="Đóng ứng dụng">
                         <Border.Triggers>
                             <EventTrigger RoutedEvent="Border.MouseEnter">
                                 <BeginStoryboard>
@@ -100,7 +101,8 @@
                             Width="{DynamicResource ButtonSize}"
                             Background="#FEEA25"
                             CornerRadius="50"
-                            PreviewMouseDown="ResizeButton_PreviewMouseDown">
+                            PreviewMouseDown="ResizeButton_PreviewMouseDown"
+                            ToolTip="Thay đổi kích thước cửa sổ">
                         <Border.Triggers>
                             <EventTrigger RoutedEvent="Border.MouseEnter">
                                 <BeginStoryboard>
@@ -137,7 +139,8 @@
                             Width="{DynamicResource ButtonSize}"
                             Background="#54FF27"
                             CornerRadius="50"
-                            PreviewMouseDown="MinimizeButton_PreviewMouseDown">
+                            PreviewMouseDown="MinimizeButton_PreviewMouseDown"
+                            ToolTip="Thu nhỏ cửa sổ">
                         <Border.Triggers>
                             <EventTrigger RoutedEvent="Border.MouseEnter">
                                 <BeginStoryboard>

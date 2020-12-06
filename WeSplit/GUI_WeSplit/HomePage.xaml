@@ -76,7 +76,9 @@
                          BorderThickness="0"
                          Foreground="{DynamicResource ContentForeground}"
                          Background="Transparent"
-                         HorizontalContentAlignment="Center">
+                         HorizontalContentAlignment="Center"
+                         CaretBrush="White"
+                         Margin="0 5 0 0">
                 </TextBox>
             </Border>
         </Border>
