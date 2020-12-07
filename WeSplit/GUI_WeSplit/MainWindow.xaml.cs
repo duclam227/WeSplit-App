@@ -20,6 +20,10 @@ namespace GUI_WeSplit
     /// </summary>
     public partial class MainWindow : Window
     {
+        HomePage homePage = new HomePage();
+        TripDetailPage tripPage = new TripDetailPage();
+        MemberListPage memberListPage = new MemberListPage();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -27,8 +31,28 @@ namespace GUI_WeSplit
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            HomePage hp = new HomePage();
-            MainFrame.Navigate(hp);
+            MainFrame.Navigate(homePage);
+            homePage.eventPassCommand += Hp_eventPassCommand;
+        }
+
+        private void Hp_eventPassCommand(string command)
+        {
+            ActiveIndicator.Visibility = Visibility.Collapsed;
+
+            if (command == "newtrip")
+            {
+                MessageBox.Show("Create new trip");
+                MainFrame.Navigate(memberListPage);
+            }
+            else if(command == "newmember")
+            {
+                MessageBox.Show("Add new member");
+            }
+            else if (command == "explore")
+            {
+                MessageBox.Show("Explore");
+            }
+
         }
 
         private void ExitButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -73,8 +97,8 @@ namespace GUI_WeSplit
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 0);
 
-            HomePage hp = new HomePage();
-            MainFrame.Navigate(hp);
+            //HomePage hp = new HomePage();
+            MainFrame.Navigate(homePage);
         }
 
         private void UnfinishedButton_Click(object sender, MouseButtonEventArgs e)
@@ -85,7 +109,6 @@ namespace GUI_WeSplit
             Grid.SetColumn(ActiveIndicator, 1);
 
             //MemberListPage memberList = new MemberListPage();
-            TripDetailPage tripPage = new TripDetailPage();
             MainFrame.Navigate(tripPage);
         }
 

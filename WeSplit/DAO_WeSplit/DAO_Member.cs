@@ -23,7 +23,6 @@ namespace DAO_WeSplit
         public DataTable GetAllMembers()
         {
             DataTable data = new DataTable();
-            List<DTO_Member> result = new List<DTO_Member>();
             string query = "select * from Member";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);

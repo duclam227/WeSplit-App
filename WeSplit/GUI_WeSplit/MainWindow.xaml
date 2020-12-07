@@ -248,7 +248,7 @@
                     </Border.Background>
                     <Grid Margin="10">
                         <Frame x:Name="MainFrame"
-                           NavigationUIVisibility="Hidden"
+                               NavigationUIVisibility="Hidden"
                                Grid.Column="0"
                                Grid.Row="0"
                                Panel.ZIndex="2">
