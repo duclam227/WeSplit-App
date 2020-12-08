@@ -21,9 +21,22 @@ namespace GUI_WeSplit
     /// </summary>
     public partial class TripDetailPage : Page
     {
+        private int tripID = 0;
+
         public TripDetailPage()
         {
             InitializeComponent();
+
+            //Load data from the calling page (SearchPage)
+            NavigationService.LoadCompleted += NavigationService_LoadCompleted;
+        }
+
+        private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
+        {
+            tripID = (int)e.ExtraData;  //Get data from calling page
+
+            //Do whatever you want herre
+            //...
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)

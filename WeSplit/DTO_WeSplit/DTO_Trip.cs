@@ -40,6 +40,16 @@ namespace DTO_WeSplit
             _tripMemberList = new List<DTO_Member>();
         }
 
+        public DTO_Trip(int tripID, string tripName, string tripDate, string tripDescription, double tripBudget, double tripAverage)
+        {
+            TripId = tripID;
+            TripName = tripName;
+            TripStartDate = tripDate;
+            TripDescription = tripDescription;
+            TripBudget = tripBudget;
+            TripAverage = tripAverage;
+        }
+
         #endregion
 
         public void AddDestination(DTO_Place newDestination)
