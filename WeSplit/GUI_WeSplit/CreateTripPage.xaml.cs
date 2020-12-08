@@ -25,13 +25,28 @@ namespace GUI_WeSplit
     /// </summary>
     public partial class CreateTripPage : Page
     {
+        private DTO_Trip newTrip;
+        private ObservableCollection<DTO_Member> AddedMemberList;
+        private ObservableCollection<DTO_Member> MemberList;
+        private ObservableCollection<DTO_Member> AvailableMemberList;
+        private ObservableCollection<DTO_Expense> ExpenseList;
+
+        private string _expenseAmount;
+
+
         public EventHandler<AddNewTripEventArgs> AddNewTripEventHandler;
 
-        private DTO_Trip newTrip;
+        public string ExpenseAmount { get => _expenseAmount; set => _expenseAmount = value; }
 
-        private ObservableCollection<DTO_Member> AddedMemberList;
-        private ObservableCollection<DTO_Member> AvailableMemberList;
+        public class AddNewTripEventArgs : EventArgs
+        {
+            public DTO_Trip NewTrip;
 
+            public AddNewTripEventArgs(DTO_Trip newTrip)
+            {
+                this.NewTrip = newTrip;
+            }
+        }
         private CreateTripPage()
         {
             InitializeComponent();
@@ -42,42 +57,40 @@ namespace GUI_WeSplit
         {
             InitializeComponent();
             AddedMemberList = new ObservableCollection<DTO_Member>();
+            MemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAllMembers());
             AvailableMemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAllMembers());
+            ExpenseList = new ObservableCollection<DTO_Expense>();
             newTrip = new DTO_Trip();
+            newTrip.TripId = tripID;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ListView_Destination.ItemsSource = newTrip.TripDestinationList;
             ListView_MemberList.ItemsSource = AddedMemberList;
             ComboBox_MemberList.ItemsSource = AvailableMemberList;
+            ComboBox_MemberListExpense.ItemsSource = MemberList;
+            ListView_Expense.ItemsSource = ExpenseList;
         }
         private void CheckBox_Description_Checked(object sender, RoutedEventArgs e)
         {
-            StackPanel_Description.Visibility = Visibility.Visible;
+            LabelTextBox_Description.Visibility = Visibility.Visible;
         }
 
         private void CheckBox_Description_Unchecked(object sender, RoutedEventArgs e)
         {
-            StackPanel_Description.Visibility = Visibility.Collapsed;
-            TextBox_TripDescription.Clear();
+            LabelTextBox_Description.Visibility = Visibility.Collapsed;
         }
         private void Button_CreateNewTrip_Click(object sender, RoutedEventArgs e)
         {
             if (AddNewTripEventHandler != null)
             {
+                if (LabelTextBox_TripName.Text != "")
+                {
+                    
+                }
                 AddNewTripEventHandler(this, new AddNewTripEventArgs(this.newTrip));
             }
             this.NavigationService.GoBack();
-        }
-
-        public class AddNewTripEventArgs : EventArgs
-        {
-            public DTO_Trip NewTrip;
-
-            public AddNewTripEventArgs(DTO_Trip newTrip)
-            {
-                this.NewTrip = newTrip;
-            }
         }
 
         private void ListView_Destination_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,7 +105,16 @@ namespace GUI_WeSplit
 
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
         {
-
+            double amount = Convert.ToDouble(LabelTextBox_ExpenseAmount.Text);
+            int memberId = ((DTO_Member)ComboBox_MemberListExpense.SelectedItem).MemberID;
+            string description = LabelTextBox_ExpenseDescription.Text;
+            DTO_Expense expense;
+            if (description != "" && amount != -1)
+            {
+                expense = new DTO_Expense(newTrip.TripId, amount, memberId, description);
+                ExpenseList.Add(expense);
+            }
+            
         }
 
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)

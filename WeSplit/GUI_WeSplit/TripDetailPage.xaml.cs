@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
@@ -41,37 +40,18 @@ namespace GUI_WeSplit
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            MemberListPage memberList = new MemberListPage();
+            TripDetailFrame.Navigate(memberList);
         }
 
         private void GeneralInfoButton_Click(object sender, MouseButtonEventArgs e)
         {
-            TripDetailFrame.Visibility = Visibility.Collapsed;
-            Grid.SetRow(ActiveIndicator, 0);
+            //GeneralInfoButton.Background = Brus;
         }
 
-        private void MemberListButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
+        private void Sidebar_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TripDetailFrame.Visibility = Visibility.Collapsed;
 
-            Grid.SetRow(ActiveIndicator, 1);
-
-            MemberListPage memberList = new MemberListPage();
-            TripDetailFrame.Navigate(memberList);
-
-            TripDetailFrame.Visibility = Visibility.Visible;
-        }
-
-        private void DestinationListButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            TripDetailFrame.Visibility = Visibility.Collapsed;
-            Grid.SetRow(ActiveIndicator, 2);
-        }
-
-        private void ExpenseHistoryButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            TripDetailFrame.Visibility = Visibility.Collapsed;
-            Grid.SetRow(ActiveIndicator, 3);
         }
     }
 }

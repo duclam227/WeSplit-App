@@ -20,14 +20,15 @@ namespace GUI_WeSplit.CustomUserControl
     /// </summary>
     public partial class LabelTextBox : UserControl
     {
+        string _localLabel = "";
+
+        public static readonly DependencyProperty TextProperty =
+                DependencyProperty.Register("Text", typeof(string), typeof(LabelTextBox));
+
         public LabelTextBox()
         {
             InitializeComponent();
         }
-
-        string _defaultText = "";
-        string _localLabel = "";
-        string _localTextBox = "";
 
         public string Label
         {
@@ -39,41 +40,37 @@ namespace GUI_WeSplit.CustomUserControl
             }
         }
 
-        public string DefaultText
+        public string Text
         {
-            get { return _defaultText; }
-            set
-            {
-                _defaultText = value;
-                BaseTextBox.Text = value;
-            }
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
+
 
         private void BaseTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (BaseTextBox.Text.Equals(DefaultText))
-                BaseTextBox.Clear();
             BaseLabel.Foreground = Brushes.BlueViolet;
         }
 
         private void BaseTextBox_LostFocus(object sender, RoutedEventArgs e)
         {
-            if (BaseTextBox.Text == "")
-            {
-                if (_localTextBox == "")
-                {
-                    BaseTextBox.Text = _defaultText;
-                }
-                else
-                {
-                    BaseTextBox.Text = _localTextBox;
-                }
-            }
-            else
-            {
-                _localTextBox = BaseTextBox.Text;
-            }
             BaseLabel.Foreground = Brushes.Black;
+            BaseLabel.Foreground = Brushes.Black;
+        }
+
+        private void BaseTextBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            BindingExpression mainTxtBxBinding = BindingOperations.GetBindingExpression(BaseTextBox, TextBox.TextProperty);
+            BindingExpression textBinding = BindingOperations.GetBindingExpression(this, TextProperty);
+
+            if (textBinding != null && mainTxtBxBinding != null && 
+                textBinding.ParentBinding != null && 
+                textBinding.ParentBinding.ValidationRules.Count > 0 && 
+                mainTxtBxBinding.ParentBinding.ValidationRules.Count < 1)
+            {
+                foreach (ValidationRule vRule in textBinding.ParentBinding.ValidationRules)
+                    mainTxtBxBinding.ParentBinding.ValidationRules.Add(vRule);
+            }
         }
     }
 }
