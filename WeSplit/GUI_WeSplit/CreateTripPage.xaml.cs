@@ -25,15 +25,28 @@ namespace GUI_WeSplit
     /// </summary>
     public partial class CreateTripPage : Page
     {
-        public EventHandler<AddNewTripEventArgs> AddNewTripEventHandler;
-
         private DTO_Trip newTrip;
-
         private ObservableCollection<DTO_Member> AddedMemberList;
         private ObservableCollection<DTO_Member> MemberList;
         private ObservableCollection<DTO_Member> AvailableMemberList;
         private ObservableCollection<DTO_Expense> ExpenseList;
 
+        private string _expenseAmount;
+
+
+        public EventHandler<AddNewTripEventArgs> AddNewTripEventHandler;
+
+        public string ExpenseAmount { get => _expenseAmount; set => _expenseAmount = value; }
+
+        public class AddNewTripEventArgs : EventArgs
+        {
+            public DTO_Trip NewTrip;
+
+            public AddNewTripEventArgs(DTO_Trip newTrip)
+            {
+                this.NewTrip = newTrip;
+            }
+        }
         private CreateTripPage()
         {
             InitializeComponent();
@@ -71,19 +84,13 @@ namespace GUI_WeSplit
         {
             if (AddNewTripEventHandler != null)
             {
+                if (LabelTextBox_TripName.Text != "")
+                {
+                    
+                }
                 AddNewTripEventHandler(this, new AddNewTripEventArgs(this.newTrip));
             }
             this.NavigationService.GoBack();
-        }
-
-        public class AddNewTripEventArgs : EventArgs
-        {
-            public DTO_Trip NewTrip;
-
-            public AddNewTripEventArgs(DTO_Trip newTrip)
-            {
-                this.NewTrip = newTrip;
-            }
         }
 
         private void ListView_Destination_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -98,9 +105,9 @@ namespace GUI_WeSplit
 
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
         {
-            double amount = Convert.ToDouble(LabelTextBox_ExpenseAmount.TextBox);
+            double amount = Convert.ToDouble(LabelTextBox_ExpenseAmount.Text);
             int memberId = ((DTO_Member)ComboBox_MemberListExpense.SelectedItem).MemberID;
-            string description = LabelTextBox_ExpenseDescription.TextBox;
+            string description = LabelTextBox_ExpenseDescription.Text;
             DTO_Expense expense;
             if (description != "" && amount != -1)
             {

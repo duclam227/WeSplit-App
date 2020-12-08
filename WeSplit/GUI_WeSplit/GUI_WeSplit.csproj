@@ -67,6 +67,8 @@
     <Compile Include="TripDetailPage.xaml.cs">
       <DependentUpon>TripDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Validation\MoneyRule.cs" />
+    <Compile Include="Validation\NotNullRule.cs" />
     <Page Include="CreateTripPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

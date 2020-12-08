@@ -5,8 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI_WeSplit"
       xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
-      xmlns:controls="https://handyorg.github.io/handycontrol"
-      
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      xmlns:rules="clr-namespace:GUI_WeSplit.Validation"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="900"
       Title="CreateTripPage"
@@ -14,7 +14,11 @@
 
     <Page.Resources>
 
-
+        <ControlTemplate x:Key="validationTemplate">
+            <Border BorderBrush="Red" BorderThickness="3">
+                <AdornedElementPlaceholder/>
+            </Border>
+        </ControlTemplate>
 
     </Page.Resources>
 
@@ -30,7 +34,7 @@
                 Style="{DynamicResource ButtonPrimary}"
                 Margin="10" DockPanel.Dock="Bottom"
                 Width="150" Height="35"
-                controls:BorderElement.CornerRadius="15"
+                hc:BorderElement.CornerRadius="15"
                 Click="Button_CreateNewTrip_Click">Create New Trip</Button>
 
         <Grid>
@@ -65,9 +69,8 @@
                 <uc:LabelTextBox x:Name="LabelTextBox_TripName" 
                                  Grid.Row="1"
                                  Grid.ColumnSpan="2"
-                                 Label="Trip Name" DefaultText="Trip Name"
-                                 Margin="20 0 20 0"></uc:LabelTextBox>
-
+                                 Label="Trip Name"
+                                 Margin="20 0 20 0"/>
                 <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="20">
                     <CheckBox Name="CheckBox_Description"
                           HorizontalAlignment="Left" 
@@ -75,7 +78,7 @@
                           Checked="CheckBox_Description_Checked"
                           Unchecked="CheckBox_Description_Unchecked"/>
                     <uc:LabelTextBox x:Name="LabelTextBox_Description"
-                                 Label="Description" DefaultText="Description" Visibility="Collapsed"/>
+                                     Label="Description" Visibility="Collapsed"/>
                 </StackPanel>
 
 
@@ -117,19 +120,33 @@
                         </ComboBox.ItemTemplate>
                     </ComboBox>
 
-
                     <Button Name="Button_AddMember"
                     Width="50" Height="30"
                     Style="{StaticResource ButtonPrimary}"
-                    Content="Add" Click="Button_AddMember_Click" controls:BorderElement.CornerRadius="15"/>
+                    Content="Add" Click="Button_AddMember_Click" hc:BorderElement.CornerRadius="15"/>
                 </StackPanel>
 
                 <StackPanel Grid.Row="5" Grid.ColumnSpan="2"  Margin="20 20 20 0">
+
                     <Label Content="Add New Expense" HorizontalAlignment="Center"/>
+
                     <uc:LabelTextBox x:Name="LabelTextBox_ExpenseDescription"
-                        Label="Description" DefaultText="Description"></uc:LabelTextBox>
+                        Label="Description">
+
+                    </uc:LabelTextBox>
+
                     <uc:LabelTextBox x:Name="LabelTextBox_ExpenseAmount"
-                        Label="Amount" DefaultText="Amount"></uc:LabelTextBox>
+                                     Label="Amount"
+                                     Validation.ErrorTemplate="{StaticResource validationTemplate}">
+                        <uc:LabelTextBox.Text>
+                            <Binding Path="ExpenseAmount" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <rules:MoneyRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </uc:LabelTextBox.Text>
+                    </uc:LabelTextBox>
+
                     <ComboBox Name="ComboBox_MemberListExpense" 
                           Grid.Row="1"
                           Height="30" Margin="0 20 0 0">
@@ -153,7 +170,7 @@
                             Width="50" Height="30"
                             Margin="10"
                             Content="Add" Click="Button_AddExpense_Click"
-                            controls:BorderElement.CornerRadius="15"/>
+                            hc:BorderElement.CornerRadius="15"/>
                 </StackPanel>
             </Grid>
 
