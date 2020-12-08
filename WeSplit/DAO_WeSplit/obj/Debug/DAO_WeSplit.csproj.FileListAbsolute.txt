@@ -1,9 +1,18 @@
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DAO_WeSplit.dll
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DAO_WeSplit.pdb
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DTO_WeSplit.dll
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DTO_WeSplit.pdb
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csprojAssemblyReference.cache
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csproj.CoreCompileInputs.cache
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csproj.CopyComplete
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.dll
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.pdb
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DAO_WeSplit.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DAO_WeSplit.pdb
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DTO_WeSplit.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DTO_WeSplit.pdb
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csprojAssemblyReference.cache
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csproj.CoreCompileInputs.cache
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csproj.CopyComplete
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.dll
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.pdb
+F:\LapTrinhWindows\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DAO_WeSplit.dll
+F:\LapTrinhWindows\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DAO_WeSplit.pdb
+F:\LapTrinhWindows\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DTO_WeSplit.dll
+F:\LapTrinhWindows\WeSplit-App\WeSplit\DAO_WeSplit\bin\Debug\DTO_WeSplit.pdb
+F:\LapTrinhWindows\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csprojAssemblyReference.cache
+F:\LapTrinhWindows\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csproj.CoreCompileInputs.cache
+F:\LapTrinhWindows\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.csproj.CopyComplete
+F:\LapTrinhWindows\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.dll
+F:\LapTrinhWindows\WeSplit-App\WeSplit\DAO_WeSplit\obj\Debug\DAO_WeSplit.pdb
