@@ -20,7 +20,7 @@
         <Color x:Key="ContentBorderBG">Black</Color>
         <SolidColorBrush x:Key="ContentForeground">white</SolidColorBrush>
 
-        <SolidColorBrush x:Key="MenuForeground">Black</SolidColorBrush>
+        <SolidColorBrush x:Key="MenuForeground">white</SolidColorBrush>
         <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
         <System:Double x:Key="MainBorderOpacity">0.2</System:Double>
         <System:Double x:Key="ButtonSize">18</System:Double>
@@ -189,6 +189,7 @@
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="0.5*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="35"/>
@@ -221,6 +222,27 @@
                             Background="Transparent"
                             PreviewMouseDown="AboutUsButton_Click">
                         <TextBlock >About us</TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="0" 
+                            Grid.Column="4"
+                            Grid.RowSpan="2"
+                            CornerRadius="50"
+                            Height="30"
+                            Width="30"
+                            PreviewMouseDown="SearchButton_Click"
+                            Padding="3 0 0 0"
+                            Margin="0 -20 0 0">
+
+                        <Border.Background>
+                            <SolidColorBrush Color="White" Opacity="0.5"/>
+                        </Border.Background>
+                        
+                        <Image x:Name="SearchIcon" 
+                                   Source="Images/goIcon.png"
+                                   Height="25"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                               VerticalAlignment="Center"/>
                     </Border>
 
                     <Polygon x:Name="ActiveIndicator"

@@ -129,6 +129,9 @@ namespace GUI_WeSplit
             Grid.SetColumn(ActiveIndicator, 3);
         }
 
-        
+        private void SearchButton_Click(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }
