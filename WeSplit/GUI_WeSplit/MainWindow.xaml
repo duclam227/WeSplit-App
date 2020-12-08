@@ -22,7 +22,7 @@
 
         <SolidColorBrush x:Key="MenuForeground">Black</SolidColorBrush>
         <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
-        <System:Double x:Key="MainBorderOpacity">0.6</System:Double>
+        <System:Double x:Key="MainBorderOpacity">0.2</System:Double>
         <System:Double x:Key="ButtonSize">18</System:Double>
         
         
@@ -37,10 +37,11 @@
     </Window.Resources>
 
     <Grid ShowGridLines="False">
+        
         <Border CornerRadius="20"
                 Panel.ZIndex="2"
                 BorderBrush="White"
-                BorderThickness="2">
+                BorderThickness="1">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -254,10 +255,9 @@
                                Panel.ZIndex="2">
                         </Frame>
                     </Grid>
-                   
-                    
+
+
                 </Border>
-                
 
             </Grid>
 
@@ -267,7 +267,7 @@
         <Border x:Name="WindowBackgroundImage"
                 CornerRadius="20">
             <Border.Background>
-                <ImageBrush ImageSource="Images/Rina002.png"
+                <ImageBrush ImageSource="Images/bg.png"
                         Stretch="UniformToFill"/>
             </Border.Background>
         </Border>

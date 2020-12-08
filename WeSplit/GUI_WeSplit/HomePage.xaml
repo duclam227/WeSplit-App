@@ -25,55 +25,58 @@
 
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource ContentForeground}"/>
-            <Setter Property="FontSize" Value="17.5"/>
+            <Setter Property="FontSize" Value="25"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
         </Style>
-
 
     </Page.Resources>
 
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="6*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="5*"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-
+        
         <StackPanel Grid.Row="1"
-                   Grid.Column="1" Grid.ColumnSpan="4">
-            <TextBlock  HorizontalAlignment="Stretch"
-                   FontSize="50" FontWeight="Black">WeSplit</TextBlock>
+                    Grid.Column="1">
+            
+            <StackPanel>
+                <TextBlock  HorizontalAlignment="Stretch"
+                   FontSize="100" FontWeight="Black">WeSplit</TextBlock>
 
-            <TextBlock 
+                <TextBlock 
                    HorizontalAlignment="Stretch"
-                   FontSize="30">Lưu giữ những chuyến đi tuyệt vời!</TextBlock>
-        </StackPanel>
+                   FontSize="50">Lưu giữ những chuyến đi tuyệt vời!</TextBlock>
+            </StackPanel>
 
-        <Button x:Name="ExploreButton"
-                Grid.Row="2" Grid.Column="1"
+            <Separator Height="5"
+                   Background="White"/>
+
+            <StackPanel x:Name="ButtonListStackPanel"
+                    Orientation="Horizontal">
+                <Button x:Name="ExploreButton"
                 Content="Explore"
                 Click="ExploreButton_Click">
-        </Button>
-        <Button x:Name="AddNewTripButotn"
-                Grid.Row="2" Grid.Column="2"
+                </Button>
+                <Button x:Name="AddNewTripButotn"
                 Content="Make a trip"
                 Click="AddNewTripButton_Click">
-        </Button>
-        <Button x:Name="AddNewMemberButton"
-                Grid.Row="2" Grid.Column="3"
+                </Button>
+                <Button x:Name="AddNewMemberButton"
                 Content="Add a member"
                 Click="AddNewMemberButton_Click">
-        </Button>
+                </Button>
+            </StackPanel>
+        </StackPanel>
+       
 
     </Grid>
 

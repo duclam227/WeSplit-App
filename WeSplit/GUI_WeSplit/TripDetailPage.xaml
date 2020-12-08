@@ -99,7 +99,7 @@
                         VerticalAlignment="Center"
                         PreviewMouseDown="GeneralInfoButton_Click"
                         Height="50">
-                <Image Source="Images/Rina002.png"
+                <Image Source="Images/background.png"
                        RenderOptions.BitmapScalingMode="HighQuality"
                        Stretch="UniformToFill"
                        Height="50" 
@@ -114,7 +114,7 @@
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
                         PreviewMouseDown="MemberListButton_PreviewMouseDown">
-                <Image Source="Images/Rina002.png"
+                <Image Source="Images/background.png"
                        RenderOptions.BitmapScalingMode="HighQuality"
                        Stretch="UniformToFill"
                        Height="50" 
@@ -129,7 +129,7 @@
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
                         PreviewMouseDown="DestinationListButton_PreviewMouseDown">
-                <Image Source="Images/Rina002.png"
+                <Image Source="Images/background.png"
                        RenderOptions.BitmapScalingMode="HighQuality"
                        Stretch="UniformToFill"
                        Height="50" 
@@ -145,7 +145,7 @@
                         VerticalAlignment="Center"
                         PreviewMouseDown="ExpenseHistoryButton_PreviewMouseDown">
 
-                <Image Source="Images/Rina002.png"
+                <Image Source="Images/background.png"
                        RenderOptions.BitmapScalingMode="HighQuality"
                        Stretch="UniformToFill"
                        Height="50" 

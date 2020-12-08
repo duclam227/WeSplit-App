@@ -21,7 +21,7 @@ namespace GUI_WeSplit
     public partial class MainWindow : Window
     {
         HomePage homePage = new HomePage();
-        TripDetailPage tripPage = new TripDetailPage();
+        //TripDetailPage tripPage = new TripDetailPage();
         MemberListPage memberListPage = new MemberListPage();
 
         public MainWindow()
@@ -108,6 +108,7 @@ namespace GUI_WeSplit
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 1);
 
+            TripDetailPage tripPage = new TripDetailPage();
             //MemberListPage memberList = new MemberListPage();
             MainFrame.Navigate(tripPage);
         }

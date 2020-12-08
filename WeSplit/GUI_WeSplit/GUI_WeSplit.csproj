@@ -127,13 +127,16 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\Rina002.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Images\powerIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\closeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\background.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\bg.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
