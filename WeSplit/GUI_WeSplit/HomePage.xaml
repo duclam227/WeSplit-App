@@ -62,6 +62,8 @@
             <Setter Property="Height" Value="60"/>
             <Setter Property="CornerRadius" Value="30"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="White"/>
             <Setter Property="Padding" Value="20 0 0 0"/>
 
 
@@ -182,7 +184,7 @@
                         
                     </Border>
                 </Button>
-                
+                <TextBlock Text="    "/>
                 <Button x:Name="AddNewTripButotn"
                 Click="AddNewTripButton_Click">
                     <Button.Triggers>
@@ -233,7 +235,7 @@
 
                     </Border>
                 </Button>
-                
+                <TextBlock Text="    "/>
                 <Button x:Name="AddNewMemberButton"
                 Click="AddNewMemberButton_Click">
                     <Button.Triggers>

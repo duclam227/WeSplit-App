@@ -22,7 +22,7 @@
 
         <SolidColorBrush x:Key="MenuForeground">white</SolidColorBrush>
         <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
-        <System:Double x:Key="MainBorderOpacity">0.2</System:Double>
+        <System:Double x:Key="MainBorderOpacity">0.3</System:Double>
         <System:Double x:Key="ButtonSize">18</System:Double>
         
         
