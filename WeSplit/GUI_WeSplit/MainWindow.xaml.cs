@@ -27,8 +27,11 @@ namespace GUI_WeSplit
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            HomePage hp = new HomePage();
-            MainFrame.Navigate(hp);
+            //HomePage hp = new HomePage();
+            //MainFrame.Navigate(hp);
+
+            SearchPage searchPage = new SearchPage();
+            MainFrame.Navigate(searchPage);
         }
 
         private void ExitButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -87,8 +90,8 @@ namespace GUI_WeSplit
             //MemberListPage memberList = new MemberListPage();
             //TripDetailPage tripPage = new TripDetailPage();
             //MainFrame.Navigate(tripPage);
-            CreateTripPage createTripPage = new CreateTripPage(1);
-            MainFrame.Navigate(createTripPage);
+            //CreateTripPage createTripPage = new CreateTripPage(1);
+            //MainFrame.Navigate(createTripPage);
         }
 
         private void FinishedButton_Click(object sender, MouseButtonEventArgs e)
