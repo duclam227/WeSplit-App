@@ -19,7 +19,6 @@ namespace DTO_WeSplit
         private double _tripAverage;
         private List<DTO_Place> _tripDestinationList;
         private List<DTO_Member> _tripMemberList;
-        private List<DTO_Expense> _tripExpenseList;
         #endregion
 
         #region Public Properties
@@ -29,18 +28,16 @@ namespace DTO_WeSplit
         public string TripDescription { get => _tripDescription; set => _tripDescription = value; }
         public double TripBudget { get => _tripBudget; set => _tripBudget = value; }
         public double TripAverage { get => _tripAverage; set => _tripAverage = value; }
+        public List<DTO_Place> TripDestinationList { get => _tripDestinationList; }
         public string TripEndDate { get => _tripEndDate; set => _tripEndDate = value; }
-        public List<DTO_Place> TripDestinationList { get => _tripDestinationList; set => _tripDestinationList = value; }
-        public List<DTO_Member> TripMemberList { get => _tripMemberList; set => _tripMemberList = value; }
-        public List<DTO_Expense> TripExpenseList { get => _tripExpenseList; set => _tripExpenseList = value; }
-
+        public List<DTO_Member> TripMemberList { get => _tripMemberList;}
         #endregion
 
         #region Constructor
         public DTO_Trip()
         {
-            TripDestinationList = new List<DTO_Place>();
-            TripMemberList = new List<DTO_Member>();
+            _tripDestinationList = new List<DTO_Place>();
+            _tripMemberList = new List<DTO_Member>();
         }
 
         public DTO_Trip(int tripID, string tripName, string tripDate, string tripDescription, double tripBudget, double tripAverage)
@@ -57,17 +54,12 @@ namespace DTO_WeSplit
 
         public void AddDestination(DTO_Place newDestination)
         {
-            TripDestinationList.Add(newDestination);
+            _tripDestinationList.Add(newDestination);
         }
 
         public void AddMember(DTO_Member newMember)
         {
-            TripMemberList.Add(newMember);
-        }
-
-        public void AddExpense(DTO_Expense newExpense)
-        {
-            TripExpenseList.Add(newExpense);
+            _tripMemberList.Add(newMember);
         }
     }
 }

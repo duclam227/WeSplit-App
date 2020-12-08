@@ -5,20 +5,30 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI_WeSplit"
       xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
-      xmlns:hc="https://handyorg.github.io/handycontrol"
-      xmlns:rules="clr-namespace:GUI_WeSplit.Validation"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="900"
+      d:DesignHeight="600" d:DesignWidth="900"
       Title="CreateTripPage"
       Background="White" Loaded="Page_Loaded">
 
     <Page.Resources>
 
-        <ControlTemplate x:Key="validationTemplate">
-            <Border BorderBrush="Red" BorderThickness="3">
-                <AdornedElementPlaceholder/>
-            </Border>
-        </ControlTemplate>
+        <DataTemplate x:Key="BlueHeader">
+            <WrapPanel>
+                <WrapPanel.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF223B84" Offset="1"/>
+                        <GradientStop Color="#FF57A0F4" Offset="0.5"/>
+                        <GradientStop Color="#FF4B94EC" Offset="0.5"/>
+                    </LinearGradientBrush>
+                </WrapPanel.Background>
+                <TextBlock Margin="10,10,10,10" Text="{Binding}"
+		        VerticalAlignment="Center"  Foreground="White"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+
+        <Style x:Key="myHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Background" Value="LightBlue"/>
+        </Style>
 
     </Page.Resources>
 
@@ -30,201 +40,194 @@
             VerticalContentAlignment="Center"
             HorizontalAlignment="Center" VerticalAlignment="Center"
             Content="Create new trip"/>
-        <Button Name="Button_CreateNewTrip"
-                Style="{DynamicResource ButtonPrimary}"
-                Margin="10" DockPanel.Dock="Bottom"
-                Width="150" Height="35"
-                hc:BorderElement.CornerRadius="15"
-                Click="Button_CreateNewTrip_Click">Create New Trip</Button>
+        <Button Name="Button_CreateNewTrip" 
+            Margin="10" DockPanel.Dock="Bottom"
+            Width="150" Height="35"
+            Click="Button_CreateNewTrip_Click">Create New Trip</Button>
 
         <Grid>
             <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
 
-            <Grid Grid.RowSpan="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
+            <Label 
+            Content="Trip Information"
+            HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
-                <Label 
-                    Content="Trip Information" Grid.ColumnSpan="2"
-                    HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+            <StackPanel 
+                Grid.Row="1"
+                Orientation="Vertical">
+                <!--Trip Name-->
+                <!--<StackPanel Grid.Row="0" Margin="30 20 30 10">
+                    <TextBlock 
+                    HorizontalAlignment="Left"
+                    TextWrapping="NoWrap">
+                    Trip Name
+                    </TextBlock>
+                    <TextBox Name="TextBox_TripName"
+                Width="200" Height="Auto"
+                HorizontalAlignment="Left">
+                    </TextBox>
+                </StackPanel>-->
 
                 <uc:LabelTextBox x:Name="LabelTextBox_TripName" 
-                                 Grid.Row="1"
-                                 Grid.ColumnSpan="2"
-                                 Label="Trip Name"
-                                 Margin="20 0 20 0"/>
-                <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="20">
-                    <CheckBox Name="CheckBox_Description"
-                          HorizontalAlignment="Left" 
-                          Content="Add Description"
-                          Checked="CheckBox_Description_Checked"
-                          Unchecked="CheckBox_Description_Unchecked"/>
-                    <uc:LabelTextBox x:Name="LabelTextBox_Description"
-                                     Label="Description" Visibility="Collapsed"/>
-                </StackPanel>
+                                 Label="Trip Name" DefaultText="Trip Name"
+                                 Margin="20 0 20 0"></uc:LabelTextBox>
 
 
                 <!--Date Picker-->
+                <StackPanel
+                Grid.Row="1" Orientation="Horizontal"
+                HorizontalAlignment="Center">
+                    <StackPanel Margin="10">
+                        <TextBlock 
+                HorizontalAlignment="Center"
+                TextWrapping="NoWrap">
+                Start Date
+                        </TextBlock>
+                        <DatePicker Name="DatePicker_StartDate">
+                        </DatePicker>
+                    </StackPanel>
 
-                <StackPanel Grid.Row="3" Margin="20">
-                    <TextBlock 
-                        HorizontalAlignment="Center"
-                        TextWrapping="NoWrap">
-                        Start Date
-                    </TextBlock>
-                    <DatePicker Name="DatePicker_StartDate"/>
+                    <StackPanel Margin="10">
+                        <TextBlock 
+                HorizontalAlignment="Center"
+                TextWrapping="NoWrap">
+                End Date
+                        </TextBlock>
+                        <DatePicker Name="DatePicker_EndDate">
+                        </DatePicker>
+                    </StackPanel>
                 </StackPanel>
 
-                <StackPanel Grid.Row="3" Grid.Column="1" Margin="20">
-                    <TextBlock 
-                        HorizontalAlignment="Center"
-                        TextWrapping="NoWrap">
-                        End Date
-                    </TextBlock>
-                    <DatePicker Name="DatePicker_EndDate"/>
+                <!--Description Box-->
+                <StackPanel
+                    Grid.Row="3" Grid.Column="0">
+                    <CheckBox Name="CheckBox_Description"
+                Margin="35 15 15 0"
+                Content="Add Description"
+                Checked="CheckBox_Description_Checked"
+                Unchecked="CheckBox_Description_Unchecked"></CheckBox>
+                    <StackPanel Name="StackPanel_Description"
+                Visibility="Collapsed">
+                        <TextBlock 
+                HorizontalAlignment="Left"
+                TextWrapping="NoWrap"
+                Margin="30 5 0 0">
+                Description
+                        </TextBlock>
+                        <TextBox Name="TextBox_TripDescription"
+                Width="200" MinHeight="50" Height="Auto"
+                HorizontalAlignment="Left"
+                Margin="30 0 0 0">
+                        </TextBox>
+                    </StackPanel>
                 </StackPanel>
-
-                <StackPanel Grid.Row="4" Grid.ColumnSpan="2">
-                    <Label Content="Add New Member" HorizontalAlignment="Center"/>
-                    <ComboBox Name="ComboBox_MemberList" 
-                          MinWidth="200" Height="30" Margin="20">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"></ColumnDefinition>
-                                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="1" Text="{Binding MemberName}"></TextBlock>
-
-                                </Grid>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-
-                    <Button Name="Button_AddMember"
-                    Width="50" Height="30"
-                    Style="{StaticResource ButtonPrimary}"
-                    Content="Add" Click="Button_AddMember_Click" hc:BorderElement.CornerRadius="15"/>
-                </StackPanel>
-
-                <StackPanel Grid.Row="5" Grid.ColumnSpan="2"  Margin="20 20 20 0">
-
-                    <Label Content="Add New Expense" HorizontalAlignment="Center"/>
-
-                    <uc:LabelTextBox x:Name="LabelTextBox_ExpenseDescription"
-                        Label="Description">
-
-                    </uc:LabelTextBox>
-
-                    <uc:LabelTextBox x:Name="LabelTextBox_ExpenseAmount"
-                                     Label="Amount"
-                                     Validation.ErrorTemplate="{StaticResource validationTemplate}">
-                        <uc:LabelTextBox.Text>
-                            <Binding Path="ExpenseAmount" Mode="TwoWay">
-                                <Binding.ValidationRules>
-                                    <rules:MoneyRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </uc:LabelTextBox.Text>
-                    </uc:LabelTextBox>
-
-                    <ComboBox Name="ComboBox_MemberListExpense" 
-                          Grid.Row="1"
-                          Height="30" Margin="0 20 0 0">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"></ColumnDefinition>
-                                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="1" Text="{Binding MemberName}"></TextBlock>
-
-                                </Grid>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <!--Description Box-->
-
-                    <Button Name="Button_AddExpense"
-                            Style="{DynamicResource ButtonPrimary}"
-                            Width="50" Height="30"
-                            Margin="10"
-                            Content="Add" Click="Button_AddExpense_Click"
-                            hc:BorderElement.CornerRadius="15"/>
-                </StackPanel>
-            </Grid>
+            </StackPanel>
 
             <!--Destination column-->
-            <StackPanel Grid.Row="0" Grid.Column="1">
-                <Label 
+            <Label 
+            Grid.Row="0" Grid.Column="1"
             Grid.ColumnSpan="2"
             Content="Destinations"
             HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
 
-                <ListView Name="ListView_Destination"
+            <ListView Name="ListView_Destination"
             Grid.Row="1" Grid.Column="1" 
             Grid.ColumnSpan="2"
             BorderBrush="Transparent" Background="Transparent" SelectionChanged="ListView_Destination_SelectionChanged_1">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="No." Width="50" DisplayMemberBinding="{Binding PlaceId}" />
-                            <GridViewColumn Header="Location" Width="300" DisplayMemberBinding="{Binding PlaceName}" />
-                            <GridViewColumn Header="Description" Width="300" DisplayMemberBinding="{Binding PlaceDescription}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
+                <ListView.View>
+                    <GridView ColumnHeaderTemplate="{StaticResource BlueHeader}"
+                          ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="No." Width="50" DisplayMemberBinding="{Binding PlaceId}" />
+                        <GridViewColumn Header="Location" Width="300" DisplayMemberBinding="{Binding PlaceName}" />
+                        <GridViewColumn Header="Description" Width="300" DisplayMemberBinding="{Binding PlaceDescription}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <Grid Grid.Row="2" Margin="0 20 0 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.ColumnSpan="2" Content="Add New Member" HorizontalAlignment="Center"/>
+
+                <ComboBox Name="ComboBox_MemberList" 
+                          Grid.Row="1"
+                          Width="200" Height="30" Margin="20 0 5 0">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="1" Text="{Binding MemberName}"></TextBlock>
+                                
+                            </Grid>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Button Name="Button_AddMember"
+                    Width="50" Height="30"
+                    Grid.Row="1" Grid.Column="1" Margin="5 0 20 0"
+                    Content="Add" Click="Button_AddMember_Click"></Button>
+
+            </Grid>
+
+            <ListView Name="ListView_MemberList"
+            Grid.Row="2" Grid.Column="1" 
+            Grid.RowSpan="2"
+            BorderBrush="Transparent" Background="Transparent">
+                <ListView.View>
+                    <GridView 
+                        ColumnHeaderTemplate="{StaticResource BlueHeader}"
+                         ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="Member Name" Width="300" DisplayMemberBinding="{Binding Path=MemberName}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <ListView
+            Grid.Row="2" Grid.Column="2" 
+            Grid.RowSpan="2"
+            BorderBrush="Transparent" Background="Transparent">
+                <ListView.View>
+                    <GridView ColumnHeaderTemplate="{StaticResource BlueHeader}"
+                          ColumnHeaderContainerStyle="{StaticResource myHeaderStyle}">
+                        <GridViewColumn Header="Expense" Width="300" DisplayMemberBinding="{Binding ExpenseName}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+            <StackPanel Grid.Row="3" Margin="0 20 0 0">
+                <Label Content="Add New Expense" HorizontalAlignment="Center"/>
+                <StackPanel  Margin="20 0 20 0" Orientation="Vertical">
+                    <uc:LabelTextBox x:Name="LabelTextBox_ExpenseDescription"
+                        Label="Description" DefaultText="Description"></uc:LabelTextBox>
+                    <uc:LabelTextBox x:Name="LabelTextBox_ExpenseAmount"
+                        Label="Amount" DefaultText="Amount"></uc:LabelTextBox>
+                    <Button Name="Button_AddExpense"
+                    Width="50" Height="30"
+                    Margin="10"
+                    Content="Add" Click="Button_AddExpense_Click"></Button>
+                </StackPanel>
             </StackPanel>
 
-            <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-                <ListView Name="ListView_MemberList"
-                          BorderBrush="Transparent" Background="Transparent">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Member Name" Width="300" 
-                                        DisplayMemberBinding="{Binding Path=MemberName}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-
-                <ListView Name="ListView_Expense"
-                          Grid.Column="1"
-                          BorderBrush="Transparent" Background="Transparent">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Expense" Width="150" 
-                                        DisplayMemberBinding="{Binding Path=ExpenseDescription}" />
-                            <GridViewColumn Header="Amount" Width="150" 
-                                        DisplayMemberBinding="{Binding Path=ExpenseMoney}" />
-                            <GridViewColumn Header="Advance Payment" Width="150" 
-                                        DisplayMemberBinding="{Binding Path=ExpenseMember}" />
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-            </Grid>
         </Grid>
+
     </DockPanel>
 </Page>

@@ -27,11 +27,12 @@
     </Page.Resources>
 
     <ListView x:Name="MemberList"
-                  Background="White"
-                  HorizontalContentAlignment="Stretch"
-                  ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-                  MinHeight="50"
-                  MinWidth="50">
+              Background="Transparent"
+              HorizontalContentAlignment="Stretch"
+              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+              MinHeight="50"
+              MinWidth="50"
+              BorderThickness="0">
 
         <ListView.ItemTemplate>
             <DataTemplate>
