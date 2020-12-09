@@ -1,30 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace GUI_WeSplit.Validation
 {
     class NotNullRule : ValidationRule
-    {
-        double money = 0;
-
-            try
+    {      
+        public override ValidationResult Validate(object value, CultureInfo cultureInfo)
+        {
+            if (String.IsNullOrWhiteSpace(value.ToString()))
             {
-                if(((String) value).Length>0)
-                    money = Double.Parse((String) value);
+                return new ValidationResult(false, "Không thể để trống trường này.");
             }
-            catch (Exception e)
-            {
-                return new ValidationResult(false, "Vui lòng nhập số tiền hợp lệ.");
-}
-
-if (money < 0)
-{
-    return new ValidationResult(false, "Không được là số âm");
-}
-
-return ValidationResult.ValidResult;
+            return ValidationResult.ValidResult;
+        }
     }
 }
+
+

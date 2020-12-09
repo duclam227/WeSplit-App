@@ -49,7 +49,7 @@ namespace GUI_WeSplit.CustomUserControl
 
         private void BaseTextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            BaseLabel.Foreground = Brushes.BlueViolet;
+            BaseLabel.Foreground = Brushes.Blue;
         }
 
         private void BaseTextBox_LostFocus(object sender, RoutedEventArgs e)

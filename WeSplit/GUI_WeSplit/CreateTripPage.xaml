@@ -70,7 +70,15 @@
                                  Grid.Row="1"
                                  Grid.ColumnSpan="2"
                                  Label="Trip Name"
-                                 Margin="20 0 20 0"/>
+                                 Margin="20 0 20 0">
+                    <uc:LabelTextBox.Text>
+                        <Binding Path="TripName" Mode="TwoWay">
+                            <Binding.ValidationRules>
+                                <rules:NotNullRule/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </uc:LabelTextBox.Text>
+                </uc:LabelTextBox>
                 <StackPanel Grid.Row="2" Grid.ColumnSpan="2" Margin="20">
                     <CheckBox Name="CheckBox_Description"
                           HorizontalAlignment="Left" 
@@ -132,7 +140,13 @@
 
                     <uc:LabelTextBox x:Name="LabelTextBox_ExpenseDescription"
                         Label="Description">
-
+                        <uc:LabelTextBox.Text>
+                            <Binding Path="ExpenseDescription" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <rules:NotNullRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </uc:LabelTextBox.Text>
                     </uc:LabelTextBox>
 
                     <uc:LabelTextBox x:Name="LabelTextBox_ExpenseAmount"
@@ -142,6 +156,7 @@
                             <Binding Path="ExpenseAmount" Mode="TwoWay">
                                 <Binding.ValidationRules>
                                     <rules:MoneyRule/>
+                                    <rules:NotNullRule/>
                                 </Binding.ValidationRules>
                             </Binding>
                         </uc:LabelTextBox.Text>

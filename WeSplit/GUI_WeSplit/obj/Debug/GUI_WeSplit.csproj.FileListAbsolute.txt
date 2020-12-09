@@ -38,3 +38,5 @@ D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\ko-KR\HandyCon
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\ru\HandyControl.resources.dll
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\tr\HandyControl.resources.dll
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\App.baml
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\AddMemberWindow.g.cs
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\AddMemberWindow.baml

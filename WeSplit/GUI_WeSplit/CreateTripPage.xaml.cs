@@ -31,22 +31,31 @@ namespace GUI_WeSplit
         private ObservableCollection<DTO_Member> AvailableMemberList;
         private ObservableCollection<DTO_Expense> ExpenseList;
 
-        private string _expenseAmount;
+        private double _expenseAmount;
+        private string _expenseDescription;
+        private string _tripName;
 
 
         public EventHandler<AddNewTripEventArgs> AddNewTripEventHandler;
 
-        public string ExpenseAmount { get => _expenseAmount; set => _expenseAmount = value; }
-
-        public class AddNewTripEventArgs : EventArgs
+        public string ExpenseAmount
         {
-            public DTO_Trip NewTrip;
-
-            public AddNewTripEventArgs(DTO_Trip newTrip)
+            get => _expenseAmount.ToString();
+            set
             {
-                this.NewTrip = newTrip;
+                try
+                {
+                    _expenseAmount = Double.Parse(value);
+                }
+                catch
+                {
+
+                }
             }
         }
+        public string ExpenseDescription { get => _expenseDescription; set => _expenseDescription = value; }
+        public string TripName { get => _tripName; set => _tripName = value; }
+
         private CreateTripPage()
         {
             InitializeComponent();
@@ -86,7 +95,7 @@ namespace GUI_WeSplit
             {
                 if (LabelTextBox_TripName.Text != "")
                 {
-                    
+
                 }
                 AddNewTripEventHandler(this, new AddNewTripEventArgs(this.newTrip));
             }
@@ -114,7 +123,7 @@ namespace GUI_WeSplit
                 expense = new DTO_Expense(newTrip.TripId, amount, memberId, description);
                 ExpenseList.Add(expense);
             }
-            
+
         }
 
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)
@@ -124,6 +133,16 @@ namespace GUI_WeSplit
             {
                 AddedMemberList.Add(selected);
                 AvailableMemberList.Remove(selected);
+            }
+        }
+
+        public class AddNewTripEventArgs : EventArgs
+        {
+            public DTO_Trip NewTrip;
+
+            public AddNewTripEventArgs(DTO_Trip newTrip)
+            {
+                this.NewTrip = newTrip;
             }
         }
     }

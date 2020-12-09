@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="200">
+             d:DesignHeight="100" d:DesignWidth="200">
     <UserControl.Resources>
         <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
             <Style.Triggers>
@@ -23,7 +23,7 @@
         </Grid.RowDefinitions>
         <Label Name="BaseLabel" 
             Content="Label" HorizontalAlignment="Left"
-            FontSize="10" BorderBrush="Transparent" Background="Transparent"/>
+            BorderBrush="Transparent" Background="Transparent"/>
         <TextBox Name="BaseTextBox"
                  Grid.Row="1" TextWrapping="Wrap" AcceptsReturn="True"
                  VerticalContentAlignment="Center" GotFocus="BaseTextBox_GotFocus" LostFocus="BaseTextBox_LostFocus"
