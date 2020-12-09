@@ -15,8 +15,10 @@ namespace DTO_WeSplit
         private string _tripStartDate;
         private string _tripEndDate;
         private string _tripDescription;
-        private double _tripBudget;
+        private double _tripExpenseTotal;
         private double _tripAverage;
+        private bool _tripStatus;
+
         private List<DTO_Place> _tripDestinationList;
         private List<DTO_Member> _tripMemberList;
         #endregion
@@ -26,11 +28,12 @@ namespace DTO_WeSplit
         public string TripName { get => _tripName; set => _tripName = value; }
         public string TripStartDate { get => _tripStartDate; set => _tripStartDate = value; }
         public string TripDescription { get => _tripDescription; set => _tripDescription = value; }
-        public double TripBudget { get => _tripBudget; set => _tripBudget = value; }
+        public double TripExpenseTotal { get => _tripExpenseTotal; set => _tripExpenseTotal = value; }
         public double TripAverage { get => _tripAverage; set => _tripAverage = value; }
         public List<DTO_Place> TripDestinationList { get => _tripDestinationList; }
         public string TripEndDate { get => _tripEndDate; set => _tripEndDate = value; }
         public List<DTO_Member> TripMemberList { get => _tripMemberList;}
+        public bool TripStatus { get => _tripStatus; set => _tripStatus = value; }
         #endregion
 
         #region Constructor
@@ -40,13 +43,13 @@ namespace DTO_WeSplit
             _tripMemberList = new List<DTO_Member>();
         }
 
-        public DTO_Trip(int tripID, string tripName, string tripDate, string tripDescription, double tripBudget, double tripAverage)
+        public DTO_Trip(int tripID, string tripName, string tripDate, string tripDescription, double tripExpenseTotal, double tripAverage)
         {
             TripId = tripID;
             TripName = tripName;
             TripStartDate = tripDate;
             TripDescription = tripDescription;
-            TripBudget = tripBudget;
+            TripExpenseTotal = tripExpenseTotal;
             TripAverage = tripAverage;
         }
 

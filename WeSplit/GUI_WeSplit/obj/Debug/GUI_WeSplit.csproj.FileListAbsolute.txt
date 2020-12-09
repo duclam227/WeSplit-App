@@ -61,3 +61,18 @@ F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.Propert
 F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.GenerateResource.cache
 F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CoreCompileInputs.cache
 F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CopyComplete
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\LabelTextBox.baml
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\CreateTripPage.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\LabelTextBox.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\SearchPage.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\CreateTripPage.baml
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\SearchPage.baml
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\HandyControl.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\HandyControl.xml
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\en\HandyControl.resources.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\fa\HandyControl.resources.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\fr\HandyControl.resources.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\ko-KR\HandyControl.resources.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\ru\HandyControl.resources.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\tr\HandyControl.resources.dll

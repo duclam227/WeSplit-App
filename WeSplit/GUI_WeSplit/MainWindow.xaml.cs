@@ -21,8 +21,9 @@ namespace GUI_WeSplit
     public partial class MainWindow : Window
     {
         HomePage homePage = new HomePage();
+        SearchPage searchPage = new SearchPage();
         //TripDetailPage tripPage = new TripDetailPage();
-        MemberListPage memberListPage = new MemberListPage();
+        //MemberListPage memberListPage = new MemberListPage();
 
         public MainWindow()
         {
@@ -32,27 +33,41 @@ namespace GUI_WeSplit
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(homePage);
-            homePage.eventPassCommand += Hp_eventPassCommand;
+            homePage.eventPassCommand += homePage_eventPassCommand;
         }
 
-        private void Hp_eventPassCommand(string command)
+        private void homePage_eventPassCommand(string command)
         {
-            ActiveIndicator.Visibility = Visibility.Collapsed;
+            //ActiveIndicator.Visibility = Visibility.Collapsed;
 
-            if (command == "newtrip")
+            switch (command)
             {
-                MessageBox.Show("Create new trip");
-                MainFrame.Navigate(memberListPage);
-            }
-            else if(command == "newmember")
-            {
-                MessageBox.Show("Add new member");
-            }
-            else if (command == "explore")
-            {
-                MessageBox.Show("Explore");
+                case "newtrip":
+                    {
+                        break;
+                    }
+                case "newmember":
+                    {
+                        break;
+                    }
+                case "explore":
+                    {
+                        Grid.SetColumn(ActiveIndicator, 4);
+                        MainFrame.Navigate(searchPage);
+                        searchPage.eventPassIDToMain += SearchPage_eventPassIDToMain;
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
             }
 
+        }
+
+        private void SearchPage_eventPassIDToMain(int id)
+        {
+            MessageBox.Show($"ID là: {id}");
         }
 
         private void ExitButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -131,7 +146,10 @@ namespace GUI_WeSplit
 
         private void SearchButton_Click(object sender, MouseButtonEventArgs e)
         {
+            ActiveIndicator.Visibility = Visibility.Visible;
+            Grid.SetColumn(ActiveIndicator, 4);
 
+            MainFrame.Navigate(searchPage);
         }
     }
 }

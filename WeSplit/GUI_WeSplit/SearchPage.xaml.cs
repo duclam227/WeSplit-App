@@ -28,6 +28,9 @@ namespace GUI_WeSplit
         private List<DTO_Trip> searchingTrips;
         private List<Tuple<DTO_Trip, String>> searchByMember;
 
+        public delegate void PassIDToMain(int id);
+        public event PassIDToMain eventPassIDToMain;
+
         public SearchPage()
         {
             InitializeComponent();
@@ -57,7 +60,7 @@ namespace GUI_WeSplit
                         tempObj.TripName = item.Item1.TripName;
                         tempObj.TripStartDate = item.Item1.TripStartDate;
                         tempObj.TripDescription = item.Item1.TripDescription;
-                        tempObj.TripBudget = item.Item1.TripBudget;
+                        tempObj.TripBudget = item.Item1.TripExpenseTotal;
                         tempObj.TripAverage = item.Item1.TripAverage;
                         tempObj.MemberName = item.Item2;
                         trip_MemberNames.Add(tempObj);
@@ -113,7 +116,7 @@ namespace GUI_WeSplit
             TripDetailPage tripDetailPage = new TripDetailPage();
             int position = ResultListView.SelectedIndex;
 
-            if(radioBtn_SearchMember.IsChecked == true)
+            if(radioBtn_SearchMember.IsChecked == false)
             {
                 tripID = searchingTrips[position].TripId;
                   
@@ -123,7 +126,7 @@ namespace GUI_WeSplit
                 tripID = searchByMember[position].Item1.TripId;
             }
 
-            NavigationService.Navigate(tripDetailPage, tripID);
+            eventPassIDToMain(tripID);
         }
     }
 }

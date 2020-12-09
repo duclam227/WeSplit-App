@@ -3,36 +3,113 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:GUI_WeSplit"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SearchPage">
 
+    <Page.Resources>
+        <SolidColorBrush x:Key="IndicatorColor">Black</SolidColorBrush>
+
+        <Color x:Key="ContentBorderBG">Black</Color>
+        <SolidColorBrush x:Key="ContentForeground">white</SolidColorBrush>
+
+        <SolidColorBrush x:Key="MenuForeground">white</SolidColorBrush>
+        <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
+        <System:Double x:Key="MainBorderOpacity">0.3</System:Double>
+        <System:Double x:Key="ButtonSize">18</System:Double>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="{DynamicResource ContentForeground}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+        
+    </Page.Resources>
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <TextBox 
-            Name="SearchBar"
-            Grid.Column="0"
-            Grid.Row="0"
-            Background="Transparent"
-            Foreground="White"
-            TextChanged="SearchBar_TextChanged"
-            />
+        <StackPanel x:Name="TopPart"
+                    Orientation="Horizontal"
+                    Grid.Row="0">
+            <Border x:Name="SearchBoxBorder"
+                    BorderBrush="{DynamicResource ContentForeground}"
+                    BorderThickness="0 0 0 0.3"
+                    Width="300"
+                    Height="25"
+                    CornerRadius="15">
+                <TextBox Name="SearchBar"
+                         Grid.Row="0"
+                         Background="Transparent"
+                         Foreground="{DynamicResource ContentForeground}"
+                         CaretBrush="{DynamicResource ContentForeground}"
+                         BorderThickness="0"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         TextChanged="SearchBar_TextChanged"/>
+            </Border>
 
-        <ListView
-            Name="ResultListView"
-            Grid.Column="1"
-            Grid.Row="0"
-            Grid.RowSpan="2"
-            SelectionChanged="ResultListView_SelectionChanged">
+            <RadioButton Content="Tìm theo chuyến đi"
+                         Name="radionBtn_SearchTrip"
+                         GroupName="radio_Search"
+                         IsChecked="True"
+                         Checked="radionBtn_SearchTrip_Checked"/>
+            
+            <RadioButton Content="Tìm kiếm theo thành viên"
+                         Name="radioBtn_SearchMember"
+                         GroupName="radio_Search"
+                         Checked="radioBtn_SearchMember_Checked"/>
+        </StackPanel>
+
+        <ListView x:Name="ByTripListView"
+                  Grid.Row="1"
+                  Visibility="Collapsed">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Height="200"
+                            Width="200"
+                            Background="White"
+                            CornerRadius="10">
+                        <StackPanel>
+                            <TextBlock Text="{Binding TripName}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+
+        <ListView x:Name="ByMemberListView"
+                  Grid.Row="1"
+                  Visibility="Visible">
+
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border Height="200"
+                            Width="200"
+                            Background="Transparent"
+                            CornerRadius="10">
+                        <StackPanel>
+                            <TextBlock Text="{Binding TripName}"/>
+                        </StackPanel>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+            
+        </ListView>
+
+        <ListView Name="ResultListView"
+                  Grid.Row="1"
+                  SelectionChanged="ResultListView_SelectionChanged"
+                  Background="Transparent">
+
+            
             <ListView.View>
                 <GridView x:Name="myGridView">
                     <GridViewColumn 
@@ -42,7 +119,7 @@
                     <GridViewColumn 
                         Header="TripDate" 
                         Width="100" 
-                        DisplayMemberBinding="{Binding TripDate}"/>
+                        DisplayMemberBinding="{Binding TripStartDate}"/>
                     <GridViewColumn 
                         Header="TripDescription" 
                         Width="150" 
@@ -58,25 +135,10 @@
 
                 </GridView>
             </ListView.View>
-        </ListView>
 
-        <StackPanel Orientation="Horizontal"
-                    Grid.Row="1"
-                    Grid.Column="0">
-            <RadioButton
-                Content="Trip Name"
-                Name="radionBtn_SearchTrip"
-                GroupName="radio_Search"
-                Margin="10"
-                IsChecked="True"
-                Checked="radionBtn_SearchTrip_Checked"/>
-            <RadioButton
-                Content="Member Name"
-                Name="radioBtn_SearchMember"
-                GroupName="radio_Search"
-                Margin="10"
-                Checked="radioBtn_SearchMember_Checked"/>
-        </StackPanel>
+
+
+        </ListView>
 
     </Grid>
 

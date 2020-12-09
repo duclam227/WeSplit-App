@@ -28,7 +28,7 @@ namespace GUI_WeSplit
             InitializeComponent();
 
             //Load data from the calling page (SearchPage)
-            NavigationService.LoadCompleted += NavigationService_LoadCompleted;
+            //NavigationService.LoadCompleted += NavigationService_LoadCompleted;
         }
 
         private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)

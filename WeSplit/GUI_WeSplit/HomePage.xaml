@@ -58,7 +58,7 @@
 
         <Style x:Key="MainButtonStyle"
                TargetType="Border">
-            <Setter Property="Width" Value="250"/>
+            <!--<Setter Property="Width" Value="250"/>-->
             <Setter Property="Height" Value="60"/>
             <Setter Property="CornerRadius" Value="30"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
@@ -105,7 +105,7 @@
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="1.7*"/>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -116,7 +116,7 @@
         
         <StackPanel Grid.Row="1"
                     Grid.Column="1">
-            
+
             <StackPanel>
                 <TextBlock  HorizontalAlignment="Stretch"
                    FontSize="100" FontWeight="Black"
@@ -127,10 +127,10 @@
                    FontSize="50"
                     Style="{DynamicResource TitleStyle}">Lưu giữ những chuyến đi tuyệt vời!</TextBlock>
             </StackPanel>
-
+            <TextBlock/>
             <Separator Height="5"
                    Background="White"/>
-
+            <TextBlock/>
             <StackPanel x:Name="ButtonListStackPanel"
                     Orientation="Horizontal">
                 
@@ -161,7 +161,8 @@
                             </BeginStoryboard>
                         </EventTrigger>
                     </Button.Triggers>
-                    <Border Style="{DynamicResource MainButtonStyle}">
+                    <Border Style="{DynamicResource MainButtonStyle}"
+                            Width="250">
                         <Border.Background>
                             <SolidColorBrush Color="{DynamicResource ContentBorderBG}" 
                                              Opacity="{DynamicResource ButtonOpacity}"/>
@@ -173,7 +174,7 @@
                             </Grid.ColumnDefinitions>
                             
                             <TextBlock Style="{DynamicResource ButtonTextStyle}"
-                                       Grid.Column="0">Explore!</TextBlock>
+                                       Grid.Column="0">Khám phá!</TextBlock>
                             <Image x:Name="ButtonImage1" 
                                    Source="Images/goIcon.png"
                                    Height="25"
@@ -184,9 +185,12 @@
                         
                     </Border>
                 </Button>
+                
                 <TextBlock Text="    "/>
+                
                 <Button x:Name="AddNewTripButotn"
-                Click="AddNewTripButton_Click">
+                Click="AddNewTripButton_Click"
+                        Width="300">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
@@ -212,7 +216,8 @@
                             </BeginStoryboard>
                         </EventTrigger>
                     </Button.Triggers>
-                    <Border Style="{DynamicResource MainButtonStyle}">
+                    <Border Style="{DynamicResource MainButtonStyle}"
+                            Width="290">
                         <Border.Background>
                             <SolidColorBrush Color="{DynamicResource ContentBorderBG}" 
                                              Opacity="{DynamicResource ButtonOpacity}"/>
@@ -224,7 +229,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Style="{DynamicResource ButtonTextStyle}"
-                                       Grid.Column="0">Make a trip</TextBlock>
+                                       Grid.Column="0">Tạo chuyến đi mới</TextBlock>
                             <Image x:Name="ButtonImage2" 
                                    Source="Images/goIcon.png"
                                    Height="25"
@@ -235,9 +240,12 @@
 
                     </Border>
                 </Button>
+                
                 <TextBlock Text="    "/>
+                
                 <Button x:Name="AddNewMemberButton"
-                Click="AddNewMemberButton_Click">
+                Click="AddNewMemberButton_Click"
+                        Width="265">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
@@ -268,7 +276,8 @@
                             </BeginStoryboard>
                         </EventTrigger>
                     </Button.Triggers>
-                    <Border x:Name="ButtonBorder3" Style="{DynamicResource MainButtonStyle}">
+                    <Border Style="{DynamicResource MainButtonStyle}"
+                            Width="260">
                         <Border.Background>
                             <SolidColorBrush Color="{DynamicResource ContentBorderBG}" 
                                              Opacity="{DynamicResource ButtonOpacity}"/>
@@ -280,7 +289,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Style="{DynamicResource ButtonTextStyle}"
-                                       Grid.Column="0">Add a member</TextBlock>
+                                       Grid.Column="0">Thêm thành viên</TextBlock>
                             <Image x:Name="ButtonImage3" 
                                    Source="Images/goIcon.png"
                                    Height="25"

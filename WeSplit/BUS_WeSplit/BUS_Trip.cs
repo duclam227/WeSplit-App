@@ -34,13 +34,14 @@ namespace BUS_WeSplit
             {
                 int id = int.Parse(row["TripID"].ToString());
                 string name = row["TripName"].ToString();
-                DateTime tmpDate = (DateTime)row["TripDate"];
+                DateTime tmpDate = (DateTime)row["TripStartDate"];
+                //DateTime date = tmpDate.Date;
                 string date = String.Format("{0:dd/MM/yyyy}", tmpDate);
                 string description = row["TripDescription"].ToString();
-                double budget = double.Parse(row["TripBudget"].ToString());
+                double expenseTotal = double.Parse(row["TripExpenseTotal"].ToString());
                 double average = double.Parse(row["TripAverage"].ToString());
 
-                DTO_Trip tmpTrip = new DTO_Trip(id, name, date, description, budget, average);
+                DTO_Trip tmpTrip = new DTO_Trip(id, name, date, description, expenseTotal, average);
                 result.Add(tmpTrip);
             }
             return result;
@@ -54,14 +55,15 @@ namespace BUS_WeSplit
             {
                 int id = int.Parse(row["TripID"].ToString());
                 string name = row["TripName"].ToString();
-                DateTime tmpDate = (DateTime)row["TripDate"];
+                DateTime tmpDate = (DateTime)row["TripStartDate"];
+                //DateTime date = tmpDate.Date;
                 string date = String.Format("{0:dd/MM/yyyy}", tmpDate);
                 string description = row["TripDescription"].ToString();
-                double budget = double.Parse(row["TripBudget"].ToString());
+                double expenseTotal = double.Parse(row["TripExpenseTotal"].ToString());
                 double average = double.Parse(row["TripAverage"].ToString());
                 String memberName = row["MemberName"].ToString();
 
-                DTO_Trip tmpTrip = new DTO_Trip(id, name, date, description, budget, average);
+                DTO_Trip tmpTrip = new DTO_Trip(id, name, date, description, expenseTotal, average);
                 Tuple<DTO_Trip, String> temp = new Tuple<DTO_Trip, String>(tmpTrip, memberName);
                 result.Add(temp);
             }
