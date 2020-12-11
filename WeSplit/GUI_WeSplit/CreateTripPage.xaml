@@ -14,11 +14,7 @@
 
     <Page.Resources>
 
-        <ControlTemplate x:Key="validationTemplate">
-            <Border BorderBrush="Red" BorderThickness="3">
-                <AdornedElementPlaceholder/>
-            </Border>
-        </ControlTemplate>
+        
 
     </Page.Resources>
 
@@ -69,7 +65,6 @@
                 <uc:LabelTextBox x:Name="LabelTextBox_TripName" 
                                  Grid.Row="1"
                                  Grid.ColumnSpan="2"
-                                 Label="Trip Name"
                                  Margin="20 0 20 0">
                     <uc:LabelTextBox.Text>
                         <Binding Path="TripName" Mode="TwoWay">
@@ -86,7 +81,7 @@
                           Checked="CheckBox_Description_Checked"
                           Unchecked="CheckBox_Description_Unchecked"/>
                     <uc:LabelTextBox x:Name="LabelTextBox_Description"
-                                     Label="Description" Visibility="Collapsed"/>
+                                     Visibility="Collapsed"/>
                 </StackPanel>
 
 
@@ -134,59 +129,20 @@
                     Content="Add" Click="Button_AddMember_Click" hc:BorderElement.CornerRadius="15"/>
                 </StackPanel>
 
-                <StackPanel Grid.Row="5" Grid.ColumnSpan="2"  Margin="20 20 20 0">
+                <Button Name="Button_AddDestination"
+                Grid.Row="5"
+                Style="{DynamicResource ButtonPrimary}"
+                Margin="10"
+                Content="Thêm địa điểm" Click="Button_AddDestination_Click"
+                hc:BorderElement.CornerRadius="15"/>
+                
+                <Button Name="Button_AddExpense"
+                Grid.Row="5" Grid.Column="2"
+                Style="{DynamicResource ButtonPrimary}"
+                Margin="10"
+                Content="Thêm chi phí" Click="Button_AddExpense_Click"
+                hc:BorderElement.CornerRadius="15"/>
 
-                    <Label Content="Add New Expense" HorizontalAlignment="Center"/>
-
-                    <uc:LabelTextBox x:Name="LabelTextBox_ExpenseDescription"
-                        Label="Description">
-                        <uc:LabelTextBox.Text>
-                            <Binding Path="ExpenseDescription" Mode="TwoWay">
-                                <Binding.ValidationRules>
-                                    <rules:NotNullRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </uc:LabelTextBox.Text>
-                    </uc:LabelTextBox>
-
-                    <uc:LabelTextBox x:Name="LabelTextBox_ExpenseAmount"
-                                     Label="Amount"
-                                     Validation.ErrorTemplate="{StaticResource validationTemplate}">
-                        <uc:LabelTextBox.Text>
-                            <Binding Path="ExpenseAmount" Mode="TwoWay">
-                                <Binding.ValidationRules>
-                                    <rules:MoneyRule/>
-                                    <rules:NotNullRule/>
-                                </Binding.ValidationRules>
-                            </Binding>
-                        </uc:LabelTextBox.Text>
-                    </uc:LabelTextBox>
-
-                    <ComboBox Name="ComboBox_MemberListExpense" 
-                          Grid.Row="1"
-                          Height="30" Margin="0 20 0 0">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"></ColumnDefinition>
-                                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="1" Text="{Binding MemberName}"></TextBlock>
-
-                                </Grid>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-                    <!--Description Box-->
-
-                    <Button Name="Button_AddExpense"
-                            Style="{DynamicResource ButtonPrimary}"
-                            Width="50" Height="30"
-                            Margin="10"
-                            Content="Add" Click="Button_AddExpense_Click"
-                            hc:BorderElement.CornerRadius="15"/>
-                </StackPanel>
             </Grid>
 
             <!--Destination column-->

@@ -31,13 +31,13 @@ namespace GUI_WeSplit
             //MemberListPage memberList = new MemberListPage();
             //TripDetailPage tripPage = new TripDetailPage();
             //MainFrame.Navigate(tripPage);
-            //CreateTripPage createTripPage = new CreateTripPage(1);
-            //MainFrame.Navigate(createTripPage);
-            AddMemberWindow window = new AddMemberWindow(1)
-            {
-                Owner = this
-            };
-            window.Show();
+            CreateTripPage createTripPage = new CreateTripPage(1);
+            MainFrame.Navigate(createTripPage);
+            //AddMemberWindow window = new AddMemberWindow(1)
+            //{
+            //    Owner = this
+            //};
+            //window.Show();
         }
     }
 }

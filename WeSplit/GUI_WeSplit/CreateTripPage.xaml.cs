@@ -77,7 +77,6 @@ namespace GUI_WeSplit
             ListView_Destination.ItemsSource = newTrip.TripDestinationList;
             ListView_MemberList.ItemsSource = AddedMemberList;
             ComboBox_MemberList.ItemsSource = AvailableMemberList;
-            ComboBox_MemberListExpense.ItemsSource = MemberList;
             ListView_Expense.ItemsSource = ExpenseList;
         }
         private void CheckBox_Description_Checked(object sender, RoutedEventArgs e)
@@ -114,16 +113,8 @@ namespace GUI_WeSplit
 
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
         {
-            double amount = Convert.ToDouble(LabelTextBox_ExpenseAmount.Text);
-            int memberId = ((DTO_Member)ComboBox_MemberListExpense.SelectedItem).MemberID;
-            string description = LabelTextBox_ExpenseDescription.Text;
-            DTO_Expense expense;
-            if (description != "" && amount != -1)
-            {
-                expense = new DTO_Expense(newTrip.TripId, amount, memberId, description);
-                ExpenseList.Add(expense);
-            }
-
+            AddExpenseWindow addExpenseWindow = new AddExpenseWindow();
+            addExpenseWindow.ShowDialog();
         }
 
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)
@@ -144,6 +135,11 @@ namespace GUI_WeSplit
             {
                 this.NewTrip = newTrip;
             }
+        }
+
+        private void Button_AddDestination_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

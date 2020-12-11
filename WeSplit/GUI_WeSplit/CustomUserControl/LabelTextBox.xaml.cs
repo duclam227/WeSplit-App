@@ -20,7 +20,7 @@ namespace GUI_WeSplit.CustomUserControl
     /// </summary>
     public partial class LabelTextBox : UserControl
     {
-        string _localLabel = "";
+        //string _localLabel = "";
 
         public static readonly DependencyProperty TextProperty =
                 DependencyProperty.Register("Text", typeof(string), typeof(LabelTextBox));
@@ -30,15 +30,15 @@ namespace GUI_WeSplit.CustomUserControl
             InitializeComponent();
         }
 
-        public string Label
-        {
-            get { return _localLabel; }
-            set
-            {
-                _localLabel = value;
-                BaseLabel.Content = value;
-            }
-        }
+        //public string Label
+        //{
+        //    get { return _localLabel; }
+        //    set
+        //    {
+        //        _localLabel = value;
+        //        BaseLabel.Content = value;
+        //    }
+        //}
 
         public string Text
         {
@@ -46,16 +46,15 @@ namespace GUI_WeSplit.CustomUserControl
             set { SetValue(TextProperty, value); }
         }
 
-
-        private void BaseTextBox_GotFocus(object sender, RoutedEventArgs e)
+        public static readonly DependencyProperty TitleProperty =
+              DependencyProperty.Register("Title", typeof(string), typeof(LabelTextBox));
+        public string Title
         {
-            BaseLabel.Foreground = Brushes.Blue;
-        }
-
-        private void BaseTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            BaseLabel.Foreground = Brushes.Black;
-            BaseLabel.Foreground = Brushes.Black;
+            get { return (string)GetValue(TitleProperty); }
+            set 
+            { 
+                SetValue(TitleProperty, value);
+            }
         }
 
         private void BaseTextBox_Loaded(object sender, RoutedEventArgs e)

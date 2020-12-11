@@ -45,7 +45,7 @@
         
         <uc:LabelTextBox x:Name="LabelTextBox_Name"
             Grid.Row="3"
-            Label="Họ và tên" Margin="20 10 20 10">
+            Margin="20 10 20 10">
             <uc:LabelTextBox.Text>
                 <Binding Path="MemberName" Mode="TwoWay">
                     <Binding.ValidationRules>

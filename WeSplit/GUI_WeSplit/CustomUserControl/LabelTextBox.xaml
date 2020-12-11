@@ -2,11 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:hc="https://handyorg.github.io/handycontrol"
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="200">
     <UserControl.Resources>
-        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}"
+               BasedOn="{StaticResource TextBoxExtendBaseStyle}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
                     <Setter Property="ToolTip"
@@ -21,12 +23,14 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Label Name="BaseLabel" 
+        <!--<Label Name="BaseLabel" 
             Content="Label" HorizontalAlignment="Left"
-            BorderBrush="Transparent" Background="Transparent"/>
+            BorderBrush="Transparent" Background="Transparent"/>-->
         <TextBox Name="BaseTextBox"
-                 Grid.Row="1" TextWrapping="Wrap" AcceptsReturn="True"
-                 VerticalContentAlignment="Center" GotFocus="BaseTextBox_GotFocus" LostFocus="BaseTextBox_LostFocus"
+                 TextWrapping="Wrap" AcceptsReturn="True"
+                 VerticalContentAlignment="Center"
+                 hc:InfoElement.Necessary="True"
+                 hc:InfoElement.Title="{Binding Title, ElementName=LabelTextBoxControl, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                  Text="{Binding Text, ElementName=LabelTextBoxControl, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"
                  Loaded="BaseTextBox_Loaded" Style="{StaticResource textBoxInError}">
         </TextBox>
