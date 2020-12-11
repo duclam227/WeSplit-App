@@ -28,11 +28,24 @@ namespace GUI_WeSplit
 
         private string[] listOfTips = new string[]
         {
-            "Nếu bạn và lũ bạn thân vừa lên kèo thì nên đi ngay nếu không sẽ bể!!",
-            "Đi du lịch cùng với những người bạn thì vui hơn đấy!",
-            "Có người yêu thì không nên đến Đà Lạt cùng họ, có lời nguyền đấy",
-            "Đi du lịch thì đừng có nằm ngủ suốt ngày trong homestay, lết xác đi chơi đi",
-            "Ăn uống chung với bạn thì tiền bạc nên rõ ràng và thống nhất với nhau!"
+            "Vịnh Hạ Long là một vịnh thuộc bờ tây vịnh Bắc Bộ tại khu vực biển Đông Bắc Việt Nam" +
+            "\nDiện tích khoảng 1.553 km² bao gồm 1.969 hòn đảo lớn nhỏ, phần lớn là đảo đá vôi.",
+
+            "Hà Nội là thủ đô của nước CHXHCN Việt Nam, nằm giữa đồng bằng sông Hồng trù phú" +
+            "\nLà một trung tâm chính trị, kinh tế và văn hóa ngay từ những buổi đầu của lịch sử Việt Nam.",
+
+            "Đà Lạt là thành phố trực thuộc tỉnh ủy Lâm Đồng, nằm trên Cao nguyên Lâm Viên" +
+            "\nHiện nay là thành phố nổi tiếng về du lịch bậc nhất của Việt Nam.",
+
+            "Phố cổ Hội An trực thuộc tỉnh Quảng Nam, Việt Nam và từng là thương cảng quốc tế sầm uất" +
+            "\nĐược UNESCO công nhận là di sản văn hóa thế giới từ năm 1999",
+
+            "Cầu Vàng là tên một cây cầu bộ hành dài khoảng 150 m tại khu nghỉ dưỡng Bà Nà, Đà Nẵng." +
+            "\nNằm ở độ cao khoảng 1.400 m trên núi Bà Nà, ở giữa cầu có hai bàn tay lớn được tạc từ đá.",
+
+            "Vũng Tàu là một thành phố thuộc tỉnh Bà Rịa - Vũng Tàu, ở vùng Đông Nam Bộ, Việt Nam." +
+            "\nSở hữu nhiều bãi biển đẹp và cơ sở hạ tầng được đầu tư hoàn chỉnh" +
+            "\nVũng Tàu là một địa điểm du lịch nổi tiếng tại miền Nam."
         };
 
         private string[] listOfBackground = new string[]
@@ -66,9 +79,7 @@ namespace GUI_WeSplit
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             int index = _rng.Next(listOfTips.Length);
-
             Tip.Text = listOfTips[index];
-            index = _rng.Next(listOfBackground.Length);
 
             BitmapImage bitmapImage = new BitmapImage();
             bitmapImage.BeginInit();

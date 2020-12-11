@@ -15,24 +15,30 @@
         <Image x:Name="BackgroundSplashScreen" 
             Stretch="UniformToFill" Source="Images/Rina002.png">
             <Image.Effect>
-                <BlurEffect Radius="20"/>
+                <BlurEffect Radius="10"/>
             </Image.Effect>
         </Image>
-        <StackPanel VerticalAlignment="Center"
-                    Background="Transparent">
+        <StackPanel VerticalAlignment="Top"
+                    Background="Transparent"
+                    Margin="10, 30, 0, 0">
             <StackPanel VerticalAlignment="Center" Orientation="Horizontal"
                     Margin="10">
                 <Rectangle Width="5" Fill="White"></Rectangle>
                 <Rectangle Width="5"></Rectangle>
                 <StackPanel>
                     <TextBlock Name="TipTitle"
-                       Text="Gợi ý nho nhỏ:" Foreground="White" FontWeight="Bold"
+                       Text="Có thể bạn chưa biết:" Foreground="White" FontWeight="Bold"
                        FontSize="30" FontFamily="Calibri"></TextBlock>
                     <TextBlock Name="Tip"
                        Text="sdf" Foreground="White"
                        FontSize="20" FontFamily="Calibri" ></TextBlock>
                 </StackPanel>
             </StackPanel>
+      
+
+            
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom">
             <Grid>
                 <ProgressBar x:Name="ProgressBarSplashScreen" 
                          IsIndeterminate="False" 
