@@ -8,6 +8,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/close.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/splashscreen01.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/splashscreen02.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/splashscreen03.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/splashscreen04.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/splashscreen05.jpg")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/splashscreen06.jpg")]
 
 

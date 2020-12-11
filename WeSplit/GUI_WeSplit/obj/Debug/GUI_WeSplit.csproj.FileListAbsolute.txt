@@ -61,3 +61,6 @@ F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.Propert
 F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.GenerateResource.cache
 F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CoreCompileInputs.cache
 F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CopyComplete
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\SplashScreen.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\App.baml
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\SplashScreen.baml

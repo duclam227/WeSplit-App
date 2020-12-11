@@ -1,0 +1,54 @@
+﻿<Window x:Class="GUI_WeSplit.SplashScreen"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_WeSplit"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Title="SplashScreen" Height="450" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        
+    </Window.Resources>
+    <Grid>
+        <Image x:Name="BackgroundSplashScreen" 
+            Stretch="UniformToFill" Source="Images/Rina002.png">
+            <Image.Effect>
+                <BlurEffect Radius="20"/>
+            </Image.Effect>
+        </Image>
+        <StackPanel VerticalAlignment="Center"
+                    Background="Transparent">
+            <StackPanel VerticalAlignment="Center" Orientation="Horizontal"
+                    Margin="10">
+                <Rectangle Width="5" Fill="White"></Rectangle>
+                <Rectangle Width="5"></Rectangle>
+                <StackPanel>
+                    <TextBlock Name="TipTitle"
+                       Text="Gợi ý nho nhỏ:" Foreground="White" FontWeight="Bold"
+                       FontSize="30" FontFamily="Calibri"></TextBlock>
+                    <TextBlock Name="Tip"
+                       Text="sdf" Foreground="White"
+                       FontSize="20" FontFamily="Calibri" ></TextBlock>
+                </StackPanel>
+            </StackPanel>
+            <Grid>
+                <ProgressBar x:Name="ProgressBarSplashScreen" 
+                         IsIndeterminate="False" 
+                         Height="20"
+                         Maximum="100"
+                         Minimum="0"/>
+                <TextBlock Text="{Binding ElementName=ProgressBarSplashScreen, 
+                    Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center"/>
+            </Grid>
+            
+            <CheckBox Name="NeverShowSplashCheckBox"
+                      Margin="20"
+                      Content="Không hiện màn hình gợi ý nữa"
+                      Foreground="White" HorizontalAlignment="Center"
+                      BorderBrush="White" Checked="SplashScreenCheckBox_Checked"
+                      Unchecked="SplashScreenCheckBox_Unchecked"></CheckBox>
+        </StackPanel>
+    </Grid>
+</Window>

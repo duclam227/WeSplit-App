@@ -36,6 +36,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
@@ -65,6 +66,9 @@
     <Compile Include="LabelTextBox.xaml.cs" />
     <Compile Include="SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="TripDetailPage.xaml.cs">
       <DependentUpon>TripDetailPage.xaml</DependentUpon>
@@ -98,6 +102,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SearchPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -153,6 +161,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\closeIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\SplashScreen01.jpg" />
+    <Resource Include="Images\SplashScreen02.jpg" />
+    <Resource Include="Images\SplashScreen03.jpg" />
+    <Resource Include="Images\SplashScreen04.jpg" />
+    <Resource Include="Images\SplashScreen05.jpg" />
+    <Resource Include="Images\SplashScreen06.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
