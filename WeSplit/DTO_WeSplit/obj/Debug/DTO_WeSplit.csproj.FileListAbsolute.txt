@@ -1,6 +1,5 @@
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DTO_WeSplit\bin\Debug\DTO_WeSplit.dll
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DTO_WeSplit\bin\Debug\DTO_WeSplit.pdb
-D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DTO_WeSplit\obj\Debug\DTO_WeSplit.csprojAssemblyReference.cache
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DTO_WeSplit\obj\Debug\DTO_WeSplit.csproj.CoreCompileInputs.cache
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DTO_WeSplit\obj\Debug\DTO_WeSplit.dll
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\DTO_WeSplit\obj\Debug\DTO_WeSplit.pdb

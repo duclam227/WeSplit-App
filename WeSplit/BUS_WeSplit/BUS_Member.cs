@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using DAO_WeSplit;
 using DTO_WeSplit;
-using DAO_WeSplit;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace BUS_WeSplit
 {
@@ -41,6 +38,23 @@ namespace BUS_WeSplit
             }
 
             return result;
+        } 
+
+        public DTO_Member GetMember(int id)
+        {
+            DataRow row = DAO_Member.Instance.GetMember(id);
+            if (row!=null)
+            {
+                string name = row["MemberName"].ToString();
+                DateTime tmpDOB = (DateTime)row["MemberDOB"];
+                string dob = String.Format("{0:dd/MM/yyyy}", tmpDOB);
+                bool sex = (bool)row["MemberSex"];
+                string avatar = row["MemberAvatar"].ToString();
+                DTO_Member result = new DTO_Member(id, name, dob, sex, avatar);
+                return result;
+            }
+            else 
+                return null;
         }
     }
 }

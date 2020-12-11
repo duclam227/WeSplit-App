@@ -25,12 +25,36 @@ namespace GUI_WeSplit
     /// </summary>
     public partial class CreateTripPage : Page
     {
+        private DTO_Trip newTrip;
+        private ObservableCollection<DTO_Member> AddedMemberList;
+        private ObservableCollection<DTO_Member> MemberList;
+        private ObservableCollection<DTO_Member> AvailableMemberList;
+        private ObservableCollection<DTO_Expense> ExpenseList;
+
+        private double _expenseAmount;
+        private string _expenseDescription;
+        private string _tripName;
+
+
         public EventHandler<AddNewTripEventArgs> AddNewTripEventHandler;
 
-        private DTO_Trip newTrip;
+        public string ExpenseAmount
+        {
+            get => _expenseAmount.ToString();
+            set
+            {
+                try
+                {
+                    _expenseAmount = Double.Parse(value);
+                }
+                catch
+                {
 
-        private ObservableCollection<DTO_Member> AddedMemberList;
-        private ObservableCollection<DTO_Member> AvailableMemberList;
+                }
+            }
+        }
+        public string ExpenseDescription { get => _expenseDescription; set => _expenseDescription = value; }
+        public string TripName { get => _tripName; set => _tripName = value; }
 
         private CreateTripPage()
         {
@@ -42,42 +66,39 @@ namespace GUI_WeSplit
         {
             InitializeComponent();
             AddedMemberList = new ObservableCollection<DTO_Member>();
+            MemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAllMembers());
             AvailableMemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAllMembers());
+            ExpenseList = new ObservableCollection<DTO_Expense>();
             newTrip = new DTO_Trip();
+            newTrip.TripId = tripID;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             ListView_Destination.ItemsSource = newTrip.TripDestinationList;
             ListView_MemberList.ItemsSource = AddedMemberList;
             ComboBox_MemberList.ItemsSource = AvailableMemberList;
+            ListView_Expense.ItemsSource = ExpenseList;
         }
         private void CheckBox_Description_Checked(object sender, RoutedEventArgs e)
         {
-            StackPanel_Description.Visibility = Visibility.Visible;
+            LabelTextBox_Description.Visibility = Visibility.Visible;
         }
 
         private void CheckBox_Description_Unchecked(object sender, RoutedEventArgs e)
         {
-            StackPanel_Description.Visibility = Visibility.Collapsed;
-            TextBox_TripDescription.Clear();
+            LabelTextBox_Description.Visibility = Visibility.Collapsed;
         }
         private void Button_CreateNewTrip_Click(object sender, RoutedEventArgs e)
         {
             if (AddNewTripEventHandler != null)
             {
+                if (LabelTextBox_TripName.Text != "")
+                {
+
+                }
                 AddNewTripEventHandler(this, new AddNewTripEventArgs(this.newTrip));
             }
             this.NavigationService.GoBack();
-        }
-
-        public class AddNewTripEventArgs : EventArgs
-        {
-            public DTO_Trip NewTrip;
-
-            public AddNewTripEventArgs(DTO_Trip newTrip)
-            {
-                this.NewTrip = newTrip;
-            }
         }
 
         private void ListView_Destination_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -92,7 +113,8 @@ namespace GUI_WeSplit
 
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
         {
-
+            AddExpenseWindow addExpenseWindow = new AddExpenseWindow();
+            addExpenseWindow.ShowDialog();
         }
 
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)
@@ -103,6 +125,21 @@ namespace GUI_WeSplit
                 AddedMemberList.Add(selected);
                 AvailableMemberList.Remove(selected);
             }
+        }
+
+        public class AddNewTripEventArgs : EventArgs
+        {
+            public DTO_Trip NewTrip;
+
+            public AddNewTripEventArgs(DTO_Trip newTrip)
+            {
+                this.NewTrip = newTrip;
+            }
+        }
+
+        private void Button_AddDestination_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
