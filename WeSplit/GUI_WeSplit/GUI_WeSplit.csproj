@@ -59,6 +59,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddDestinationWindow.xaml.cs">
+      <DependentUpon>AddDestinationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddExpenseWindow.xaml.cs">
       <DependentUpon>AddExpenseWindow.xaml</DependentUpon>
     </Compile>
@@ -76,6 +79,10 @@
     </Compile>
     <Compile Include="Validation\MoneyRule.cs" />
     <Compile Include="Validation\NotNullRule.cs" />
+    <Page Include="AddDestinationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddExpenseWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -156,5 +163,6 @@
   <ItemGroup>
     <Resource Include="Images\thumbnail.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

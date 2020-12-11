@@ -42,3 +42,5 @@ D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.pd
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\GUI_WeSplit.exe.config
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\GUI_WeSplit.pdb
 D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CopyComplete
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\AddDestinationWindow.g.cs
+D:\Kem\Documents\GitHub\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\AddDestinationWindow.baml

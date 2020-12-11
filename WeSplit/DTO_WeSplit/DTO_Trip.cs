@@ -20,6 +20,7 @@ namespace DTO_WeSplit
         private List<DTO_Place> _tripDestinationList;
         private List<DTO_Member> _tripMemberList;
         private List<DTO_Expense> _tripExpenseList;
+        private List<string> _tripImages;
         #endregion
 
         #region Public Properties
@@ -33,6 +34,7 @@ namespace DTO_WeSplit
         public List<DTO_Place> TripDestinationList { get => _tripDestinationList; set => _tripDestinationList = value; }
         public List<DTO_Member> TripMemberList { get => _tripMemberList; set => _tripMemberList = value; }
         public List<DTO_Expense> TripExpenseList { get => _tripExpenseList; set => _tripExpenseList = value; }
+        public List<string> TripImages { get => _tripImages; set => _tripImages = value; }
 
         #endregion
 
@@ -45,19 +47,5 @@ namespace DTO_WeSplit
 
         #endregion
 
-        public void AddDestination(DTO_Place newDestination)
-        {
-            TripDestinationList.Add(newDestination);
-        }
-
-        public void AddMember(DTO_Member newMember)
-        {
-            TripMemberList.Add(newMember);
-        }
-
-        public void AddExpense(DTO_Expense newExpense)
-        {
-            TripExpenseList.Add(newExpense);
-        }
     }
 }

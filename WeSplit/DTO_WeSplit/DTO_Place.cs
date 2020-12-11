@@ -12,13 +12,10 @@ namespace DTO_WeSplit
         private string _placeName;
         private string _placeAddress;
         private string _placeDescription;
-        private List<string> _placeImages;
-
         public int PlaceId { get => _placeId; set => _placeId = value; }
         public string PlaceName { get => _placeName; set => _placeName = value; }
         public string PlaceAddress { get => _placeAddress; set => _placeAddress = value; }
         public string PlaceDescription { get => _placeDescription; set => _placeDescription = value; }
-        public List<string> PlaceImages { get => _placeImages;}
         public DTO_Place()
         {
 
@@ -30,11 +27,6 @@ namespace DTO_WeSplit
             PlaceName = name;
             PlaceAddress = address;
             PlaceDescription = description;
-        }
-
-        public void AddImage(string imagePath)
-        {
-            _placeImages.Add(imagePath);
         }
 
     }

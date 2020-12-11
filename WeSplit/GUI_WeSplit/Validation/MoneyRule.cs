@@ -12,6 +12,8 @@ namespace GUI_WeSplit.Validation
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
+            if (value == null)
+                return new ValidationResult(false, "Không thể để trống trường này");
             double money = 0;
 
             try
