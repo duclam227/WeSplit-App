@@ -44,8 +44,9 @@
                 Visibility="Hidden"/>
         
         <uc:LabelTextBox x:Name="LabelTextBox_Name"
-            Grid.Row="3"
-            Margin="20 10 20 10">
+                         Grid.Row="3"
+                         Margin="20 10 20 10"
+                         Title="Họ và tên">
             <uc:LabelTextBox.Text>
                 <Binding Path="MemberName" Mode="TwoWay">
                     <Binding.ValidationRules>
