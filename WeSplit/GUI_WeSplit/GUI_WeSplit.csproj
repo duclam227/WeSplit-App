@@ -68,6 +68,8 @@
     <Compile Include="AddMemberWindow.xaml.cs">
       <DependentUpon>AddMemberWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\MemberIDToNameConverter.cs" />
     <Compile Include="CreateTripPage.xaml.cs">
       <DependentUpon>CreateTripPage.xaml</DependentUpon>
     </Compile>

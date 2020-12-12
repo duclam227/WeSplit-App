@@ -30,17 +30,16 @@ namespace GUI_WeSplit
 
         private ObservableCollection<DTO_Member> AvailableMemberList;
         private ObservableCollection<BitmapImage> Images;
-        private List<string> imagesList = new List<string>();
-
-        private string _tripName;
-
         public ObservableCollection<DTO_Place> DestinationList;
         public ObservableCollection<DTO_Expense> ExpenseList;
         public ObservableCollection<DTO_Member> MemberList;
 
+        private List<string> imagesList = new List<string>();
 
-        public EventHandler<AddNewTripEventArgs> AddNewTripEventHandler;
+        private string _tripName;
+        private string _tripDescription;
         public string TripName { get => _tripName; set => _tripName = value; }
+        public string TripDescription { get => _tripDescription; set => _tripDescription = value; }
 
         private CreateTripPage()
         {
@@ -63,6 +62,8 @@ namespace GUI_WeSplit
             {
                 TripId = tripID
             };
+
+            DataContext = this;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -83,15 +84,38 @@ namespace GUI_WeSplit
         }
         private void Button_CreateNewTrip_Click(object sender, RoutedEventArgs e)
         {
-            if (AddNewTripEventHandler != null)
-            {
-                if (LabelTextBox_TripName.Text != "")
-                {
+            bool canReturn = true;
 
-                }
-                AddNewTripEventHandler(this, new AddNewTripEventArgs(this.newTrip));
+            if (String.IsNullOrWhiteSpace(TripName))
+            {
+                canReturn = false;
             }
-            this.NavigationService.GoBack();
+
+            if (CheckBox_Description.IsChecked == true && String.IsNullOrWhiteSpace(TripDescription))
+            {
+                canReturn = false;
+            }
+
+            if (DatePicker_EndDate.SelectedDate == null || DatePicker_StartDate.SelectedDate == null)
+            {
+                canReturn = false;
+            }
+
+            if (canReturn)
+            {
+                newTrip.TripName = TripName;
+                newTrip.TripDescription = TripDescription;
+                newTrip.TripStartDate = (DateTime)DatePicker_StartDate.SelectedDate;
+                newTrip.TripEndDate = (DateTime)DatePicker_EndDate.SelectedDate;
+                newTrip.TripExpenseList = ExpenseList.ToList<DTO_Expense>();
+                newTrip.TripDestinationList = DestinationList.ToList<DTO_Place>();
+                newTrip.TripStatus = true;
+                newTrip.TripImages = imagesList;
+
+                BUS_Trip.Instance.AddTrip(newTrip);
+
+                this.NavigationService.GoBack();
+            }
         }
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
         {
@@ -145,29 +169,8 @@ namespace GUI_WeSplit
 
         }
 
-        public class AddNewTripEventArgs : EventArgs
-        {
-            public DTO_Trip NewTrip;
+        
 
-            public AddNewTripEventArgs(DTO_Trip newTrip)
-            {
-                this.NewTrip = newTrip;
-            }
-        }
     }
-
-    public class MemberIDToNameConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            DTO_Member member = BUS_Member.Instance.GetMember((int)value);
-            string result = member.MemberName;
-            return result;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
 }

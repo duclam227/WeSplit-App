@@ -21,17 +21,26 @@ namespace DAO_WeSplit
                 return _instance;
             }
         }
-        public List<DTO_Trip> GetAllTrips()
+        public DataTable GetAllTrips()
         {
             DataTable data = new DataTable();
-            List<DTO_Trip> result = new List<DTO_Trip>();
-            string query = "select * from Member";
+            string query = "select * from Trip";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
             adapter.Fill(data);
 
+            return data;
+        }
 
-            return result;
+        public void AddTrip(DTO_Trip trip)
+        {
+
+            string addTrip = 
+                "insert into dbo.Trip(TripID, TripName, TripDescription, TripStartDate, TripEndDate, TripExpenseTotal, TripAverage, TripStatus) values " +
+                $"('{trip.TripId}', N'{trip.TripName}', N'{trip.TripDescription}', '{trip.TripStartDate}', '{trip.TripEndDate}', 0, 0, '{trip.TripStatus}')";
+
+            SqlCommand cmd = new SqlCommand(addTrip, _conn);
+            cmd.ExecuteNonQuery();
         }
     }
 }

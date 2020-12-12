@@ -8,6 +8,7 @@ namespace DTO_WeSplit
 {
     public class DTO_Place
     {
+        private int _tripId;
         private int _placeId;
         private string _placeName;
         private string _placeAddress;

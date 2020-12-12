@@ -62,5 +62,15 @@ namespace DAO_WeSplit
             else 
                 return null;
         }
+
+        public void AddMemberPerTrip(int memberId, int tripId)
+        {
+            string addMemberPerTrip =
+                "insert into dbo.MemberPerTrip(TripID, MemberID) values " +
+                $"('{tripId}', '{memberId}')";
+
+            SqlCommand cmd = new SqlCommand(addMemberPerTrip, _conn);
+            cmd.ExecuteNonQuery();
+        }
     }
 }
