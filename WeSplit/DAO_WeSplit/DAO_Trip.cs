@@ -95,5 +95,15 @@ namespace DAO_WeSplit
 
             return data;
         }
+
+        public void AddTrip(DTO_Trip trip)
+        {
+            string addTrip =
+                "insert into dbo.Trip(TripID, TripName, TripDescription, TripStartDate, TripEndDate, TripExpenseTotal, TripAverage, TripStatus) values " +
+                $"('{trip.TripId}', N'{trip.TripName}', N'{trip.TripDescription}', '{trip.TripStartDate}', '{trip.TripEndDate}', 0, 0, '{trip.TripStatus}')";
+
+            SqlCommand cmd = new SqlCommand(addTrip, _conn);
+            cmd.ExecuteNonQuery();
+        }
     }
 }

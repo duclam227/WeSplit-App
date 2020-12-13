@@ -78,7 +78,7 @@ namespace GUI_WeSplit
                     !String.IsNullOrWhiteSpace(_dateOfBirth.ToShortDateString()))
                 {
                     _member.MemberAvatar = AvatarSrc;
-                    _member.MemberDOB = _dateOfBirth.ToShortDateString();
+                    _member.MemberDOB = _dateOfBirth;
                     _member.MemberName = MemberName;
                     _member.MemberSex = (bool)Radio_Male.IsChecked;
                     AddNewMemberEventHandler(this, new AddNewMemberEventArgs(_member));

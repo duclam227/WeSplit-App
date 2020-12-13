@@ -12,8 +12,8 @@ namespace DTO_WeSplit
         #region Fields
         private int _tripId;
         private string _tripName;
-        private string _tripStartDate;
-        private string _tripEndDate;
+        private DateTime _tripStartDate;
+        private DateTime _tripEndDate;
         private string _tripDescription;
         private double _tripExpenseTotal;
         private double? _tripAverage;
@@ -28,12 +28,12 @@ namespace DTO_WeSplit
         #region Public Properties
         public int TripId { get => _tripId; set => _tripId = value; }
         public string TripName { get => _tripName; set => _tripName = value; }
-        public string TripStartDate { get => _tripStartDate; set => _tripStartDate = value; }
+        public DateTime TripStartDate { get => _tripStartDate; set => _tripStartDate = value; }
         public string TripDescription { get => _tripDescription; set => _tripDescription = value; }
         public double TripExpenseTotal { get => _tripExpenseTotal; set => _tripExpenseTotal = value; }
         public double? TripAverage { get => _tripAverage; set => _tripAverage = value; }
         public List<DTO_Place> TripDestinationList { get => _tripDestinationList; set => _tripDestinationList = value; }
-        public string TripEndDate { get => _tripEndDate; set => _tripEndDate = value; }
+        public DateTime TripEndDate { get => _tripEndDate; set => _tripEndDate = value; }
         public List<DTO_Member> TripMemberList { get => _tripMemberList; set => _tripMemberList = value; }
         public List<DTO_Expense> TripExpenseList { get => _tripExpenseList; set => _tripExpenseList = value; }
         public bool TripStatus { get => _tripStatus; set => _tripStatus = value; }
@@ -47,11 +47,11 @@ namespace DTO_WeSplit
             _tripMemberList = new List<DTO_Member>();
         }
 
-        public DTO_Trip(int tripID, string tripName, string tripDate, string tripDescription, double tripExpenseTotal, double? tripAverage, bool status)
+        public DTO_Trip(int tripID, string tripName, DateTime tripStartDate, string tripDescription, double tripExpenseTotal, double? tripAverage, bool status)
         {
             TripId = tripID;
             TripName = tripName;
-            TripStartDate = tripDate;
+            TripStartDate = tripStartDate;
             TripDescription = tripDescription;
             TripExpenseTotal = tripExpenseTotal;
             TripAverage = tripAverage;

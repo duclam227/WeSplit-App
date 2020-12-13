@@ -34,9 +34,8 @@ namespace BUS_WeSplit
             {
                 int id = int.Parse(row["TripID"].ToString());
                 string name = row["TripName"].ToString();
-                DateTime tmpDate = (DateTime)row["TripStartDate"];
+                DateTime date = (DateTime)row["TripStartDate"];
                 //DateTime date = tmpDate.Date;
-                string date = String.Format("{0:dd/MM/yyyy}", tmpDate);
                 string description = row["TripDescription"].ToString();
                 double expenseTotal = double.Parse(row["TripExpenseTotal"].ToString());
                 string tmpAverage = row["TripAverage"].ToString();
@@ -69,9 +68,8 @@ namespace BUS_WeSplit
             {
                 int id = int.Parse(row["TripID"].ToString());
                 string name = row["TripName"].ToString();
-                DateTime tmpDate = (DateTime)row["TripStartDate"];
+                DateTime date = (DateTime)row["TripStartDate"];
                 //DateTime date = tmpDate.Date;
-                string date = String.Format("{0:dd/MM/yyyy}", tmpDate);
                 string description = row["TripDescription"].ToString();
                 double expenseTotal = double.Parse(row["TripExpenseTotal"].ToString());
                 string tmpAverage = row["TripAverage"].ToString();
@@ -159,9 +157,7 @@ namespace BUS_WeSplit
 
             result.TripId = int.Parse(row["TripID"].ToString());
             result.TripName = row["TripName"].ToString();
-            DateTime tmpDate = (DateTime)row["TripStartDate"];
-            //DateTime date = tmpDate.Date;
-            result.TripStartDate = String.Format("{0:dd/MM/yyyy}", tmpDate);
+            result.TripStartDate = (DateTime)row["TripStartDate"];
             result.TripDescription = row["TripDescription"].ToString();
             result.TripExpenseTotal = double.Parse(row["TripExpenseTotal"].ToString());
             string tmpAverage = row["TripAverage"].ToString();
@@ -176,6 +172,38 @@ namespace BUS_WeSplit
             result.TripExpenseList = BUS_Expense.GetExpensesOfTrip(id);
 
             return result;
+        }
+
+        public void AddTrip(DTO_Trip trip)
+        {
+            DAO_Trip.Instance.AddTrip(trip);
+
+            foreach (DTO_Place place in trip.TripDestinationList)
+            {
+                DAO_Place.Instance.AddPlace(place);
+            }
+
+            foreach (DTO_Member member in trip.TripMemberList)
+            {
+                DAO_Member.Instance.AddMemberPerTrip(member.MemberID, trip.TripId);
+            }
+
+            double amount = 0;
+            foreach (DTO_Expense expense in trip.TripExpenseList)
+            {
+                amount += expense.ExpenseMoney;
+                DAO_Expense.Instance.AddExpense(expense);
+            }
+
+            foreach (string imagePath in trip.TripImagesList)
+            {
+                string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+                dir += $"resources/{trip.TripId}";
+                Utilities.CopyFile(imagePath, dir);
+            }
+
+            //todo: change trip expense total to variable 'amount' and change trip average
+
         }
     }
 }

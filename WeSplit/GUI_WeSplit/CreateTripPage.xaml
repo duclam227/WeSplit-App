@@ -169,7 +169,10 @@
                 <DataGrid Name="DataGrid_Destination" 
                           Margin="20"
                           Grid.Column="1" Grid.Row="1"
-                          HeadersVisibility="All" RowHeaderWidth="80" AutoGenerateColumns="False" ItemsSource="{Binding DestinationList}"
+                          HeadersVisibility="All" 
+                          RowHeaderWidth="80" 
+                          AutoGenerateColumns="False" 
+                          ItemsSource="{Binding DestinationList}"
                           >
                     <DataGrid.RowHeaderTemplate>
                         <DataTemplate>

@@ -22,7 +22,6 @@ namespace BUS_WeSplit
                 }
                 return _instance;
             }
-
         }
 
         public static List<DTO_Expense> GetExpensesOfTrip(int tripID)
@@ -38,9 +37,6 @@ namespace BUS_WeSplit
                 tmpExpense.TripId = tripID;
                 tmpExpense.ExpenseDescription = row["ExpenseDescription"].ToString();
                 tmpExpense.ExpenseMember = int.Parse(row["ExpenseMember"].ToString());
-
-                tmpExpense.ExpenseMemberName = BUS_Member.Instance.GetMemberNameFromID(tmpExpense.ExpenseMember);
-
                 tmpExpense.ExpenseMoney = double.Parse(row["ExpenseMoney"].ToString());
                 tmpExpense.ExpenseId = int.Parse(row["ExpenseID"].ToString());
                 tmpExpense.ExpenseDate = (DateTime)row["ExpenseDate"];

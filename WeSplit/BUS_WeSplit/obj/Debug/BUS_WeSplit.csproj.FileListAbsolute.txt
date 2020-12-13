@@ -20,14 +20,3 @@ F:\LapTrinhWindows\WeSplit-App\WeSplit\BUS_WeSplit\obj\Debug\BUS_WeSplit.csproj.
 F:\LapTrinhWindows\WeSplit-App\WeSplit\BUS_WeSplit\obj\Debug\BUS_WeSplit.csproj.CopyComplete
 F:\LapTrinhWindows\WeSplit-App\WeSplit\BUS_WeSplit\obj\Debug\BUS_WeSplit.dll
 F:\LapTrinhWindows\WeSplit-App\WeSplit\BUS_WeSplit\obj\Debug\BUS_WeSplit.pdb
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\bin\Debug\BUS_WeSplit.dll
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\bin\Debug\BUS_WeSplit.pdb
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\bin\Debug\DAO_WeSplit.dll
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\bin\Debug\DTO_WeSplit.dll
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\bin\Debug\DAO_WeSplit.pdb
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\bin\Debug\DTO_WeSplit.pdb
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\obj\Debug\BUS_WeSplit.csprojAssemblyReference.cache
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\obj\Debug\BUS_WeSplit.csproj.CoreCompileInputs.cache
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\obj\Debug\BUS_WeSplit.csproj.CopyComplete
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\obj\Debug\BUS_WeSplit.dll
-C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\BUS_WeSplit\obj\Debug\BUS_WeSplit.pdb

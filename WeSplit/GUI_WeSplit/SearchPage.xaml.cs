@@ -91,7 +91,7 @@ namespace GUI_WeSplit
         private class Trip_MemberName {
             public int TripId { get ; set; }
             public string TripName { get; set; }
-            public string TripStartDate { get; set; }
+            public DateTime TripStartDate { get; set; }
             public string TripDescription { get; set; }
             public double TripBudget { get; set; }
             public double? TripAverage { get; set; }

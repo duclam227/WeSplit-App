@@ -59,13 +59,24 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddDestinationWindow.xaml.cs">
+      <DependentUpon>AddDestinationWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddExpenseWindow.xaml.cs">
+      <DependentUpon>AddExpenseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddMemberWindow.xaml.cs">
+      <DependentUpon>AddMemberWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converters\DateTimeToStringConverter.cs" />
+    <Compile Include="Converters\MemberIDToNameConverter.cs" />
     <Compile Include="CreateTripPage.xaml.cs">
       <DependentUpon>CreateTripPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomUserControl\LabelTextBox.xaml.cs" />
     <Compile Include="HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="LabelTextBox.xaml.cs" />
     <Compile Include="SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
     </Compile>
@@ -75,17 +86,31 @@
     <Compile Include="TripListPage.xaml.cs">
       <DependentUpon>TripListPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Validation\MoneyRule.cs" />
+    <Compile Include="Validation\NotNullRule.cs" />
+    <Page Include="AddDestinationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddExpenseWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AddMemberWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="CreateTripPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomUserControl\LabelTextBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="HomePage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="LabelTextBox.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -155,12 +180,6 @@
       <Project>{b7d60342-4b88-4f64-869a-a71d0fe95138}</Project>
       <Name>DTO_WeSplit</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\powerIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\closeIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\background.png" />

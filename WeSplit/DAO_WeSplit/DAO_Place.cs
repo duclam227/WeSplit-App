@@ -37,5 +37,14 @@ namespace DAO_WeSplit
             return data;
         }
 
+        public void AddPlace(DTO_Place place)
+        {
+            string addPlace =
+                "insert into dbo.Place(PlaceID, PlaceName, PlaceAddress, PlaceDescription) values " +
+                $"({place.PlaceId}, N'{place.PlaceName}', N'{place.PlaceAddress}', N'{place.PlaceDescription}'";
+
+            SqlCommand cmd = new SqlCommand(addPlace, _conn);
+            cmd.ExecuteNonQuery();
+        }
     }
 }

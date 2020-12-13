@@ -110,7 +110,7 @@ namespace GUI_WeSplit
                 newTrip.TripExpenseList = ExpenseList.ToList<DTO_Expense>();
                 newTrip.TripDestinationList = DestinationList.ToList<DTO_Place>();
                 newTrip.TripStatus = true;
-                newTrip.TripImages = imagesList;
+                newTrip.TripImagesList = imagesList;
 
                 BUS_Trip.Instance.AddTrip(newTrip);
 

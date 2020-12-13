@@ -20,7 +20,7 @@ namespace DAO_WeSplit
                 return _instance;
             }
         }
-        public List<DTO_Member> GetAllMembers()
+        public DataTable GetAllMembers()
         {
             DataTable data = new DataTable();
             string query = "select * from Member";
@@ -28,20 +28,7 @@ namespace DAO_WeSplit
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
             adapter.Fill(data);
 
-            foreach(DataRow row in data.Rows)
-            {
-                int id = int.Parse(row["MemberID"].ToString());
-                string name = row["MemberName"].ToString();
-                DateTime tmpDOB = (DateTime)row["MemberDOB"];
-                string dob = String.Format("{0:dd/MM/yyyy}", tmpDOB);
-                bool sex = (bool)row["MemberSex"];
-                string avatar = row["MemberAvatar"].ToString();
-
-                DTO_Member tmpMember = new DTO_Member(id, name, dob, sex, avatar);
-                result.Add(tmpMember);
-            }
-
-            return result;
+            return data;
         }
 
         public DataRow GetMember(int id)
@@ -72,10 +59,21 @@ namespace DAO_WeSplit
             cmd.ExecuteNonQuery();
         }
 
-        public DataTable GetMemberNameFromID(int id)
-        { 
+        public DataTable GetAmountOfMember()
+        {
             DataTable data = new DataTable();
-            string query = $"select MemberName from Member where MemberID = {id}";
+            string query = "select count(MemberID) as Amount from Member";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(data);
+
+            return data;
+        }
+
+        public DataTable GetMembersOfTrip(int tripID)
+        {
+            DataTable data = new DataTable();
+            string query = $"select * from Member, MemberPerTrip where Member.MemberID = MemberPerTrip.MemberID and TripID = {tripID}";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
             adapter.Fill(data);

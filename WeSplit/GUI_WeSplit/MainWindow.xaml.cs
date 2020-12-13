@@ -21,13 +21,14 @@ namespace GUI_WeSplit
     public partial class MainWindow : Window
     {
         HomePage homePage = new HomePage();
-        SearchPage searchPage = new SearchPage();
+        SearchPage searchPage;
         //TripDetailPage tripPage = new TripDetailPage();
         //MemberListPage memberListPage = new MemberListPage();
 
         public MainWindow()
         {
             InitializeComponent();
+            HandyControl.Tools.ConfigHelper.Instance.SetLang("en");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -44,10 +45,16 @@ namespace GUI_WeSplit
             {
                 case "newtrip":
                     {
+                        int noOfTrips = 0;
+                        CreateTripPage addTrip = new CreateTripPage(noOfTrips);
+                        MainFrame.Navigate(addTrip);
                         break;
                     }
                 case "newmember":
                     {
+                        int noOfMembers = BUS_WeSplit.BUS_Member.Instance.GetAmountOfMember();
+                        AddMemberWindow addMember = new AddMemberWindow(noOfMembers);                       
+                        addMember.ShowDialog();
                         break;
                     }
                 case "explore":

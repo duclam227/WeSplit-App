@@ -19,12 +19,25 @@ namespace BUS_WeSplit
 
         public List<DTO_Member> GetAllMembers()
         {
+            DataTable data = new DataTable();
             List<DTO_Member> result = new List<DTO_Member>();
 
-            result = DAO_Member.Instance.GetAllMembers();
+            data = DAO_Member.Instance.GetAllMembers();
+
+            foreach (DataRow row in data.Rows)
+            {
+                int id = int.Parse(row["MemberID"].ToString());
+                string name = row["MemberName"].ToString();
+                DateTime dob = (DateTime)row["MemberDOB"];
+                bool sex = (bool)row["MemberSex"];
+                string avatar = row["MemberAvatar"].ToString();
+
+                DTO_Member tmpMember = new DTO_Member(id, name, dob, sex, avatar);
+                result.Add(tmpMember);
+            }
 
             return result;
-        } 
+        }
 
         public DTO_Member GetMember(int id)
         {
@@ -32,8 +45,7 @@ namespace BUS_WeSplit
             if (row!=null)
             {
                 string name = row["MemberName"].ToString();
-                DateTime tmpDOB = (DateTime)row["MemberDOB"];
-                string dob = String.Format("{0:dd/MM/yyyy}", tmpDOB);
+                DateTime dob = (DateTime)row["MemberDOB"];
                 bool sex = (bool)row["MemberSex"];
                 string avatar = row["MemberAvatar"].ToString();
                 DTO_Member result = new DTO_Member(id, name, dob, sex, avatar);
@@ -43,15 +55,51 @@ namespace BUS_WeSplit
                 return null;
         }
 
-        public string GetMemberNameFromID(int id)
+        public int GetAmountOfMember()
         {
-            DataTable data = new DataTable();
-            string result;
-
-            data = DAO_Member.Instance.GetMemberNameFromID(id);
+            int result;
+            DataTable data = DAO_Member.Instance.GetAmountOfMember();
 
             DataRow row = data.Rows[0];
-            result = row["MemberName"].ToString();
+
+            result = int.Parse(row["Amount"].ToString());
+
+            return result;
+        }
+
+        public List<Tuple<DTO_Member, double?, double?>> GetMembersOfTrip(int tripID)
+        {
+            DataTable data = new DataTable();
+            List<Tuple<DTO_Member, double?, double?>> result = new List<Tuple<DTO_Member, double?, double?>>();
+
+            data = DAO_Member.Instance.GetMembersOfTrip(tripID);
+
+            foreach (DataRow row in data.Rows)
+            {
+                int id = int.Parse(row["MemberID"].ToString());
+                string name = row["MemberName"].ToString();
+                DateTime dob = (DateTime)row["MemberDOB"];
+                bool sex = (bool)row["MemberSex"];
+                string avatar = row["MemberAvatar"].ToString();
+                string tmpString;
+                tmpString = row["Paid"].ToString();
+                double? paid = 0;
+                if (tmpString != "")
+                {
+                    paid = double.Parse(tmpString);
+                }
+
+                tmpString = row["Change"].ToString();
+                double? change = 0;
+                if (tmpString != "")
+                {
+                    paid = double.Parse(tmpString);
+                }
+
+                DTO_Member tmpMember = new DTO_Member(id, name, dob, sex, avatar);
+                Tuple<DTO_Member, double?, double?> tmpTuple = new Tuple<DTO_Member, double?, double?>(tmpMember, paid, change);
+                result.Add(tmpTuple);
+            }
 
             return result;
         }

@@ -22,6 +22,7 @@ namespace GUI_WeSplit
     public partial class TripDetailPage : Page
     {
         private DTO_WeSplit.DTO_Trip trip = new DTO_WeSplit.DTO_Trip();
+        private List<Tuple<DTO_WeSplit.DTO_Member, double?, double?>> listOfMember = new List<Tuple<DTO_WeSplit.DTO_Member, double?, double?>>();
 
         public TripDetailPage()
         {
@@ -32,7 +33,7 @@ namespace GUI_WeSplit
         {
             InitializeComponent();
             trip = BUS_WeSplit.BUS_Trip.Instance.GetTripByID(id);
-            trip.TripMemberList = BUS_WeSplit.BUS_Member.Instance.GetAllMembers();
+            listOfMember = BUS_WeSplit.BUS_Member.Instance.GetMembersOfTrip(id);
 
             this.DataContext = trip;
         }
@@ -40,8 +41,8 @@ namespace GUI_WeSplit
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             this.DataContext = trip;
-            PlaceListDataGrid.ItemsSource = trip.TripDestinationList.ToList();
-            ExpenseListDataGrid.ItemsSource = trip.TripExpenseList.ToList();
+            PlaceListDataGrid.ItemsSource = trip.TripDestinationList;
+            ExpenseListDataGrid.ItemsSource = trip.TripExpenseList;
 
             //--------
             List<string> temp = new List<string>();
@@ -52,7 +53,7 @@ namespace GUI_WeSplit
             TripImagesCarousel.ItemsSource = temp;
             //--------
 
-            MemberListBox.ItemsSource = trip.TripMemberList;
+            MemberListDataGrid.ItemsSource = listOfMember.ToList();
 
         }
 

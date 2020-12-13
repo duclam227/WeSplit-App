@@ -6,6 +6,7 @@
       xmlns:hc="https://handyorg.github.io/handycontrol"
       xmlns:System="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:GUI_WeSplit"
+      xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       mc:Ignorable="d"
       Title="TripDetailPage" Loaded="Page_Loaded">
 
@@ -42,9 +43,11 @@
             <Setter Property="FontWeight" Value="Medium"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="TextWrapping" Value="Wrap"/>
-            <Setter Property="Foreground" Value="{DynamicResource ContentForeground}"/>
+            <Setter Property="Foreground" Value="{DynamicResource IndicatorColor}"/>
         </Style>
 
+        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+        <converters:MemberIDToNameConverter x:Key="MemberIDToNameConverter"/>
     </Page.Resources>
 
     <Grid Height="{Binding SystemParameters.PrimaryScreenHeight}"
@@ -92,86 +95,194 @@
                         </DataTemplate>
                     </hc:Carousel.ItemTemplate>
                 </hc:Carousel>
-
+                
                 <TextBlock Text=" "/>
+                
+                <Border x:Name="ExpenseChartPart" 
+                        CornerRadius="20"
+                        Padding="15">
 
-                <Grid VerticalAlignment="Top">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="1*"/>
-                        <RowDefinition Height="auto"/>
-                    </Grid.RowDefinitions>
-
-                    <TextBlock Style="{DynamicResource DescriptionStyle}"
+                    <Border.Background>
+                        <SolidColorBrush Color="White"
+                                         Opacity="{DynamicResource MainBorderOpacity}"/>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="Biểu đồ chi tiêu"
+                           Style="{DynamicResource SubTitleStyle}"
                            HorizontalAlignment="Left"
-                           Text="Thành viên tham gia"
-                               Grid.Row="0"/>
-                    <ScrollViewer Grid.Row="1"
-                                  VerticalScrollBarVisibility="Visible">
-                        <ListBox x:Name="MemberListBox"
-                                 Width="{Binding ActualWidth, ElementName=FirstColumn}"
-                                 Height="200">
-                            <ListBox.ItemTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding MemberName}"/>
-                                </DataTemplate>
-                            </ListBox.ItemTemplate>
-                        </ListBox>
-                    </ScrollViewer>
+                           Margin="6 0 0 0"/>
 
-                </Grid>
+                    </StackPanel>
+                </Border>
+                
             </StackPanel>
         </Border>
 
         <ScrollViewer VerticalScrollBarVisibility="auto"
                       Grid.Column="1"
-                      Padding="10">
-            <StackPanel>
-                <TextBlock Text="Địa điểm đã đi qua"
+                      Padding="10 0 10 10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Border x:Name="MemberPart" 
+                        CornerRadius="20"
+                    Padding="15"
+                        Grid.Row="0">
+
+                    <Border.Background>
+                        <SolidColorBrush Color="White"
+                                         Opacity="{DynamicResource MainBorderOpacity}"/>
+                    </Border.Background>
+
+                    <StackPanel>
+                        <TextBlock Text="Thành viên tham gia"
                            Style="{DynamicResource SubTitleStyle}"
                            HorizontalAlignment="Left"
                            Margin="6 0 0 0"/>
-                <DataGrid x:Name="PlaceListDataGrid"
-                          Background="Transparent"
-                          HeadersVisibility="None"
-                          AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn CanUserResize="True"
-                                            Binding="{Binding PlaceName}"
+                        <DataGrid x:Name="MemberListDataGrid"                          
+                          HeadersVisibility="All"
+                          AutoGenerateColumns="False"
+                          ColumnHeaderHeight="15"
+                          RowHeaderWidth="80" >
+
+                            <DataGrid.Background>
+                                <SolidColorBrush Opacity="{DynamicResource MainBorderOpacity}"/>
+                            </DataGrid.Background>
+
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn CanUserResize="True"
+                                            Header="Họ tên"
+                                            Binding="{Binding Item1.MemberName}"
                                             Width="2*"/>
-                        <DataGridTextColumn CanUserResize="True"
+                                <DataGridTextColumn CanUserResize="True"
+                                            Header="Ngày sinh"
+                                            Binding="{Binding Item1.MemberDOB, Converter={StaticResource DateTimeToStringConverter}}"
+                                            Width="2*"/>
+                                <DataGridTextColumn CanUserResize="True"
+                                            Header="Số tiền ứng"
+                                            Binding="{Binding Item2}"
+                                            Width="1*"/>
+                                <DataGridTextColumn CanUserResize="True"
+                                            Header="Số tiền được trả"
+                                            Binding="{Binding Item3}"
+                                            Width="1*"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+                
+                <Border x:Name="DestinationPart" 
+                        CornerRadius="20"
+                    Padding="15"
+                        Grid.Row="2">
+
+                    <Border.Background>
+                        <SolidColorBrush Color="White"
+                                         Opacity="{DynamicResource MainBorderOpacity}"/>
+                    </Border.Background>
+
+                    <StackPanel>
+                        <TextBlock Text="Địa điểm đã đi qua"
+                           Style="{DynamicResource SubTitleStyle}"
+                           HorizontalAlignment="Left"
+                           Margin="6 0 0 0"/>
+                        <DataGrid x:Name="PlaceListDataGrid"                          
+                          HeadersVisibility="All"
+                          AutoGenerateColumns="False"
+                          ColumnHeaderHeight="15"
+                          RowHeaderWidth="80" >
+
+                            <DataGrid.Background>
+                                <SolidColorBrush Opacity="{DynamicResource MainBorderOpacity}"/>
+                            </DataGrid.Background>
+
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn CanUserResize="True"
+                                            Header="Tên điểm đến"
+                                            Binding="{Binding PlaceName}"
+                                            Width="3*"/>
+                                <DataGridTextColumn CanUserResize="True"
+                                            Header="Mô tả"
                                             Binding="{Binding PlaceDescription}"
                                             Width="5*"/>
-                        <DataGridTextColumn CanUserResize="True"
+                                <DataGridTextColumn CanUserResize="True"
+                                            Header="Địa chỉ"
                                             Binding="{Binding PlaceAddress}"
                                             Width="7*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
 
+                <Border x:Name="ExpensePart" 
+                        CornerRadius="20"
+                    Padding="15"
+                        Grid.Row="4">
 
-                <TextBlock Text="Lịch sử chi tiêu"
+                    <Border.Background>
+                        <SolidColorBrush Color="White"
+                                         Opacity="{DynamicResource MainBorderOpacity}"/>
+                    </Border.Background>
+                    <StackPanel>
+                        <TextBlock Text="Lịch sử chi tiêu"
                            Style="{DynamicResource SubTitleStyle}"
                            HorizontalAlignment="Left"
                            Margin="6 0 0 0"/>
-                <DataGrid x:Name="ExpenseListDataGrid"
-                          Background="Transparent"
-                          HeadersVisibility="None"
-                          AutoGenerateColumns="False">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn CanUserResize="True"
+                        <DataGrid x:Name="ExpenseListDataGrid"
+                          HeadersVisibility="All"
+                          AutoGenerateColumns="False"
+                          ColumnHeaderHeight="15"
+                          RowHeaderWidth="80" 
+                                  Background="Transparent">
+
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn CanUserResize="True"
+                                                    Header="Mô tả"
                                             Binding="{Binding ExpenseDescription}"
                                             Width="5*"/>
-                        <DataGridTextColumn CanUserResize="True"
-                                            Binding="{Binding ExpenseMemberName}"
+                                <DataGridTextColumn CanUserResize="True"
+                                                    Header="Người ứng trước"
+                                            Binding="{Binding ExpenseMember, Converter={StaticResource MemberIDToNameConverter}}"
                                             Width="3*"/>
-                        <DataGridTextColumn CanUserResize="True"
+                                <DataGridTextColumn CanUserResize="True"
+                                                    Header="Số tiền"
                                             Binding="{Binding ExpenseMoney}"
                                             Width="2*"/>
-                        <DataGridTextColumn CanUserResize="True"
-                                            Binding="{Binding ExpenseDate}"
+                                <DataGridTextColumn CanUserResize="True"
+                                                    Header="Ngày trả"
+                                            Binding="{Binding ExpenseDate, Converter={StaticResource DateTimeToStringConverter}}"
                                             Width="3*"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+            </Grid>
+           
         </ScrollViewer>
        
 
