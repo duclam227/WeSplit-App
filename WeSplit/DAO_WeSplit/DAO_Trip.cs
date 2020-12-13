@@ -12,7 +12,6 @@ namespace DAO_WeSplit
     public class DAO_Trip : DBConnect
     {
         private static DAO_Trip _instance = null;
-        public DAO_Trip() { }
 
         public static DAO_Trip Instance
         {
@@ -31,6 +30,28 @@ namespace DAO_WeSplit
         {
             DataTable data = new DataTable();
             string query = "select * from Trip";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(data);
+
+            return data;
+        }
+
+        public DataTable GetUnfinishedTrips()
+        {
+            DataTable data = new DataTable();
+            string query = "select * from Trip where TripStatus = 0";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(data);
+
+            return data;
+        }
+
+        public DataTable GetFinishedTrips()
+        {
+            DataTable data = new DataTable();
+            string query = "select * from Trip where TripStatus = 1";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
             adapter.Fill(data);
@@ -64,5 +85,15 @@ namespace DAO_WeSplit
 
         }
 
+        public DataTable GetTripByID(int tripId)
+        {
+            DataTable data = new DataTable();
+            string query = $"select * from Trip where TripID = {tripId}";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(data);
+
+            return data;
+        }
     }
 }

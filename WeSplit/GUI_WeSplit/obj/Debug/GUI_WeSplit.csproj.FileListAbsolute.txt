@@ -68,6 +68,7 @@ C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - 
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\CreateTripPage.baml
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\SearchPage.baml
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\App.baml
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\HandyControl.dll
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\HandyControl.xml
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\en\HandyControl.resources.dll
@@ -76,3 +77,5 @@ C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - 
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\ko-KR\HandyControl.resources.dll
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\ru\HandyControl.resources.dll
 C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\tr\HandyControl.resources.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\TripListPage.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\TripListPage.baml

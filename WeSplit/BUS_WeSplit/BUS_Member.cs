@@ -42,5 +42,18 @@ namespace BUS_WeSplit
 
             return result;
         }
+
+        public string GetMemberNameFromID(int id)
+        {
+            DataTable data = new DataTable();
+            string result;
+
+            data = DAO_Member.Instance.GetMemberNameFromID(id);
+
+            DataRow row = data.Rows[0];
+            result = row["MemberName"].ToString();
+
+            return result;
+        }
     }
 }

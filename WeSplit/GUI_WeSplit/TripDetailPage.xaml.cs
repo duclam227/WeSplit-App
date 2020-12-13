@@ -21,57 +21,41 @@ namespace GUI_WeSplit
     /// </summary>
     public partial class TripDetailPage : Page
     {
-        private int tripID = 0;
+        private DTO_WeSplit.DTO_Trip trip = new DTO_WeSplit.DTO_Trip();
 
         public TripDetailPage()
         {
             InitializeComponent();
-
-            //Load data from the calling page (SearchPage)
-            //NavigationService.LoadCompleted += NavigationService_LoadCompleted;
         }
 
-        private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
+        public TripDetailPage(int id)
         {
-            tripID = (int)e.ExtraData;  //Get data from calling page
+            InitializeComponent();
+            trip = BUS_WeSplit.BUS_Trip.Instance.GetTripByID(id);
+            trip.TripMemberList = BUS_WeSplit.BUS_Member.Instance.GetAllMembers();
 
-            //Do whatever you want herre
-            //...
+            this.DataContext = trip;
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            this.DataContext = trip;
+            PlaceListDataGrid.ItemsSource = trip.TripDestinationList.ToList();
+            ExpenseListDataGrid.ItemsSource = trip.TripExpenseList.ToList();
+
+            //--------
+            List<string> temp = new List<string>();
+            temp.Add(@"D:\LL\001.png");
+            temp.Add(@"D:\LL\002.png");
+            temp.Add(@"D:\LL\003.png");
+
+            TripImagesCarousel.ItemsSource = temp;
+            //--------
+
+            MemberListBox.ItemsSource = trip.TripMemberList;
+
         }
 
-        private void GeneralInfoButton_Click(object sender, MouseButtonEventArgs e)
-        {
-            TripDetailFrame.Visibility = Visibility.Collapsed;
-            Grid.SetRow(ActiveIndicator, 0);
-        }
-
-        private void MemberListButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            TripDetailFrame.Visibility = Visibility.Collapsed;
-
-            Grid.SetRow(ActiveIndicator, 1);
-
-            MemberListPage memberList = new MemberListPage();
-            TripDetailFrame.Navigate(memberList);
-
-            TripDetailFrame.Visibility = Visibility.Visible;
-        }
-
-        private void DestinationListButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            TripDetailFrame.Visibility = Visibility.Collapsed;
-            Grid.SetRow(ActiveIndicator, 2);
-        }
-
-        private void ExpenseHistoryButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
-        {
-            TripDetailFrame.Visibility = Visibility.Collapsed;
-            Grid.SetRow(ActiveIndicator, 3);
-        }
+   
     }
 }

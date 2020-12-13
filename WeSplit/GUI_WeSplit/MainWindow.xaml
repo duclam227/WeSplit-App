@@ -102,7 +102,7 @@
                     <Border x:Name="ResizeButton"
                             Height="{DynamicResource ButtonSize}"
                             Width="{DynamicResource ButtonSize}"
-                            Background="#FEEA25"
+                            Background="#54FF27"
                             CornerRadius="50"
                             PreviewMouseDown="ResizeButton_PreviewMouseDown"
                             ToolTip="Thay đổi kích thước cửa sổ">
@@ -111,7 +111,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="#FEEA25"
+                                                From="#54FF27"
                                                 To="White"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="ResizeButton"></ColorAnimation>
@@ -124,7 +124,7 @@
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
                                                 From="White"
-                                                To="#FEEA25"
+                                                To="#54FF27"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="ResizeButton"></ColorAnimation>
                                     </Storyboard>
@@ -140,7 +140,7 @@
                     <Border x:Name="MinimizeButton"
                             Height="{DynamicResource ButtonSize}"
                             Width="{DynamicResource ButtonSize}"
-                            Background="#54FF27"
+                            Background="#FEEA25"
                             CornerRadius="50"
                             PreviewMouseDown="MinimizeButton_PreviewMouseDown"
                             ToolTip="Thu nhỏ cửa sổ">
@@ -149,7 +149,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="#54FF27"
+                                                From="#FEEA25"
                                                 To="White"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="MinimizeButton"></ColorAnimation>
@@ -162,7 +162,7 @@
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
                                                 From="White"
-                                                To="#54FF27"
+                                                To="#FEEA25"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="MinimizeButton"></ColorAnimation>
                                     </Storyboard>
@@ -205,7 +205,7 @@
 
                     <Border Grid.Row="0" 
                             Grid.Column="1"
-                            PreviewMouseDown="UnfinishedButton_Click"
+                            PreviewMouseDown="TripListButton_Click"
                             Background="Transparent">
                         <TextBlock >Chuyến đi</TextBlock>
                     </Border>
@@ -213,7 +213,7 @@
                     <Border Grid.Row="0" 
                             Grid.Column="2"
                             Background="Transparent"
-                            PreviewMouseDown="FinishedButton_Click">
+                            PreviewMouseDown="MemberListButton_Click">
                         <TextBlock >Thành viên</TextBlock>
                     </Border>
 
@@ -274,7 +274,8 @@
                                NavigationUIVisibility="Hidden"
                                Grid.Column="0"
                                Grid.Row="0"
-                               Panel.ZIndex="2">
+                               Panel.ZIndex="2"
+                               BorderThickness="0">
                         </Frame>
                     </Grid>
 

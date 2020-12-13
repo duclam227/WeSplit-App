@@ -53,8 +53,9 @@ namespace GUI_WeSplit
                 case "explore":
                     {
                         Grid.SetColumn(ActiveIndicator, 4);
-                        MainFrame.Navigate(searchPage);
+                        searchPage = new SearchPage();
                         searchPage.eventPassIDToMain += SearchPage_eventPassIDToMain;
+                        MainFrame.Navigate(searchPage);
                         break;
                     }
                 default:
@@ -67,7 +68,8 @@ namespace GUI_WeSplit
 
         private void SearchPage_eventPassIDToMain(int id)
         {
-            MessageBox.Show($"ID là: {id}");
+            TripDetailPage detailPage = new TripDetailPage(id);
+            MainFrame.Navigate(detailPage);
         }
 
         private void ExitButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -116,19 +118,27 @@ namespace GUI_WeSplit
             MainFrame.Navigate(homePage);
         }
 
-        private void UnfinishedButton_Click(object sender, MouseButtonEventArgs e)
+        private void TripListButton_Click(object sender, MouseButtonEventArgs e)
         {
             //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 1);
 
-            TripDetailPage tripPage = new TripDetailPage();
+            //TripDetailPage tripPage = new TripDetailPage();
             //MemberListPage memberList = new MemberListPage();
-            MainFrame.Navigate(tripPage);
+            TripListPage tripListPage = new TripListPage();
+            tripListPage.eventPassIDToMain += TripListPage_eventPassIDToMain;
+            MainFrame.Navigate(tripListPage);
         }
 
-        private void FinishedButton_Click(object sender, MouseButtonEventArgs e)
+        private void TripListPage_eventPassIDToMain(int id)
+        {
+            TripDetailPage detailPage = new TripDetailPage(id);
+            MainFrame.Navigate(detailPage);
+        }
+
+        private void MemberListButton_Click(object sender, MouseButtonEventArgs e)
         {
             //MainFrame.Visibility = Visibility.Collapsed;
 
@@ -149,6 +159,8 @@ namespace GUI_WeSplit
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 4);
 
+            searchPage = new SearchPage();
+            searchPage.eventPassIDToMain += SearchPage_eventPassIDToMain;
             MainFrame.Navigate(searchPage);
         }
     }

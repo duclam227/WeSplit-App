@@ -39,10 +39,11 @@ namespace GUI_WeSplit
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             String text = SearchBar.Text;
-
+            ResultListView.UnselectAll();
 
             if (text != "")
             {
+                ResultListView.Visibility = Visibility.Visible;
                 if (radionBtn_SearchTrip.IsChecked == true)
                 {
                     searchingTrips = bus_trip.SearchTripsByName(text);
@@ -72,6 +73,17 @@ namespace GUI_WeSplit
             else
             {
                 ResultListView.ItemsSource = null;
+                ResultListView.Visibility = Visibility.Collapsed;
+            }
+
+            if(ResultListView.Items.Count == 0)
+            {
+                ResultListView.Visibility = Visibility.Collapsed;
+                SearchResultNotice.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SearchResultNotice.Visibility = Visibility.Collapsed;
             }
 
         }
@@ -82,7 +94,7 @@ namespace GUI_WeSplit
             public string TripStartDate { get; set; }
             public string TripDescription { get; set; }
             public double TripBudget { get; set; }
-            public double TripAverage { get; set; }
+            public double? TripAverage { get; set; }
             public string MemberName { get; set; }
 
 
@@ -113,20 +125,28 @@ namespace GUI_WeSplit
         private void ResultListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int tripID;
-            TripDetailPage tripDetailPage = new TripDetailPage();
             int position = ResultListView.SelectedIndex;
+                   
 
-            if(radioBtn_SearchMember.IsChecked == false)
+            if (position > -1)
             {
-                tripID = searchingTrips[position].TripId;
-                  
+                if (radioBtn_SearchMember.IsChecked == false)
+                {
+                    tripID = searchingTrips[position].TripId;
+
+                }
+                else
+                {
+                    tripID = searchByMember[position].Item1.TripId;
+                }
+
+                eventPassIDToMain(tripID);
             }
             else
             {
-                tripID = searchByMember[position].Item1.TripId;
+                //do nothing
             }
-
-            eventPassIDToMain(tripID);
+            
         }
     }
 }

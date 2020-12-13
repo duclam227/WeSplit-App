@@ -5,6 +5,8 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:System="clr-namespace:System;assembly=mscorlib"
       xmlns:local="clr-namespace:GUI_WeSplit"
+      xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SearchPage">
@@ -25,12 +27,42 @@
             <Setter Property="Foreground" Value="{DynamicResource ContentForeground}"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
-        
+
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border Padding="0 0 0 5">
+                            <Border BorderThickness="0.5 0 0 0"
+                                BorderBrush="{DynamicResource ContentForeground}"
+                                Background="Transparent"
+                                Padding="2">
+                                <TextBlock x:Name="ContentHeader" 
+                                       Text="{TemplateBinding Content}" 
+                                       Padding="5" 
+                                       Width="{TemplateBinding Width}" 
+                                       TextAlignment="Center"
+                                       Foreground="{DynamicResource ContentForeground}"
+                                       FontSize="16"
+                                       FontWeight="DemiBold"/>
+                            </Border>
+                        </Border>
+                       
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+
     </Page.Resources>
     
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="1"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
@@ -66,79 +98,53 @@
                          Checked="radioBtn_SearchMember_Checked"/>
         </StackPanel>
 
-        <ListView x:Name="ByTripListView"
-                  Grid.Row="1"
-                  Visibility="Collapsed">
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Height="200"
-                            Width="200"
-                            Background="White"
-                            CornerRadius="10">
-                        <StackPanel>
-                            <TextBlock Text="{Binding TripName}"/>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            
-        </ListView>
-
-        <ListView x:Name="ByMemberListView"
-                  Grid.Row="1"
-                  Visibility="Visible">
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <Border Height="200"
-                            Width="200"
-                            Background="Transparent"
-                            CornerRadius="10">
-                        <StackPanel>
-                            <TextBlock Text="{Binding TripName}"/>
-                        </StackPanel>
-                    </Border>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-            
-        </ListView>
+        <Separator Height="1"
+                   Background="{DynamicResource ContentForeground}"
+                   Grid.Row="1"/>
 
         <ListView Name="ResultListView"
-                  Grid.Row="1"
+                  Grid.Row="2"
                   SelectionChanged="ResultListView_SelectionChanged"
-                  Background="Transparent">
+                  Background="Transparent"
+                  BorderThickness="0"
+                  Visibility="Collapsed">
 
-            
+
             <ListView.View>
-                <GridView x:Name="myGridView">
+                <GridView x:Name="myGridView"
+                          AllowsColumnReorder="True">
                     <GridViewColumn 
-                        Header="TripName" 
-                        Width="100" 
+                        Header="Tên chuyến đi" 
+                        Width="200" 
                         DisplayMemberBinding="{Binding TripName}"/>
                     <GridViewColumn 
-                        Header="TripDate" 
-                        Width="100" 
+                        Header="Ngày đi" 
+                        Width="120" 
                         DisplayMemberBinding="{Binding TripStartDate}"/>
                     <GridViewColumn 
-                        Header="TripDescription" 
-                        Width="150" 
+                        Header="Mô tả" 
+                        Width="200" 
                         DisplayMemberBinding="{Binding TripDescription}"/>
                     <GridViewColumn 
-                        Header="TripBudget" 
-                        Width="100" 
-                        DisplayMemberBinding="{Binding TripBudget}"/>
+                        Header="Chi tiêu" 
+                        Width="120" 
+                        DisplayMemberBinding="{Binding TripExpenseTotal}"/>
                     <GridViewColumn 
-                        Header="TripAverage" 
-                        Width="100" 
+                        Header="Phí/người" 
+                        Width="120" 
                         DisplayMemberBinding="{Binding TripAverage}"/>
-
                 </GridView>
             </ListView.View>
-
-
-
         </ListView>
+
+        <TextBlock x:Name="SearchResultNotice" 
+                   Text="Không có kết quả"
+                   Grid.Row="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Foreground="{DynamicResource ContentForeground}"
+                   FontSize="20"
+                   Visibility="Collapsed"/>
 
     </Grid>
 

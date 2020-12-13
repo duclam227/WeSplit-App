@@ -8,17 +8,17 @@ namespace DTO_WeSplit
 {
     public class DTO_Place
     {
+        private int _tripId;
         private int _placeId;
         private string _placeName;
         private string _placeAddress;
         private string _placeDescription;
-        private List<string> _placeImages;
 
+        public int TripId { get => _tripId; set => _tripId = value; }
         public int PlaceId { get => _placeId; set => _placeId = value; }
         public string PlaceName { get => _placeName; set => _placeName = value; }
         public string PlaceAddress { get => _placeAddress; set => _placeAddress = value; }
         public string PlaceDescription { get => _placeDescription; set => _placeDescription = value; }
-        public List<string> PlaceImages { get => _placeImages;}
         public DTO_Place()
         {
 
@@ -31,11 +31,5 @@ namespace DTO_WeSplit
             PlaceAddress = address;
             PlaceDescription = description;
         }
-
-        public void AddImage(string imagePath)
-        {
-            _placeImages.Add(imagePath);
-        }
-
     }
 }

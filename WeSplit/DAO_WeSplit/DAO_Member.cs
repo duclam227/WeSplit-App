@@ -30,5 +30,16 @@ namespace DAO_WeSplit
 
             return data;
         }
+
+        public DataTable GetMemberNameFromID(int id)
+        { 
+            DataTable data = new DataTable();
+            string query = $"select MemberName from Member where MemberID = {id}";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(data);
+
+            return data;
+        }
     }
 }
