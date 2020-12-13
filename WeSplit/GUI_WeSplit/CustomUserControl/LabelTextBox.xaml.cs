@@ -20,60 +20,56 @@ namespace GUI_WeSplit.CustomUserControl
     /// </summary>
     public partial class LabelTextBox : UserControl
     {
+        //string _localLabel = "";
+
+        public static readonly DependencyProperty TextProperty =
+                DependencyProperty.Register("Text", typeof(string), typeof(LabelTextBox));
+
         public LabelTextBox()
         {
             InitializeComponent();
         }
 
-        string _defaultText = "";
-        string _localLabel = "";
-        string _localTextBox = "";
+        //public string Label
+        //{
+        //    get { return _localLabel; }
+        //    set
+        //    {
+        //        _localLabel = value;
+        //        BaseLabel.Content = value;
+        //    }
+        //}
 
-        public string Label
+        public string Text
         {
-            get { return _localLabel; }
-            set
-            {
-                _localLabel = value;
-                BaseLabel.Content = value;
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
+        }
+
+        public static readonly DependencyProperty TitleProperty =
+              DependencyProperty.Register("Title", typeof(string), typeof(LabelTextBox));
+        public string Title
+        {
+            get { return (string)GetValue(TitleProperty); }
+            set 
+            { 
+                SetValue(TitleProperty, value);
             }
         }
 
-        public string DefaultText
+        private void BaseTextBox_Loaded(object sender, RoutedEventArgs e)
         {
-            get { return _defaultText; }
-            set
-            {
-                _defaultText = value;
-                BaseTextBox.Text = value;
-            }
-        }
+            BindingExpression mainTxtBxBinding = BindingOperations.GetBindingExpression(BaseTextBox, TextBox.TextProperty);
+            BindingExpression textBinding = BindingOperations.GetBindingExpression(this, TextProperty);
 
-        private void BaseTextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if (BaseTextBox.Text.Equals(DefaultText))
-                BaseTextBox.Clear();
-            BaseLabel.Foreground = Brushes.BlueViolet;
-        }
-
-        private void BaseTextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            if (BaseTextBox.Text == "")
+            if (textBinding != null && mainTxtBxBinding != null && 
+                textBinding.ParentBinding != null && 
+                textBinding.ParentBinding.ValidationRules.Count > 0 && 
+                mainTxtBxBinding.ParentBinding.ValidationRules.Count < 1)
             {
-                if (_localTextBox == "")
-                {
-                    BaseTextBox.Text = _defaultText;
-                }
-                else
-                {
-                    BaseTextBox.Text = _localTextBox;
-                }
+                foreach (ValidationRule vRule in textBinding.ParentBinding.ValidationRules)
+                    mainTxtBxBinding.ParentBinding.ValidationRules.Add(vRule);
             }
-            else
-            {
-                _localTextBox = BaseTextBox.Text;
-            }
-            BaseLabel.Foreground = Brushes.Black;
         }
     }
 }

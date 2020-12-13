@@ -1,0 +1,90 @@
+﻿<Window x:Class="GUI_WeSplit.AddMemberWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GUI_WeSplit"
+        xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
+        xmlns:rules="clr-namespace:GUI_WeSplit.Validation"
+        xmlns:hc="https://handyorg.github.io/handycontrol"
+        mc:Ignorable="d"
+        Title="AddMemberWindow" Height="500" Width="400"
+        WindowStartupLocation="CenterOwner">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Label DockPanel.Dock="Top" Margin="10" 
+               Content="Thêm thành viên"></Label>
+
+        <hc:Gravatar Name="Gravatar"
+                     Grid.Row="1" Margin="10"
+                     Style="{StaticResource GravatarCircle}"
+                     Id="{Binding Text, ElementName=LabelTextBox_Name}"/>
+
+        <hc:Gravatar Name="AvatarImg"
+                     Grid.Row="1" Margin="10"
+                     Style="{StaticResource GravatarCircle}"
+                     Visibility="Hidden"/>
+
+        <Button Name="Button_AddAvatar"
+                Grid.Row="2"
+                Style="{DynamicResource ButtonPrimary}"
+                Content="Thêm avatar" Click="Button_AddAvatar_Click"/>
+        <Button Name="Button_RemoveAvatar"
+                Grid.Row="2"
+                Style="{DynamicResource ButtonDanger}"
+                Content="Xóa avatar" Click="Button_RemoveAvatar_Click"
+                Visibility="Hidden"/>
+        
+        <uc:LabelTextBox x:Name="LabelTextBox_Name"
+                         Grid.Row="3"
+                         Margin="20 10 20 10"
+                         Title="Họ và tên">
+            <uc:LabelTextBox.Text>
+                <Binding Path="MemberName" Mode="TwoWay">
+                    <Binding.ValidationRules>
+                        <rules:NotNullRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </uc:LabelTextBox.Text>
+        </uc:LabelTextBox>
+
+
+        <DatePicker Grid.Row="4" 
+                    Margin="20 10 20 10"
+                    Style="{StaticResource DatePickerExtend}" 
+                    hc:InfoElement.Title="Ngày sinh"
+                    hc:InfoElement.Necessary="True">
+            <DatePicker.SelectedDate>
+                <Binding Path="DateOfBirth" Mode="TwoWay"></Binding>
+            </DatePicker.SelectedDate>
+        </DatePicker>
+
+
+        <StackPanel Grid.Row="5" Orientation="Vertical" Margin="20 0 20 0">
+            <Label Content="Giới tính" HorizontalAlignment="Left"
+                   BorderBrush="Transparent"></Label>
+
+            <RadioButton Name="Radio_Male" 
+                         Content="Nam"
+                         IsChecked="True"
+                         Margin="5"
+                         HorizontalAlignment="Left"/>
+
+            <RadioButton Content="Nữ"
+                         Margin="5"
+                         HorizontalAlignment="Left"/>
+        </StackPanel>
+        <Button Name="Button_AddMember" Content="Thêm thành viên"
+                Grid.Row="6"
+                Margin="10" Style="{DynamicResource ButtonPrimary}"
+                Click="Button_AddMember_Click"/>
+    </Grid>
+</Window>

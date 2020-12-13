@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Data;
+﻿using DAO_WeSplit;
 using DTO_WeSplit;
-using DAO_WeSplit;
+using System;
+using System.Collections.Generic;
+using System.Data;
 
 namespace BUS_WeSplit
 {
@@ -22,25 +19,28 @@ namespace BUS_WeSplit
 
         public List<DTO_Member> GetAllMembers()
         {
-            DataTable data = new DataTable();
             List<DTO_Member> result = new List<DTO_Member>();
 
-            data = DAO_Member.Instance.GetAllMembers();
+            result = DAO_Member.Instance.GetAllMembers();
 
-            foreach (DataRow row in data.Rows)
+            return result;
+        } 
+
+        public DTO_Member GetMember(int id)
+        {
+            DataRow row = DAO_Member.Instance.GetMember(id);
+            if (row!=null)
             {
-                int id = int.Parse(row["MemberID"].ToString());
                 string name = row["MemberName"].ToString();
                 DateTime tmpDOB = (DateTime)row["MemberDOB"];
                 string dob = String.Format("{0:dd/MM/yyyy}", tmpDOB);
                 bool sex = (bool)row["MemberSex"];
                 string avatar = row["MemberAvatar"].ToString();
-
-                DTO_Member tmpMember = new DTO_Member(id, name, dob, sex, avatar);
-                result.Add(tmpMember);
+                DTO_Member result = new DTO_Member(id, name, dob, sex, avatar);
+                return result;
             }
-
-            return result;
+            else 
+                return null;
         }
 
         public string GetMemberNameFromID(int id)
