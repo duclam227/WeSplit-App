@@ -24,9 +24,10 @@ namespace DTO_WeSplit
 
         }
 
-        public DTO_Place(int id, string name, string address, string description)
+        public DTO_Place(int tripId, int placeId, string name, string address, string description)
         {
-            PlaceId = id;
+            TripId = tripId;
+            PlaceId = placeId;
             PlaceName = name;
             PlaceAddress = address;
             PlaceDescription = description;

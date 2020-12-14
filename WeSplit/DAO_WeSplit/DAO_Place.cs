@@ -39,12 +39,29 @@ namespace DAO_WeSplit
 
         public void AddPlace(DTO_Place place)
         {
+            try
+            {
+                _conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
             string addPlace =
-                "insert into dbo.Place(PlaceID, PlaceName, PlaceAddress, PlaceDescription) values " +
-                $"({place.PlaceId}, N'{place.PlaceName}', N'{place.PlaceAddress}', N'{place.PlaceDescription}'";
+                "insert into dbo.Place(PlaceID, TripID, PlaceName, PlaceAddress, PlaceDescription) values " +
+                $"({place.PlaceId},{place.TripId}, N'{place.PlaceName}', N'{place.PlaceAddress}', N'{place.PlaceDescription}')";
 
             SqlCommand cmd = new SqlCommand(addPlace, _conn);
             cmd.ExecuteNonQuery();
+
+            try
+            {
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

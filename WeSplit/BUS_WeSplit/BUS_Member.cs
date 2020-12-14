@@ -103,5 +103,23 @@ namespace BUS_WeSplit
 
             return result;
         }
+
+        public List<DTO_Member> GetMembersPerTrip(int tripId)
+        {
+            List<DTO_Member> result = new List<DTO_Member>();
+            DataTable data = DAO_Member.Instance.GetMembersOfTrip(tripId);
+            foreach (DataRow row in data.Rows)
+            {
+                int id = int.Parse(row["MemberID"].ToString());
+                string name = row["MemberName"].ToString();
+                DateTime dob = (DateTime)row["MemberDOB"];
+                bool sex = (bool)row["MemberSex"];
+                string avatar = row["MemberAvatar"].ToString();
+
+                DTO_Member tmpMember = new DTO_Member(id, name, dob, sex, avatar);
+                result.Add(tmpMember);
+            }
+            return result;
+        }
     }
 }

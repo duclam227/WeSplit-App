@@ -45,5 +45,10 @@ namespace BUS_WeSplit
 
             return result;
         }
+
+        public void AddExpense(DTO_Expense expense)
+        {
+            DAO_Expense.Instance.AddExpense(expense);
+        }
     }
 }
