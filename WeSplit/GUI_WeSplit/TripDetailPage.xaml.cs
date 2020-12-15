@@ -70,7 +70,7 @@ namespace GUI_WeSplit
              {
                  DTO_Expense newExpense = args.NewExpense;
                  BUS_Expense.Instance.AddExpense(newExpense);
-                 trip.TripExpenseList.Add(newExpense);
+                 ExpenseList.Add(newExpense);
              };
             addExpenseWindow.ShowDialog();
         }

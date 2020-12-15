@@ -288,11 +288,12 @@
                         </Grid>
 
                         <DataGrid x:Name="ExpenseListDataGrid"
-                          HeadersVisibility="All"
-                          AutoGenerateColumns="False"
-                          ColumnHeaderHeight="15"
-                          RowHeaderWidth="80" 
-                                  Background="Transparent">
+                                  HeadersVisibility="All"
+                                  AutoGenerateColumns="False"
+                                  ColumnHeaderHeight="15"
+                                  RowHeaderWidth="80" 
+                                  Background="Transparent"
+                                  ItemsSource="{Binding TripExpenseList}">
 
                             <DataGrid.RowHeaderTemplate>
                                 <DataTemplate>

@@ -68,8 +68,11 @@ namespace GUI_WeSplit
 
             if (ComboBox_MemberListExpense.SelectedItem == null || String.IsNullOrWhiteSpace(ExpenseDescription))
                 canReturn = false;
-            
-            if (AddExpenseEventHandler!=null && canReturn)
+
+            if (DatePicker_ExpenseDate.SelectedDate == null)
+                DatePicker_ExpenseDate.SelectedDate = System.DateTime.Today;
+
+            if (AddExpenseEventHandler != null && canReturn)
             {
                 DTO_Expense newExpense = new DTO_Expense();
                 newExpense.TripId = _tripId;
@@ -77,6 +80,7 @@ namespace GUI_WeSplit
                 newExpense.ExpenseDescription = ExpenseDescription;
                 newExpense.ExpenseMoney = amount;
                 newExpense.ExpenseMember = ((DTO_Member)ComboBox_MemberListExpense.SelectedItem).MemberID;
+                newExpense.ExpenseDate = (DateTime)DatePicker_ExpenseDate.SelectedDate;
                 AddExpenseEventHandler(this, new AddNewExpenseEventArgs(newExpense));
                 this.Close();
             }

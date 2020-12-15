@@ -7,10 +7,11 @@
         xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
         xmlns:rules="clr-namespace:GUI_WeSplit.Validation"
         xmlns:hc="https://handyorg.github.io/handycontrol"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="AddExpenseWindow" Height="400" Width="400"
+        Title="AddExpenseWindow" Height="470" Width="400"
         ShowInTaskbar="False">
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -18,6 +19,8 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
         </Grid.RowDefinitions>
         <Label Margin="10" 
                Content="Thêm chi phí"></Label>
@@ -53,7 +56,7 @@
         <ComboBox Name="ComboBox_MemberListExpense"
                   Grid.Row="3"
                   Style="{StaticResource ComboBoxExtend}"
-                  hc:InfoElement.Placeholder="Thành viên"
+                  hc:InfoElement.Placeholder="Thành viên" hc:InfoElement.Necessary="True"
                   hc:InfoElement.Title="Thành viên ứng trước"
                   Margin="20 10 20 10">
             <ComboBox.ItemTemplate>
@@ -70,8 +73,13 @@
             </ComboBox.ItemTemplate>
         </ComboBox>
 
+        <DatePicker Name="DatePicker_ExpenseDate"
+                    hc:InfoElement.Title="Ngày chi"
+                    Margin="20 10 20 10" Style="{StaticResource DatePickerExtend}" hc:InfoElement.Necessary="True"
+                    Grid.Row="4"></DatePicker>
+
         <Button Name="Button_AddExpense"
-                Grid.Row="4"
+                Grid.Row="5"
                 Style="{DynamicResource ButtonPrimary}"
                 Margin="20"
                 Content="Thêm vào chuyến đi" Click="Button_AddExpense_Click"

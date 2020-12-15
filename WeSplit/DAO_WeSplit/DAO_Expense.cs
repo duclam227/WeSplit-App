@@ -48,8 +48,8 @@ namespace DAO_WeSplit
 
             }
             string addExpense =
-                "insert into dbo.Expense(TripID, ExpenseID, ExpenseMoney, ExpenseMember, ExpenseDescription) values " +
-                $"({expense.TripId}, {expense.ExpenseId}, {expense.ExpenseMoney}, {expense.ExpenseMember}, N'{expense.ExpenseDescription}')";
+                "insert into dbo.Expense(TripID, ExpenseID, ExpenseMoney, ExpenseMember, ExpenseDescription, ExpenseDate) values " +
+                $"({expense.TripId}, {expense.ExpenseId + 1}, {expense.ExpenseMoney}, {expense.ExpenseMember}, N'{expense.ExpenseDescription}', '{expense.ExpenseDate}')";
 
             SqlCommand cmd = new SqlCommand(addExpense, _conn);
             cmd.ExecuteNonQuery();
