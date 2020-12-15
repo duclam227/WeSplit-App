@@ -151,6 +151,9 @@ namespace GUI_WeSplit
 
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 2);
+
+            MemberListPage memberListPage = new MemberListPage();
+            MainFrame.Navigate(memberListPage);
         }
 
         private void AboutUsButton_Click(object sender, MouseButtonEventArgs e)

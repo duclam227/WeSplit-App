@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:GUI_WeSplit"
       xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
       xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="TripListPage" Loaded="Page_Loaded">
@@ -90,6 +91,23 @@
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
 
+        <Style x:Key="TripTitleStyle"
+               TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="FontSize" Value="19"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+
+        <Style x:Key="TripInfoStyle" TargetType="TextBlock">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="FontSize" Value="16"/>
+        </Style>
+        
         <DataTemplate x:Key="TripDataTemplate">
             <Grid Height="200"
                   Width="200"
@@ -98,22 +116,42 @@
                 <Border x:Name="InfoBorder"
                         BorderThickness="1"
                         BorderBrush="White"
-                        Panel.ZIndex="3">
-                    <StackPanel HorizontalAlignment="Center">
-                        <TextBlock Text="{Binding TripName}"/>
-                        <TextBlock Text="{Binding TripDescription}"/>
-                    </StackPanel>
+                        Panel.ZIndex="3"
+                        CornerRadius="10"
+                        Padding="5">
+                    <Grid HorizontalAlignment="Center">
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="5*"/>
+                            <RowDefinition Height="1*"/>
+                        </Grid.RowDefinitions>
+
+                        <StackPanel VerticalAlignment="Center"
+                                    Grid.Row="0">
+                            <TextBlock Text="{Binding TripName}"
+                                   Style="{DynamicResource TripTitleStyle}"/>
+                            <TextBlock Text="{Binding TripDescription}"
+                                   Style="{DynamicResource TripInfoStyle}"/>
+                        </StackPanel>
+                        
+
+                        <TextBlock Text="{Binding TripStartDate, Converter={StaticResource DateTimeToStringConverter}}"
+                                   Style="{DynamicResource TripInfoStyle}"
+                                   Grid.Row="1"/>
+                    </Grid>
                 </Border>
 
                 <Border x:Name="OpacityMask"
                         Background="White"
                         Opacity="0.5"
-                        Panel.ZIndex="2"/>
+                        Panel.ZIndex="2"
+                        CornerRadius="10"/>
 
                 <Border x:Name="BackgroundImage"
-                        Panel.ZIndex="1">
+                        Panel.ZIndex="1"
+                        CornerRadius="10">
                     <Border.Background>
-                        <ImageBrush ImageSource="{Binding TripHeader}"
+                        <ImageBrush ImageSource="{Binding TripImagesList[0]}"
                                     RenderOptions.BitmapScalingMode="HighQuality"/>
                     </Border.Background>
                 </Border>
@@ -121,6 +159,8 @@
             
         </DataTemplate>
 
+        
+        
     </Page.Resources>
 
     <Grid>

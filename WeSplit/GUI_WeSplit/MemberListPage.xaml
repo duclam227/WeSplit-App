@@ -4,6 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI_WeSplit"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      xmlns:rules="clr-namespace:GUI_WeSplit.Validation"
+      xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MemberListPage" Loaded="Page_Loaded">
@@ -26,14 +29,14 @@
         </Style>
     </Page.Resources>
 
-    <ListView x:Name="MemberList"
+    <ListBox x:Name="MemberList"
                   Background="White"
                   HorizontalContentAlignment="Stretch"
                   ScrollViewer.HorizontalScrollBarVisibility="Hidden"
                   MinHeight="50"
                   MinWidth="50">
 
-        <ListView.ItemTemplate>
+        <ListBox.ItemTemplate>
             <DataTemplate>
                 <StackPanel>
                     <Expander Background="White"
@@ -109,9 +112,9 @@
 
             </DataTemplate>
 
-        </ListView.ItemTemplate>
+        </ListBox.ItemTemplate>
 
-    </ListView>
+    </ListBox>
 
 
 </Page>
