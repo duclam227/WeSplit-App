@@ -112,6 +112,7 @@ namespace GUI_WeSplit
                 newTrip.TripStatus = true;
                 newTrip.TripImagesList = imagesList;
 
+
                 BUS_Trip.Instance.AddTrip(newTrip);
 
                 this.NavigationService.GoBack();
@@ -139,7 +140,7 @@ namespace GUI_WeSplit
         private void Button_AddDestination_Click(object sender, RoutedEventArgs e)
         {
             int placeId = this.DestinationList.Count();
-            AddDestinationWindow addDestinationWindow = new AddDestinationWindow(placeId);
+            AddDestinationWindow addDestinationWindow = new AddDestinationWindow(newTrip.TripId, placeId);
             addDestinationWindow.AddDestinationEventHandler += (s, args) =>
               {
                   DestinationList.Add(args.NewDestination);
@@ -159,8 +160,9 @@ namespace GUI_WeSplit
             {
                 string filename = openFileDialog.FileName;
                 BitmapImage img = new BitmapImage(new Uri(filename, UriKind.Absolute));
-                Images.Add(img);
                 imagesList.Add(filename);
+                Images.Add(img);
+                
             }
         }
 

@@ -23,6 +23,8 @@ namespace GUI_WeSplit
     {
         private string _expenseDescription;
         private string _expenseAmount;
+        private int _tripId;
+        private int _expenseId;
 
         public EventHandler<AddNewExpenseEventArgs> AddExpenseEventHandler;
         public string ExpenseDescription { get => _expenseDescription; set => _expenseDescription = value; }
@@ -36,6 +38,16 @@ namespace GUI_WeSplit
         public AddExpenseWindow(int expenseId, ObservableCollection<DTO_Member> list)
         {
             InitializeComponent();
+            DataContext = this;
+            ComboBox_MemberListExpense.ItemsSource = list;
+            _expenseId = expenseId;
+        }
+
+        public AddExpenseWindow(int tripId, int expenseId, List<DTO_Member> list)
+        {
+            InitializeComponent();
+            _tripId = tripId;
+            _expenseId = expenseId;
             DataContext = this;
             ComboBox_MemberListExpense.ItemsSource = list;
         }
@@ -60,6 +72,8 @@ namespace GUI_WeSplit
             if (AddExpenseEventHandler!=null && canReturn)
             {
                 DTO_Expense newExpense = new DTO_Expense();
+                newExpense.TripId = _tripId;
+                newExpense.ExpenseId = _expenseId;
                 newExpense.ExpenseDescription = ExpenseDescription;
                 newExpense.ExpenseMoney = amount;
                 newExpense.ExpenseMember = ((DTO_Member)ComboBox_MemberListExpense.SelectedItem).MemberID;

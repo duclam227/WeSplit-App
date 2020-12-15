@@ -8,10 +8,11 @@
       xmlns:local="clr-namespace:GUI_WeSplit"
       xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       mc:Ignorable="d"
+      d:DesignHeight="600" d:DesignWidth="1000"
       Title="TripDetailPage" Loaded="Page_Loaded">
 
     <Page.Resources>
-      
+
         <SolidColorBrush x:Key="IndicatorColor">Black</SolidColorBrush>
 
         <Color x:Key="ContentBorderBG">Black</Color>
@@ -67,15 +68,15 @@
             <Border.Background>
                 <SolidColorBrush Color="White" Opacity="{DynamicResource MainBorderOpacity}"/>
             </Border.Background>
-            
+
             <StackPanel>
                 <TextBlock x:Name="TripTitleTextBlock"
                    Text="{Binding TripName}"
                            Style="{DynamicResource TitleStyle}"/>
-                
+
                 <Separator Height="1"
                            Background="{DynamicResource IndicatorColor}"/>
-                
+
                 <TextBlock x:Name="TripDescriptionTextBlock"
                    Text="{Binding TripDescription}"
                            Style="{DynamicResource DescriptionStyle}"/>
@@ -83,7 +84,6 @@
                 <TextBlock Text=" "/>
 
                 <hc:Carousel x:Name="TripImagesCarousel"
-                             ItemsSource="{Binding TripImages}"
                              Width="{Binding ActualWidth, ElementName=FirstColumn}"
                              ExtendWidth="{Binding ActualWidth, ElementName=FirstColumn}"
                              IsCenter="True">
@@ -95,9 +95,19 @@
                         </DataTemplate>
                     </hc:Carousel.ItemTemplate>
                 </hc:Carousel>
-                
+
                 <TextBlock Text=" "/>
-                
+
+                <Button Name="Button_AddImage"
+                                    HorizontalAlignment="Center"                                
+                                    Style="{DynamicResource ButtonPrimary}"
+                                    Margin="6 0 0 0"
+                                    Content="Thêm hình ảnh"
+                                    Click="Button_AddImage_Click"
+                                    hc:BorderElement.CornerRadius="15"/>
+
+                <TextBlock Text=" "/>
+
                 <Border x:Name="ExpenseChartPart" 
                         CornerRadius="20"
                         Padding="15">
@@ -114,7 +124,7 @@
 
                     </StackPanel>
                 </Border>
-                
+
             </StackPanel>
         </Border>
 
@@ -141,15 +151,27 @@
                     </Border.Background>
 
                     <StackPanel>
-                        <TextBlock Text="Thành viên tham gia"
+                        <Grid>
+                            <TextBlock Text="Thành viên tham gia"
                            Style="{DynamicResource SubTitleStyle}"
                            HorizontalAlignment="Left"
                            Margin="6 0 0 0"/>
-                        <DataGrid x:Name="MemberListDataGrid"                          
-                          HeadersVisibility="All"
-                          AutoGenerateColumns="False"
-                          ColumnHeaderHeight="15"
-                          RowHeaderWidth="80" >
+
+                            <Button Name="Button_AddMember"
+                                    HorizontalAlignment="Right"                                
+                                    Style="{DynamicResource ButtonPrimary}"
+                                    Margin="6 0 0 0"
+                                    Content="Thêm thành viên"
+                                    Click="Button_AddMember_Click"
+                                    hc:BorderElement.CornerRadius="15"/>
+
+                        </Grid>
+                        <DataGrid x:Name="MemberListDataGrid"
+                                  HeadersVisibility="All"
+                                  AutoGenerateColumns="False"
+                                  ColumnHeaderHeight="15"
+                                  RowHeaderWidth="80" 
+                                  IsReadOnly="True">
 
                             <DataGrid.Background>
                                 <SolidColorBrush Opacity="{DynamicResource MainBorderOpacity}"/>
@@ -182,7 +204,7 @@
                         </DataGrid>
                     </StackPanel>
                 </Border>
-                
+
                 <Border x:Name="DestinationPart" 
                         CornerRadius="20"
                     Padding="15"
@@ -194,15 +216,24 @@
                     </Border.Background>
 
                     <StackPanel>
-                        <TextBlock Text="Địa điểm đã đi qua"
+                        <Grid>
+                            <TextBlock Text="Địa điểm đã đi qua"
                            Style="{DynamicResource SubTitleStyle}"
                            HorizontalAlignment="Left"
                            Margin="6 0 0 0"/>
+                            <Button Name="Button_AddDestination"
+                                    HorizontalAlignment="Right"                                
+                                    Style="{DynamicResource ButtonPrimary}"
+                                    Margin="6 0 0 0"
+                                    Content="Thêm điểm đến"
+                                    Click="Button_AddDestination_Click"
+                                    hc:BorderElement.CornerRadius="15"/>
+                        </Grid>
                         <DataGrid x:Name="PlaceListDataGrid"                          
                           HeadersVisibility="All"
                           AutoGenerateColumns="False"
                           ColumnHeaderHeight="15"
-                          RowHeaderWidth="80" >
+                          RowHeaderWidth="80" ItemsSource="{Binding TripDestinationList}" >
 
                             <DataGrid.Background>
                                 <SolidColorBrush Opacity="{DynamicResource MainBorderOpacity}"/>
@@ -242,10 +273,20 @@
                                          Opacity="{DynamicResource MainBorderOpacity}"/>
                     </Border.Background>
                     <StackPanel>
-                        <TextBlock Text="Lịch sử chi tiêu"
+                        <Grid>
+                            <TextBlock Text="Lịch sử chi tiêu"
                            Style="{DynamicResource SubTitleStyle}"
                            HorizontalAlignment="Left"
                            Margin="6 0 0 0"/>
+                            <Button Name="Button_AddExpense"
+                                    HorizontalAlignment="Right"                                
+                                    Style="{DynamicResource ButtonPrimary}"
+                                    Margin="6 0 0 0"
+                                    Content="Thêm chi tiêu"
+                                    Click="Button_AddExpense_Click"
+                                    hc:BorderElement.CornerRadius="15"/>
+                        </Grid>
+
                         <DataGrid x:Name="ExpenseListDataGrid"
                           HeadersVisibility="All"
                           AutoGenerateColumns="False"
@@ -282,9 +323,9 @@
                 </Border>
 
             </Grid>
-           
+
         </ScrollViewer>
-       
+
 
 
     </Grid>

@@ -24,6 +24,7 @@ namespace GUI_WeSplit
         private string _placeAddress;
         private string _placeDescription;
         private int _placeId;
+        private int _tripId;
 
         public EventHandler<AddDestinationEventArgs> AddDestinationEventHandler;
 
@@ -36,10 +37,11 @@ namespace GUI_WeSplit
             InitializeComponent();
         }
 
-        public AddDestinationWindow(int placeId)
+        public AddDestinationWindow(int tripId, int placeId)
         {
             InitializeComponent();
             DataContext = this;
+            _tripId = tripId;
             _placeId = placeId;
         }
 
@@ -52,7 +54,7 @@ namespace GUI_WeSplit
 
             if (AddDestinationEventHandler!=null && canReturn)
             {
-                DTO_Place dest = new DTO_Place(_placeId, PlaceName, PlaceAddress, PlaceDescription);
+                DTO_Place dest = new DTO_Place(_tripId, _placeId, PlaceName, PlaceAddress, PlaceDescription);
                 AddDestinationEventHandler(this, new AddDestinationEventArgs(dest));
                 this.Close();
             }

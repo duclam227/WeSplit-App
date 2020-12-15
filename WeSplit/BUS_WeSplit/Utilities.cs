@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace BUS_WeSplit
 {
@@ -34,6 +35,22 @@ namespace BUS_WeSplit
             File.Copy(srcFile, destinateFile, true);
 
             return destinateFile;
+        }
+
+        public static List<BitmapImage> FilePathListToBitmapImageList(List<string> imagePath)
+        {
+            List<BitmapImage> bitmapImages = new List<BitmapImage>();
+
+            if (imagePath != null)
+            {
+                foreach (string uri in imagePath)
+                {
+                    BitmapImage img = new BitmapImage(new Uri(uri, UriKind.Absolute));
+                    bitmapImages.Add(img);
+                }
+                return bitmapImages;
+            }
+            return null;
         }
     }
 }

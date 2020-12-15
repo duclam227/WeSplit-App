@@ -39,12 +39,29 @@ namespace DAO_WeSplit
 
         public void AddExpense(DTO_Expense expense)
         {
+            try
+            {
+                _conn.Open();
+            }
+            catch(Exception ex)
+            {
+
+            }
             string addExpense =
-                "insert into dbo.Expense(TripID, ExpenseMoney, ExpenseMember, ExpenseDescription) values " +
-                $"({expense.TripId}, '{expense.ExpenseMoney}', {expense.ExpenseMember}', N'{expense.ExpenseDescription}'";
+                "insert into dbo.Expense(TripID, ExpenseID, ExpenseMoney, ExpenseMember, ExpenseDescription) values " +
+                $"({expense.TripId}, {expense.ExpenseId}, {expense.ExpenseMoney}, {expense.ExpenseMember}, N'{expense.ExpenseDescription}')";
 
             SqlCommand cmd = new SqlCommand(addExpense, _conn);
             cmd.ExecuteNonQuery();
+
+            try
+            {
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }

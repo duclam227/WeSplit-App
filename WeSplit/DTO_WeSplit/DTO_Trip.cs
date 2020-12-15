@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media.Imaging;
 
 namespace DTO_WeSplit
 {
@@ -18,6 +19,7 @@ namespace DTO_WeSplit
         private double _tripExpenseTotal;
         private double? _tripAverage;
         private bool _tripStatus;
+        List<BitmapImage> _bitmapList;
         List<string> _tripImagesList;
 
         private List<DTO_Expense> _tripExpenseList;
@@ -37,7 +39,17 @@ namespace DTO_WeSplit
         public List<DTO_Member> TripMemberList { get => _tripMemberList; set => _tripMemberList = value; }
         public List<DTO_Expense> TripExpenseList { get => _tripExpenseList; set => _tripExpenseList = value; }
         public bool TripStatus { get => _tripStatus; set => _tripStatus = value; }
-        public List<string> TripImagesList { get => _tripImagesList; set => _tripImagesList = value; }
+        public List<string> TripImagesList 
+        {
+            get
+            {
+                if (_tripImagesList == null)
+                    _tripImagesList = new List<string>();
+                return _tripImagesList;
+            }
+            set => _tripImagesList = value; 
+        }
+
         #endregion
 
         #region Constructor
@@ -45,6 +57,7 @@ namespace DTO_WeSplit
         {
             _tripDestinationList = new List<DTO_Place>();
             _tripMemberList = new List<DTO_Member>();
+            _tripImagesList = new List<string>();
         }
 
         public DTO_Trip(int tripID, string tripName, DateTime tripStartDate, string tripDescription, double tripExpenseTotal, double? tripAverage, bool status)
@@ -59,15 +72,5 @@ namespace DTO_WeSplit
         }
 
         #endregion
-
-        public void AddDestination(DTO_Place newDestination)
-        {
-            _tripDestinationList.Add(newDestination);
-        }
-
-        public void AddMember(DTO_Member newMember)
-        {
-            _tripMemberList.Add(newMember);
-        }
     }
 }

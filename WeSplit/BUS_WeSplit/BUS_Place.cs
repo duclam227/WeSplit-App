@@ -45,5 +45,10 @@ namespace BUS_WeSplit
 
             return result;
         }
+
+        public void AddPlace(DTO_Place newPlace)
+        {
+            DAO_Place.Instance.AddPlace(newPlace);
+        }
     }
 }
