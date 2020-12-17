@@ -150,10 +150,10 @@
                 <Border x:Name="BackgroundImage"
                         Panel.ZIndex="1"
                         CornerRadius="10">
-                    <Border.Background>
+                    <!--<Border.Background>
                         <ImageBrush ImageSource="{Binding TripImagesList[0]}"
                                     RenderOptions.BitmapScalingMode="HighQuality"/>
-                    </Border.Background>
+                    </Border.Background>-->
                 </Border>
             </Grid>
             

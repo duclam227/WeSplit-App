@@ -19,7 +19,6 @@ namespace DTO_WeSplit
         private double _tripExpenseTotal;
         private double? _tripAverage;
         private bool _tripStatus;
-        List<BitmapImage> _bitmapList;
         List<string> _tripImagesList;
 
         private List<DTO_Expense> _tripExpenseList;
@@ -39,16 +38,7 @@ namespace DTO_WeSplit
         public List<DTO_Member> TripMemberList { get => _tripMemberList; set => _tripMemberList = value; }
         public List<DTO_Expense> TripExpenseList { get => _tripExpenseList; set => _tripExpenseList = value; }
         public bool TripStatus { get => _tripStatus; set => _tripStatus = value; }
-        public List<string> TripImagesList 
-        {
-            get
-            {
-                if (_tripImagesList == null)
-                    _tripImagesList = new List<string>();
-                return _tripImagesList;
-            }
-            set => _tripImagesList = value; 
-        }
+        public List<string> TripImagesList { get => _tripImagesList; set => _tripImagesList = value; }
 
         #endregion
 
@@ -62,6 +52,9 @@ namespace DTO_WeSplit
 
         public DTO_Trip(int tripID, string tripName, DateTime tripStartDate, string tripDescription, double tripExpenseTotal, double? tripAverage, bool status)
         {
+            _tripDestinationList = new List<DTO_Place>();
+            _tripMemberList = new List<DTO_Member>();
+            _tripImagesList = new List<string>();
             TripId = tripID;
             TripName = tripName;
             TripStartDate = tripStartDate;
@@ -72,5 +65,10 @@ namespace DTO_WeSplit
         }
 
         #endregion
+
+        public void AddImage(string imagePath)
+        {
+            _tripImagesList.Add(imagePath);
+        }
     }
 }

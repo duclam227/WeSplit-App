@@ -121,5 +121,10 @@ namespace BUS_WeSplit
             }
             return result;
         }
+
+        public void DeleteMemberPerTrip(int tripId, int memberId)
+        {
+            DAO_Member.Instance.DeleteMemberPerTrip(tripId, memberId);
+        }
     }
 }

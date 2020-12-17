@@ -63,5 +63,55 @@ namespace DAO_WeSplit
 
             }
         }
+
+        public void DeletePlace(DTO_Place place)
+        {
+            try
+            {
+                _conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            string deletePlace = $"delete from dbo.Place where TripID = {place.TripId} and PlaceID = {place.PlaceId};";
+
+            SqlCommand cmd = new SqlCommand(deletePlace, _conn);
+            cmd.ExecuteNonQuery();
+
+            try
+            {
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void UpdatePlace(int tripId, int placeId, string updateElement, string updateValue)
+        {
+            try
+            {
+                _conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            string update = $"update dbo.Place set {updateElement} = N'{updateValue}' where TripID = {tripId} and PlaceID = {placeId};";
+
+            SqlCommand cmd = new SqlCommand(update, _conn);
+            cmd.ExecuteNonQuery();
+
+            try
+            {
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }

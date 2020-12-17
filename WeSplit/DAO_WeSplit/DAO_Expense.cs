@@ -63,5 +63,107 @@ namespace DAO_WeSplit
 
             }
         }
+
+        public void DeleteExpense(DTO_Expense expense)
+        {
+            try
+            {
+                _conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            string deleteExpense = $"delete from dbo.Expense where TripID = {expense.TripId} and ExpenseID = {expense.ExpenseId};";
+
+            SqlCommand cmd = new SqlCommand(deleteExpense, _conn);
+            cmd.ExecuteNonQuery();
+
+            try
+            {
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void UpdateExpenseMoney(int tripId, int expenseId, double v)
+        {
+            try
+            {
+                _conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            string update = $"update dbo.Expense set ExpenseMoney = {v} where TripID = {tripId} and ExpenseID = {expenseId};";
+
+            SqlCommand cmd = new SqlCommand(update, _conn);
+            cmd.ExecuteNonQuery();
+
+            try
+            {
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
+        public void UpdateExpenseDescription(int tripId, int expenseId, string updateValue)
+        {
+
+            try
+            {
+                _conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            string update = $"update dbo.Expense set ExpenseDescription = N'{updateValue}' where TripID = {tripId} and ExpenseID = {expenseId};";
+
+            SqlCommand cmd = new SqlCommand(update, _conn);
+            cmd.ExecuteNonQuery();
+
+            try
+            {
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        public void UpdateExpenseDate(int tripId, int expenseId, DateTime updateValue)
+        {
+            try
+            {
+                _conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            string update = $"update dbo.Expense set ExpenseDate = {updateValue} where TripID = {tripId} and ExpenseID = {expenseId};";
+
+            SqlCommand cmd = new SqlCommand(update, _conn);
+            cmd.ExecuteNonQuery();
+
+            try
+            {
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
     }
 }

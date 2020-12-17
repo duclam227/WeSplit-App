@@ -50,33 +50,20 @@ namespace GUI_WeSplit
             this.DataContext = trip;
             PlaceList = new ObservableCollection<DTO_Place>(trip.TripDestinationList);
             ExpenseList  = new ObservableCollection<DTO_Expense>(trip.TripExpenseList);
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-            ImagesList = new ObservableCollection<BitmapImage>(Utilities.FilePathListToBitmapImageList(trip.TripImagesList));
-=======
-=======
->>>>>>> Stashed changes
-            ImagesList = new ObservableCollection<BitmapImage>();
 
             var temp = Utilities.FilePathListToBitmapImageList(trip.TripImagesList);
             if (temp != null)
             {
                 ImagesList = new ObservableCollection<BitmapImage>(temp);
-            }
+            } 
             else
             {
                 ImagesList = new ObservableCollection<BitmapImage>();
             }
 
->>>>>>> Stashed changes
             PlaceListDataGrid.ItemsSource = PlaceList;
             ExpenseListDataGrid.ItemsSource = ExpenseList;
-
-            //--------
-
             TripImagesCarousel.ItemsSource = ImagesList;
-            //--------
-
             MemberListDataGrid.ItemsSource = listOfMember.ToList();
 
         }
@@ -122,11 +109,8 @@ namespace GUI_WeSplit
             {
                 string filename = openFileDialog.FileName;
                 BitmapImage img = new BitmapImage(new Uri(filename, UriKind.Absolute));
-                trip.TripImagesList.Add(filename);
+                trip.AddImage(filename);
                 ImagesList.Add(img);
-                TripImagesCarousel.ItemsSource = ImagesList.ToList();
-<<<<<<< Updated upstream
-=======
             }
         }
 
@@ -198,7 +182,44 @@ namespace GUI_WeSplit
                 var item = ExpenseListDataGrid.SelectedItems[0];
                 BUS_Expense.Instance.DeleteExpense((DTO_Expense)item);
                 ExpenseList.Remove((DTO_Expense)item);
->>>>>>> Stashed changes
+            }
+        }
+
+        private void PlaceListDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                var column = e.Column as DataGridBoundColumn;
+                if (column != null)
+                {
+                    var bindingPath = (column.Binding as System.Windows.Data.Binding).Path.Path;
+                    int rowIndex = e.Row.GetIndex();      // rowIndex has the row index
+
+                    System.Windows.Controls.TextBox element = e.EditingElement as System.Windows.Controls.TextBox;
+                    // el.Text has the new, user-entered value
+
+                    DTO_Place place = (DTO_Place)PlaceListDataGrid.Items[rowIndex];
+                    BUS_Place.Instance.UpdatePlace(trip.TripId, place.PlaceId, (string)bindingPath, element.Text);
+                }
+            }
+        }
+
+        private void ExpenseListDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                var column = e.Column as DataGridBoundColumn;
+                if (column != null)
+                {
+                    var bindingPath = (column.Binding as System.Windows.Data.Binding).Path.Path;
+                    int rowIndex = e.Row.GetIndex();      // rowIndex has the row index
+
+                    System.Windows.Controls.TextBox element = e.EditingElement as System.Windows.Controls.TextBox;
+                    // el.Text has the new, user-entered value
+
+                    DTO_Expense expense = (DTO_Expense)ExpenseListDataGrid.Items[rowIndex];
+                    BUS_Expense.Instance.UpdateExpense(trip.TripId, expense.ExpenseId, (string)bindingPath, element.Text);
+                }
             }
         }
     }
