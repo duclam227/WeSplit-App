@@ -246,7 +246,8 @@
                                   HeadersVisibility="All"
                                   AutoGenerateColumns="False"
                                   ColumnHeaderHeight="15"
-                                  RowHeaderWidth="80" SelectionChanged="PlaceListDataGrid_SelectionChanged" >
+                                  RowHeaderWidth="80" SelectionChanged="PlaceListDataGrid_SelectionChanged"
+                                  CellEditEnding="PlaceListDataGrid_CellEditEnding">
 
                             <DataGrid.Background>
                                 <SolidColorBrush Opacity="{DynamicResource MainBorderOpacity}"/>
@@ -313,7 +314,8 @@
                                   ColumnHeaderHeight="15"
                                   RowHeaderWidth="80" 
                                   Background="Transparent"
-                                  SelectionChanged="ExpenseListDataGrid_SelectionChanged">
+                                  SelectionChanged="ExpenseListDataGrid_SelectionChanged"
+                                  CellEditEnding="ExpenseListDataGrid_CellEditEnding">
 
                             <DataGrid.RowHeaderTemplate>
                                 <DataTemplate>
@@ -328,6 +330,7 @@
                                             Width="5*"/>
                                 <DataGridTextColumn CanUserResize="True"
                                                     Header="Người ứng trước"
+                                                    IsReadOnly="True"
                                             Binding="{Binding ExpenseMember, Converter={StaticResource MemberIDToNameConverter}}"
                                             Width="3*"/>
                                 <DataGridTextColumn CanUserResize="True"

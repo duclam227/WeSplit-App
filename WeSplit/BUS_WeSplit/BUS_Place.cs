@@ -55,5 +55,10 @@ namespace BUS_WeSplit
         {
             DAO_Place.Instance.DeletePlace(place);
         }
+
+        public void UpdatePlace(int tripId, int placeId, string updateElement, string updateValue)
+        {
+            DAO_Place.Instance.UpdatePlace(tripId, placeId, updateElement, updateValue);
+        }
     }
 }

@@ -55,5 +55,21 @@ namespace BUS_WeSplit
         {
             DAO_Expense.Instance.DeleteExpense(expense);
         }
+
+        public void UpdateExpense(int tripId, int expenseId, string updateElement, string updateValue)
+        {
+            switch (updateElement)
+            {
+                case "ExpenseDate":
+                    DAO_Expense.Instance.UpdateExpenseDate(tripId, expenseId, DateTime.Parse(updateValue));
+                    break;
+                case "ExpenseMoney":
+                    DAO_Expense.Instance.UpdateExpenseMoney(tripId, expenseId, Double.Parse(updateValue));
+                    break;
+                case "ExpenseDescription":
+                    DAO_Expense.Instance.UpdateExpenseDescription(tripId, expenseId, updateValue);
+                    break;
+            }
+        }
     }
 }

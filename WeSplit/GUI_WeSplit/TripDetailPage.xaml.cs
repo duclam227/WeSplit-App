@@ -184,5 +184,43 @@ namespace GUI_WeSplit
                 ExpenseList.Remove((DTO_Expense)item);
             }
         }
+
+        private void PlaceListDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                var column = e.Column as DataGridBoundColumn;
+                if (column != null)
+                {
+                    var bindingPath = (column.Binding as System.Windows.Data.Binding).Path.Path;
+                    int rowIndex = e.Row.GetIndex();      // rowIndex has the row index
+
+                    System.Windows.Controls.TextBox element = e.EditingElement as System.Windows.Controls.TextBox;
+                    // el.Text has the new, user-entered value
+
+                    DTO_Place place = (DTO_Place)PlaceListDataGrid.Items[rowIndex];
+                    BUS_Place.Instance.UpdatePlace(trip.TripId, place.PlaceId, (string)bindingPath, element.Text);
+                }
+            }
+        }
+
+        private void ExpenseListDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            if (e.EditAction == DataGridEditAction.Commit)
+            {
+                var column = e.Column as DataGridBoundColumn;
+                if (column != null)
+                {
+                    var bindingPath = (column.Binding as System.Windows.Data.Binding).Path.Path;
+                    int rowIndex = e.Row.GetIndex();      // rowIndex has the row index
+
+                    System.Windows.Controls.TextBox element = e.EditingElement as System.Windows.Controls.TextBox;
+                    // el.Text has the new, user-entered value
+
+                    DTO_Expense expense = (DTO_Expense)ExpenseListDataGrid.Items[rowIndex];
+                    BUS_Expense.Instance.UpdateExpense(trip.TripId, expense.ExpenseId, (string)bindingPath, element.Text);
+                }
+            }
+        }
     }
 }
