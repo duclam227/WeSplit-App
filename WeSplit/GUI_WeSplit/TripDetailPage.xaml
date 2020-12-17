@@ -160,9 +160,15 @@
                             <Button Name="Button_AddMember"
                                     HorizontalAlignment="Right"                                
                                     Style="{DynamicResource ButtonPrimary}"
-                                    Margin="6 0 0 0"
                                     Content="Thêm thành viên"
                                     Click="Button_AddMember_Click"
+                                    hc:BorderElement.CornerRadius="15"/>
+
+                            <Button Name="Button_DeleteMember"
+                                    HorizontalAlignment="Right"                                
+                                    Style="{DynamicResource ButtonDanger}"
+                                    Click="Button_DeleteMember_Click"
+                                    Content="Xóa thành viên" Visibility="Hidden"
                                     hc:BorderElement.CornerRadius="15"/>
 
                         </Grid>
@@ -171,7 +177,7 @@
                                   AutoGenerateColumns="False"
                                   ColumnHeaderHeight="15"
                                   RowHeaderWidth="80" 
-                                  IsReadOnly="True">
+                                  IsReadOnly="True" SelectionChanged="MemberListDataGrid_SelectionChanged">
 
                             <DataGrid.Background>
                                 <SolidColorBrush Opacity="{DynamicResource MainBorderOpacity}"/>
@@ -228,12 +234,19 @@
                                     Content="Thêm điểm đến"
                                     Click="Button_AddDestination_Click"
                                     hc:BorderElement.CornerRadius="15"/>
+                            
+                            <Button Name="Button_DeleteDestination"
+                                    HorizontalAlignment="Right"                                
+                                    Style="{DynamicResource ButtonDanger}"
+                                    Click="Button_DeleteDestination_Click"
+                                    Content="Xóa điểm đến" Visibility="Hidden"
+                                    hc:BorderElement.CornerRadius="15"/>
                         </Grid>
-                        <DataGrid x:Name="PlaceListDataGrid"                          
-                          HeadersVisibility="All"
-                          AutoGenerateColumns="False"
-                          ColumnHeaderHeight="15"
-                          RowHeaderWidth="80" ItemsSource="{Binding TripDestinationList}" >
+                        <DataGrid x:Name="PlaceListDataGrid"
+                                  HeadersVisibility="All"
+                                  AutoGenerateColumns="False"
+                                  ColumnHeaderHeight="15"
+                                  RowHeaderWidth="80" SelectionChanged="PlaceListDataGrid_SelectionChanged" >
 
                             <DataGrid.Background>
                                 <SolidColorBrush Opacity="{DynamicResource MainBorderOpacity}"/>
@@ -285,6 +298,13 @@
                                     Content="Thêm chi tiêu"
                                     Click="Button_AddExpense_Click"
                                     hc:BorderElement.CornerRadius="15"/>
+
+                            <Button Name="Button_DeleteExpense"
+                                    HorizontalAlignment="Right"                                
+                                    Style="{DynamicResource ButtonDanger}"
+                                    Click="Button_DeleteExpense_Click"
+                                    Content="Xóa chi tiêu" Visibility="Hidden"
+                                    hc:BorderElement.CornerRadius="15"/>
                         </Grid>
 
                         <DataGrid x:Name="ExpenseListDataGrid"
@@ -293,7 +313,7 @@
                                   ColumnHeaderHeight="15"
                                   RowHeaderWidth="80" 
                                   Background="Transparent"
-                                  ItemsSource="{Binding TripExpenseList}">
+                                  SelectionChanged="ExpenseListDataGrid_SelectionChanged">
 
                             <DataGrid.RowHeaderTemplate>
                                 <DataTemplate>

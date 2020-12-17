@@ -59,6 +59,14 @@ namespace DAO_WeSplit
             cmd.ExecuteNonQuery();
         }
 
+        public void DeleteMemberPerTrip(int memberId, int tripId)
+        {
+            string addMemberPerTrip = $"delete from dbo.MemberPerTrip where MemberID = {memberId} and TripID = {tripId};";
+
+            SqlCommand cmd = new SqlCommand(addMemberPerTrip, _conn);
+            cmd.ExecuteNonQuery();
+        }
+
         public DataTable GetAmountOfMember()
         {
             DataTable data = new DataTable();

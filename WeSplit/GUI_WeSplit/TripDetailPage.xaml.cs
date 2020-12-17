@@ -50,15 +50,20 @@ namespace GUI_WeSplit
             this.DataContext = trip;
             PlaceList = new ObservableCollection<DTO_Place>(trip.TripDestinationList);
             ExpenseList  = new ObservableCollection<DTO_Expense>(trip.TripExpenseList);
-            ImagesList = new ObservableCollection<BitmapImage>(Utilities.FilePathListToBitmapImageList(trip.TripImagesList));
+
+            var temp = Utilities.FilePathListToBitmapImageList(trip.TripImagesList);
+            if (temp != null)
+            {
+                ImagesList = new ObservableCollection<BitmapImage>(temp);
+            } 
+            else
+            {
+                ImagesList = new ObservableCollection<BitmapImage>();
+            }
+
             PlaceListDataGrid.ItemsSource = PlaceList;
             ExpenseListDataGrid.ItemsSource = ExpenseList;
-
-            //--------
-
             TripImagesCarousel.ItemsSource = ImagesList;
-            //--------
-
             MemberListDataGrid.ItemsSource = listOfMember.ToList();
 
         }
@@ -104,8 +109,79 @@ namespace GUI_WeSplit
             {
                 string filename = openFileDialog.FileName;
                 BitmapImage img = new BitmapImage(new Uri(filename, UriKind.Absolute));
-                trip.TripImagesList.Add(filename);
+                trip.AddImage(filename);
                 ImagesList.Add(img);
+            }
+        }
+
+        private void MemberListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (MemberListDataGrid.SelectedItem != null)
+            {
+                Button_AddMember.Visibility = Visibility.Hidden;
+                Button_DeleteMember.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Button_AddMember.Visibility = Visibility.Visible;
+                Button_DeleteMember.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void PlaceListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (PlaceListDataGrid.SelectedItem != null)
+            {
+                Button_AddDestination.Visibility = Visibility.Hidden;
+                Button_DeleteDestination.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Button_AddDestination.Visibility = Visibility.Visible;
+                Button_DeleteDestination.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void ExpenseListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ExpenseListDataGrid.SelectedItem != null)
+            {
+                Button_AddExpense.Visibility = Visibility.Hidden;
+                Button_DeleteExpense.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                Button_AddExpense.Visibility = Visibility.Visible;
+                Button_DeleteExpense.Visibility = Visibility.Hidden;
+            }
+        }
+
+        private void Button_DeleteMember_Click(object sender, RoutedEventArgs e)
+        {
+            //foreach (var item in MemberListDataGrid.SelectedItems)
+            //{
+            //    DTO_Member member = (DTO_Member)item;
+            //    BUS_Member.Instance.DeleteMemberPerTrip(trip.TripId, member.MemberID);
+            //}
+        }
+
+        private void Button_DeleteDestination_Click(object sender, RoutedEventArgs e)
+        {
+            while(PlaceListDataGrid.SelectedItems.Count>0)
+            {
+                var item = PlaceListDataGrid.SelectedItems[0];
+                BUS_Place.Instance.DeletePlace((DTO_Place)item);
+                PlaceList.Remove((DTO_Place)item);
+            }
+        }
+
+        private void Button_DeleteExpense_Click(object sender, RoutedEventArgs e)
+        {
+            while(ExpenseListDataGrid.SelectedItems.Count>0)
+            {
+                var item = ExpenseListDataGrid.SelectedItems[0];
+                BUS_Expense.Instance.DeleteExpense((DTO_Expense)item);
+                ExpenseList.Remove((DTO_Expense)item);
             }
         }
     }
