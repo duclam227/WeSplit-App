@@ -86,6 +86,11 @@ namespace GUI_WeSplit
         {
             bool canReturn = true;
 
+            if(imagesList.Count() == 0)
+            {
+                canReturn = false;
+            }
+
             if (String.IsNullOrWhiteSpace(TripName))
             {
                 canReturn = false;
@@ -116,6 +121,10 @@ namespace GUI_WeSplit
                 BUS_Trip.Instance.AddTrip(newTrip);
 
                 this.NavigationService.GoBack();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Bạn chưa điền đầy đủ thông tin");
             }
         }
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)

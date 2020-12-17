@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       xmlns:local="clr-namespace:GUI_WeSplit"
       xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
       xmlns:hc="https://handyorg.github.io/handycontrol"
@@ -57,6 +58,8 @@
             <Setter Property="FontSize" Value="12" />
         </Style>
 
+        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+        <converters:MemberIDToNameConverter x:Key="MemberIDToNameConverter"/>
     </Page.Resources>
     
     <Grid>
@@ -101,41 +104,52 @@
         <Separator Height="1"
                    Background="{DynamicResource ContentForeground}"
                    Grid.Row="1"/>
+        <Border x:Name="ResultPart" 
+                CornerRadius="20"
+                Padding="15"
+                Grid.Row="2">
 
-        <ListView Name="ResultListView"
-                  Grid.Row="2"
-                  SelectionChanged="ResultListView_SelectionChanged"
+            <Border.Background>
+                <SolidColorBrush Color="White" Opacity="0.7"/>
+            </Border.Background>
+
+            <DataGrid Name="ResultDataGrid" 
+                  ItemsSource="{Binding searchingTrips}"
+                  HeadersVisibility="All" 
+                  AutoGenerateColumns="False"
                   Background="Transparent"
-                  BorderThickness="0"
-                  Visibility="Collapsed">
-
-
-            <ListView.View>
-                <GridView x:Name="myGridView"
-                          AllowsColumnReorder="True">
-                    <GridViewColumn 
-                        Header="Tên chuyến đi" 
-                        Width="200" 
-                        DisplayMemberBinding="{Binding TripName}"/>
-                    <GridViewColumn 
-                        Header="Ngày đi" 
-                        Width="120" 
-                        DisplayMemberBinding="{Binding TripStartDate}"/>
-                    <GridViewColumn 
-                        Header="Mô tả" 
-                        Width="200" 
-                        DisplayMemberBinding="{Binding TripDescription}"/>
-                    <GridViewColumn 
-                        Header="Chi tiêu" 
-                        Width="120" 
-                        DisplayMemberBinding="{Binding TripExpenseTotal}"/>
-                    <GridViewColumn 
-                        Header="Phí/người" 
-                        Width="120" 
-                        DisplayMemberBinding="{Binding TripAverage}"/>
-                </GridView>
-            </ListView.View>
-        </ListView>
+                  SelectionChanged="ResultDataGrid_SelectionChanged"
+                  Visibility="Collapsed"
+                  RowHeaderWidth="50">
+                <DataGrid.RowHeaderTemplate>
+                    <DataTemplate>
+                        <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                    </DataTemplate>
+                </DataGrid.RowHeaderTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Width="2*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripName}" 
+                                                    Header="Tên chuyến đi"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="3*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripDescription}" 
+                                                    Header="Mô tả"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripStartDate, Converter={StaticResource DateTimeToStringConverter}}" 
+                                                    Header="Ngày bắt đầu"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripExpenseTotal}" 
+                                                    Header="Chi tiêu"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripAverage}" 
+                                                    Header="Phí/người"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
 
         <TextBlock x:Name="SearchResultNotice" 
                    Text="Không có kết quả"

@@ -130,7 +130,7 @@ namespace GUI_WeSplit
             //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
-            Grid.SetColumn(ActiveIndicator, 1);
+            Grid.SetColumn(ActiveIndicator, 2);
 
             //TripDetailPage tripPage = new TripDetailPage();
             //MemberListPage memberList = new MemberListPage();
@@ -150,7 +150,7 @@ namespace GUI_WeSplit
             //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
-            Grid.SetColumn(ActiveIndicator, 2);
+            Grid.SetColumn(ActiveIndicator, 4);
 
             MemberListPage memberListPage = new MemberListPage();
             MainFrame.Navigate(memberListPage);
@@ -161,13 +161,13 @@ namespace GUI_WeSplit
             //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
-            Grid.SetColumn(ActiveIndicator, 3);
+            Grid.SetColumn(ActiveIndicator, 6);
         }
 
         private void SearchButton_Click(object sender, MouseButtonEventArgs e)
         {
             ActiveIndicator.Visibility = Visibility.Visible;
-            Grid.SetColumn(ActiveIndicator, 4);
+            Grid.SetColumn(ActiveIndicator, 8);
 
             searchPage = new SearchPage();
             searchPage.eventPassIDToMain += SearchPage_eventPassIDToMain;

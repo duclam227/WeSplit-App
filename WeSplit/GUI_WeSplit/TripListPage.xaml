@@ -24,7 +24,7 @@
         <System:Double x:Key="MainBorderOpacity">0.8</System:Double>
         <System:Double x:Key="ButtonSize">18</System:Double>
 
-        <System:Double x:Key="ButtonOpacity">0.6</System:Double>
+        <System:Double x:Key="ButtonOpacity">0.7</System:Double>
 
         <Style TargetType="Button">
             <Setter Property="BorderThickness" Value="0"/>

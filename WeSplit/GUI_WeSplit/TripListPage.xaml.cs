@@ -47,7 +47,7 @@ namespace GUI_WeSplit
             FinishedTripListView.Visibility = Visibility.Visible;
             UnfinishedTripListView.Visibility = Visibility.Collapsed;
             FinishListButton.Opacity = 1;
-            UnfinishListButton.Opacity = 0.3;
+            UnfinishListButton.Opacity = 0.5;
 
             listToShow.Clear();
             listToShow = BUS_WeSplit.BUS_Trip.Instance.GetFinishedTrips().ToList();
@@ -58,7 +58,7 @@ namespace GUI_WeSplit
         {
             UnfinishedTripListView.Visibility = Visibility.Visible;
             FinishedTripListView.Visibility = Visibility.Collapsed;
-            FinishListButton.Opacity = 0.3;
+            FinishListButton.Opacity = 0.5;
             UnfinishListButton.Opacity = 1;
 
             listToShow.Clear();

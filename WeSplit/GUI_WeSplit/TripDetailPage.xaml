@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:hc="https://handyorg.github.io/handycontrol"
-      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      
       xmlns:local="clr-namespace:GUI_WeSplit"
       xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       mc:Ignorable="d"
@@ -17,8 +17,6 @@
 
         <Color x:Key="ContentBorderBG">Black</Color>
         <SolidColorBrush x:Key="ContentForeground">white</SolidColorBrush>
-
-        <System:Double x:Key="MainBorderOpacity">0.7</System:Double>
 
         <Style x:Key="TitleStyle"
                TargetType="TextBlock">
@@ -66,7 +64,7 @@
                 Padding="10">
 
             <Border.Background>
-                <SolidColorBrush Color="White" Opacity="{DynamicResource MainBorderOpacity}"/>
+                <SolidColorBrush Color="White" Opacity="0.7"/>
             </Border.Background>
 
             <StackPanel>
@@ -83,17 +81,23 @@
 
                 <TextBlock Text=" "/>
 
-                <hc:Carousel x:Name="TripImagesCarousel"
+                <hc:Carousel Name="TripImagesCarousel" 
+                             HorizontalAlignment="Center"
+                             AutoRun="True" 
                              Width="{Binding ActualWidth, ElementName=FirstColumn}"
-                             ExtendWidth="{Binding ActualWidth, ElementName=FirstColumn}"
-                             IsCenter="True">
+                             Height="200">
+
                     <hc:Carousel.ItemTemplate>
                         <DataTemplate>
-                            <Image Source="{Binding}"
-                                   RenderOptions.BitmapScalingMode="HighQuality"
-                                   Width="{Binding ActualWidth, ElementName=FirstColumn}"/>
+                            <Image HorizontalAlignment="Center"
+							VerticalAlignment  = "Center"
+                                   Source="{Binding}" 
+                                   Stretch="UniformToFill" 
+                                   Width="{Binding ActualWidth, ElementName=TripImagesCarousel}"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
                         </DataTemplate>
                     </hc:Carousel.ItemTemplate>
+
                 </hc:Carousel>
 
                 <TextBlock Text=" "/>
@@ -114,7 +118,7 @@
 
                     <Border.Background>
                         <SolidColorBrush Color="White"
-                                         Opacity="{DynamicResource MainBorderOpacity}"/>
+                                         Opacity="0.7"/>
                     </Border.Background>
                     <StackPanel>
                         <TextBlock Text="Biểu đồ chi tiêu"
@@ -147,7 +151,7 @@
 
                     <Border.Background>
                         <SolidColorBrush Color="White"
-                                         Opacity="{DynamicResource MainBorderOpacity}"/>
+                                         Opacity="0.7"/>
                     </Border.Background>
 
                     <StackPanel>
@@ -174,7 +178,7 @@
                                   IsReadOnly="True">
 
                             <DataGrid.Background>
-                                <SolidColorBrush Opacity="{DynamicResource MainBorderOpacity}"/>
+                                <SolidColorBrush Opacity="0.7"/>
                             </DataGrid.Background>
 
                             <DataGrid.RowHeaderTemplate>
@@ -212,7 +216,7 @@
 
                     <Border.Background>
                         <SolidColorBrush Color="White"
-                                         Opacity="{DynamicResource MainBorderOpacity}"/>
+                                         Opacity="0.7"/>
                     </Border.Background>
 
                     <StackPanel>
@@ -236,7 +240,7 @@
                           RowHeaderWidth="80" ItemsSource="{Binding TripDestinationList}" >
 
                             <DataGrid.Background>
-                                <SolidColorBrush Opacity="{DynamicResource MainBorderOpacity}"/>
+                                <SolidColorBrush Opacity="0.7"/>
                             </DataGrid.Background>
 
                             <DataGrid.RowHeaderTemplate>
@@ -270,7 +274,7 @@
 
                     <Border.Background>
                         <SolidColorBrush Color="White"
-                                         Opacity="{DynamicResource MainBorderOpacity}"/>
+                                         Opacity="0.7"/>
                     </Border.Background>
                     <StackPanel>
                         <Grid>

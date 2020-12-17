@@ -50,7 +50,22 @@ namespace GUI_WeSplit
             this.DataContext = trip;
             PlaceList = new ObservableCollection<DTO_Place>(trip.TripDestinationList);
             ExpenseList  = new ObservableCollection<DTO_Expense>(trip.TripExpenseList);
+<<<<<<< Updated upstream
             ImagesList = new ObservableCollection<BitmapImage>(Utilities.FilePathListToBitmapImageList(trip.TripImagesList));
+=======
+            ImagesList = new ObservableCollection<BitmapImage>();
+
+            var temp = Utilities.FilePathListToBitmapImageList(trip.TripImagesList);
+            if (temp != null)
+            {
+                ImagesList = new ObservableCollection<BitmapImage>(temp);
+            }
+            else
+            {
+                ImagesList = new ObservableCollection<BitmapImage>();
+            }
+
+>>>>>>> Stashed changes
             PlaceListDataGrid.ItemsSource = PlaceList;
             ExpenseListDataGrid.ItemsSource = ExpenseList;
 
@@ -106,6 +121,7 @@ namespace GUI_WeSplit
                 BitmapImage img = new BitmapImage(new Uri(filename, UriKind.Absolute));
                 trip.TripImagesList.Add(filename);
                 ImagesList.Add(img);
+                TripImagesCarousel.ItemsSource = ImagesList.ToList();
             }
         }
     }

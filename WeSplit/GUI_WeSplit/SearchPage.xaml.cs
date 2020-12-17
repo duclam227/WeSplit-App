@@ -24,9 +24,9 @@ namespace GUI_WeSplit
     {
         private BUS_Trip bus_trip = BUS_Trip.Instance;
 
-        private GridViewColumn columnMember = null;
         private List<DTO_Trip> searchingTrips;
         private List<Tuple<DTO_Trip, String>> searchByMember;
+        private DataGridTextColumn columnMember =  null;
 
         public delegate void PassIDToMain(int id);
         public event PassIDToMain eventPassIDToMain;
@@ -39,15 +39,15 @@ namespace GUI_WeSplit
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             String text = SearchBar.Text;
-            ResultListView.UnselectAll();
+            ResultDataGrid.UnselectAll();
 
             if (text != "")
             {
-                ResultListView.Visibility = Visibility.Visible;
+                ResultDataGrid.Visibility = Visibility.Visible;
                 if (radionBtn_SearchTrip.IsChecked == true)
                 {
                     searchingTrips = bus_trip.SearchTripsByName(text);
-                    ResultListView.ItemsSource = searchingTrips;
+                    ResultDataGrid.ItemsSource = searchingTrips;
                 }
                 else if (radioBtn_SearchMember.IsChecked == true)
                 {
@@ -65,20 +65,20 @@ namespace GUI_WeSplit
                         tempObj.TripAverage = item.Item1.TripAverage;
                         tempObj.MemberName = item.Item2;
                         trip_MemberNames.Add(tempObj);
-                    }    
+                    }
 
-                    ResultListView.ItemsSource = trip_MemberNames;
+                    ResultDataGrid.ItemsSource = trip_MemberNames;
                 }
             }
             else
             {
-                ResultListView.ItemsSource = null;
-                ResultListView.Visibility = Visibility.Collapsed;
+                ResultDataGrid.ItemsSource = null;
+                ResultDataGrid.Visibility = Visibility.Collapsed;
             }
 
-            if(ResultListView.Items.Count == 0)
+            if(ResultDataGrid.Items.Count == 0)
             {
-                ResultListView.Visibility = Visibility.Collapsed;
+                ResultDataGrid.Visibility = Visibility.Collapsed;
                 SearchResultNotice.Visibility = Visibility.Visible;
             }
             else
@@ -104,7 +104,7 @@ namespace GUI_WeSplit
         {
             if (columnMember != null)
             {
-                myGridView.Columns.Remove(columnMember);
+                ResultDataGrid.Columns.Remove(columnMember);
             }
         }
 
@@ -112,20 +112,19 @@ namespace GUI_WeSplit
         {
             if (columnMember == null)
             {
-                columnMember = new GridViewColumn();
-                columnMember.Width = 150;
-                columnMember.Header = "Member's Name";
-                columnMember.DisplayMemberBinding = new Binding("MemberName");
+                columnMember = new DataGridTextColumn();
+                columnMember.Header = "Tên thành viên";
+                columnMember.Binding = new Binding("MemberName");
             }
 
-            myGridView.Columns.Add(columnMember);
+            ResultDataGrid.Columns.Add(columnMember);
 
         }
 
-        private void ResultListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ResultDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int tripID;
-            int position = ResultListView.SelectedIndex;
+            int position = ResultDataGrid.SelectedIndex;
                    
 
             if (position > -1)

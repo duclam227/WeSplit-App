@@ -10,55 +10,88 @@
       xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="700" d:DesignWidth="900"
-      MinHeight="700" MinWidth="900"
-      Title="CreateTripPage"
-      Background="White" Loaded="Page_Loaded">
+      Title="CreateTripPage" Loaded="Page_Loaded">
 
     <Page.Resources>
-        <converters:MemberIDToNameConverter x:Key="MemberIDToNameConverter" />
+
+        <SolidColorBrush x:Key="IndicatorColor">Black</SolidColorBrush>
+
+        <Color x:Key="ContentBorderBG">Black</Color>
+        <SolidColorBrush x:Key="ContentForeground">white</SolidColorBrush>
+
+        <Style x:Key="TitleStyle"
+               TargetType="TextBlock">
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="{DynamicResource IndicatorColor}"/>
+        </Style>
+
+        <Style x:Key="DescriptionStyle"
+               TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="{DynamicResource IndicatorColor}"/>
+        </Style>
+
+        <Style x:Key="SubTitleStyle"
+               TargetType="TextBlock">
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+            <Setter Property="HorizontalAlignment" Value="Left"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Foreground" Value="{DynamicResource IndicatorColor}"/>
+        </Style>
+
+        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+        <converters:MemberIDToNameConverter x:Key="MemberIDToNameConverter"/>
     </Page.Resources>
 
     <!-- Main UI -->
-    <DockPanel MinWidth="900" MinHeight="700">
+    <Grid Height="{Binding SystemParameters.PrimaryScreenHeight}"
+          Width="{Binding SystemParameters.PrimaryScreenWidth}"
+          HorizontalAlignment="Stretch"
+          Background="Transparent">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
         <Button Name="Button_CreateNewTrip"
                 Style="{DynamicResource ButtonPrimary}"
-                Margin="10" DockPanel.Dock="Bottom"
+                Grid.Row="0"
+                Grid.ColumnSpan="2"
+                Grid.RowSpan="2"
+                Panel.ZIndex="1"
                 Width="150" Height="35"
                 hc:BorderElement.CornerRadius="15"
-                Click="Button_CreateNewTrip_Click">Create New Trip</Button>
+                VerticalAlignment="Bottom"
+                Click="Button_CreateNewTrip_Click">Thêm chuyến đi mới</Button>
 
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="300" Width="1*"></ColumnDefinition>
-                <ColumnDefinition MinWidth="600" Width="2*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
+        <Border x:Name="FirstColumn" Grid.Column="0"
+                CornerRadius="20"
+                Padding="10">
 
-            <Grid Grid.RowSpan="2">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                    <RowDefinition Height="auto"/>
-                </Grid.RowDefinitions>
+            <Border.Background>
+                <SolidColorBrush Color="White" Opacity="0.7"/>
+            </Border.Background>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
-
+            <StackPanel>
                 <uc:LabelTextBox x:Name="LabelTextBox_TripName" 
                                  Grid.Row="0"
                                  Grid.ColumnSpan="2"
                                  Margin="20 0 20 0"
-                                 Title="Tên chuyến đi" Loaded="LabelTextBox_TripName_Loaded">
+                                 Title="Tên chuyến đi" 
+                                 Loaded="LabelTextBox_TripName_Loaded">
                     <uc:LabelTextBox.Text>
                         <Binding Path="TripName" Mode="TwoWay">
                             <Binding.ValidationRules>
@@ -67,6 +100,8 @@
                         </Binding>
                     </uc:LabelTextBox.Text>
                 </uc:LabelTextBox>
+
+
                 <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="20 10 20 0">
                     <CheckBox Name="CheckBox_Description"
                           HorizontalAlignment="Left" 
@@ -77,76 +112,47 @@
                                      Visibility="Collapsed"/>
                 </StackPanel>
 
+                <TextBlock Text=" "/>
+                <Separator Height="1" Background="LightGray"/>
 
-                <!--Date Picker-->
-
-                <StackPanel Grid.Row="2" Margin="20">
+                <StackPanel Margin="20 10 20 0">
                     <TextBlock 
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Left"
                         TextWrapping="NoWrap">
                         Ngày bắt đầu
                     </TextBlock>
                     <DatePicker Name="DatePicker_StartDate"/>
                 </StackPanel>
 
-                <StackPanel Grid.Row="2" Grid.Column="1" Margin="20">
+                <StackPanel Margin="20 10 20 0">
                     <TextBlock 
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Left"
                         TextWrapping="NoWrap">
                         Ngày kết thúc
                     </TextBlock>
                     <DatePicker Name="DatePicker_EndDate"/>
                 </StackPanel>
 
-                <StackPanel Grid.Row="3" Grid.ColumnSpan="2" Orientation="Horizontal"
-                            Margin="20 0 20 10">
-                    <ComboBox Name="ComboBox_MemberList"
-                              hc:InfoElement.Title = "Thêm thành viên"
-                              Style="{StaticResource ComboBoxExtend}"
-                              MinWidth="180">
-                        <ComboBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="30"></ColumnDefinition>
-                                        <ColumnDefinition Width="auto"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <TextBlock Grid.Column="1" Text="{Binding MemberName}"></TextBlock>
+                <TextBlock Text=" "/>
+                <Separator Height="1" Background="LightGray"/>
 
-                                </Grid>
-                            </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                    </ComboBox>
-
-                    <Button Name="Button_AddMember"
-                    Width="50" Height="30" Margin="30 30 0 0"
-                    Style="{StaticResource ButtonPrimary}"
-                    Content="Thêm" Click="Button_AddMember_Click" hc:BorderElement.CornerRadius="15"/>
-                </StackPanel>
-
-                <Button Name="Button_AddDestination"
-                Grid.Row="4"
-                Style="{DynamicResource ButtonPrimary}"
-                Margin="20"
-                Content="Thêm địa điểm" Click="Button_AddDestination_Click"
-                hc:BorderElement.CornerRadius="15"/>
-
-                <Button Name="Button_AddExpense"
-                Grid.Row="4" Grid.Column="2"
-                Style="{DynamicResource ButtonPrimary}"
-                Margin="20"
-                Content="Thêm chi phí" Click="Button_AddExpense_Click"
-                hc:BorderElement.CornerRadius="15"/>
-
-                <hc:Carousel Name="carouselImages" Grid.Row="6" Grid.ColumnSpan="2"
+                <hc:Carousel Name="carouselImages" 
                              HorizontalAlignment="Center"
-                             AutoRun="True" Width="{Binding ActualWidth, ElementName=stretchLabel}" Height="{Binding ActualWidth, ElementName=stretchLabel}">
+                             AutoRun="True" 
+                             Width="{Binding ActualWidth, ElementName=FirstColumn}"
+                             Height="200">
+
                     <hc:Carousel.ItemTemplate>
                         <DataTemplate>
-                            <Image HorizontalAlignment="Center" VerticalAlignment="Center"
-                                   Source="{Binding}" Stretch="UniformToFill" Width="{Binding ActualWidth, ElementName=carouselImages}"/>
+                            <Image HorizontalAlignment="Center"
+							VerticalAlignment  = "Center"
+                                   Source="{Binding}" 
+                                   Stretch="UniformToFill" 
+                                   Width="{Binding ActualWidth, ElementName=carouselImages}"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
                         </DataTemplate>
                     </hc:Carousel.ItemTemplate>
+
                 </hc:Carousel>
 
                 <Button Name="Button_AddImage"
@@ -156,78 +162,186 @@
                 Content="Thêm hình ảnh" Click="Button_AddImage_Click"
                 hc:BorderElement.CornerRadius="15"/>
 
+                <TextBlock Text=" "/>
+            </StackPanel>
+        </Border>
 
-                <Label Grid.Row="7" Margin="20" HorizontalAlignment="Stretch" Grid.ColumnSpan="2" x:Name="stretchLabel" BorderBrush="Transparent"/>
-            </Grid>
+        <ScrollViewer VerticalScrollBarVisibility="auto"
+                      Grid.Column="1"
+                      Padding="10 0 10 0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
 
-            <!--Destination column-->
-            <StackPanel Grid.Column="1">
-                <Label
-                Content="Địa điểm"
-                HorizontalAlignment="Center" VerticalAlignment="Center"></Label>
+                <Border x:Name="MemberPart" 
+                        CornerRadius="20"
+                    Padding="15"
+                        Grid.Row="0">
 
-                <DataGrid Name="DataGrid_Destination" 
-                          Margin="20"
-                          Grid.Column="1" Grid.Row="1"
+                    <Border.Background>
+                        <SolidColorBrush Color="White"
+                                         Opacity="0.7"/>
+                    </Border.Background>
+
+                    <StackPanel>
+                        <Grid>
+                            <TextBlock Text="Thành viên tham gia"
+                           Style="{DynamicResource SubTitleStyle}"
+                           HorizontalAlignment="Left"
+                           Margin="6 0 0 0"/>
+
+                            <ComboBox Name="ComboBox_MemberList"
+                              Style="{StaticResource ComboBoxExtend}"
+                              MinWidth="180"
+                                      HorizontalAlignment="Center">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30"></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="1" Text="{Binding MemberName}"></TextBlock>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+
+                            <Button Name="Button_AddMember"
+                                    HorizontalAlignment="Right"                                
+                                    Style="{DynamicResource ButtonPrimary}"
+                                    Content="Thêm thành viên"
+                                    Click="Button_AddMember_Click"
+                                    hc:BorderElement.CornerRadius="15"/>
+
+                        </Grid>
+                        <DataGrid Name="DataGrid_MemberList" 
+                          ItemsSource="{Binding MemberList}"
+                          HeadersVisibility="All" RowHeaderWidth="80" 
+                                  AutoGenerateColumns="False"
+                                  Background="Transparent">
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding MemberName}" 
+                                                    Header="Tên thành viên"/>
+                                <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding MemberDOB, Converter={StaticResource DateTimeToStringConverter}}" 
+                                                    Header="Ngày sinh"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
+                <Border x:Name="DestinationPart" 
+                        CornerRadius="20"
+                    Padding="15"
+                        Grid.Row="2">
+
+                    <Border.Background>
+                        <SolidColorBrush Color="White"
+                                         Opacity="0.7"/>
+                    </Border.Background>
+
+                    <StackPanel>
+                        <Grid>
+                            <TextBlock Text="Thêm địa điểm"
+                           Style="{DynamicResource SubTitleStyle}"
+                           HorizontalAlignment="Left"
+                           Margin="6 0 0 0"/>
+                            <Button Name="Button_AddDestination"
+                                    HorizontalAlignment="Right"                                
+                                    Style="{DynamicResource ButtonPrimary}"
+                                    Margin="6 0 0 0"
+                                    Content="Thêm điểm đến"
+                                    Click="Button_AddDestination_Click"
+                                    hc:BorderElement.CornerRadius="15"/>
+
+                        </Grid>
+                        <DataGrid Name="DataGrid_Destination" 
                           HeadersVisibility="All" 
                           RowHeaderWidth="80" 
                           AutoGenerateColumns="False" 
                           ItemsSource="{Binding DestinationList}"
-                          >
-                    <DataGrid.RowHeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
-                        </DataTemplate>
-                    </DataGrid.RowHeaderTemplate>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn IsReadOnly="True" Width="80" CanUserResize="False" Binding="{Binding PlaceId}" Header="STT"/>
-                        <DataGridTextColumn IsReadOnly="True" Width="2*" CanUserResize="True" Binding="{Binding PlaceName}" Header="Tên địa điểm"/>
-                        <DataGridTextColumn IsReadOnly="True" Width="3*" CanUserResize="True" Binding="{Binding PlaceAddress}" Header="Địa chỉ"/>
-                        <DataGridTextColumn IsReadOnly="True" Width="2*" CanUserResize="True" Binding="{Binding PlaceDescription}" Header="Mô tả"/>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
+                          Background="Transparent">
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Width="80" CanUserResize="False" Binding="{Binding PlaceId}" Header="STT"/>
+                                <DataGridTextColumn IsReadOnly="True" Width="2*" CanUserResize="True" Binding="{Binding PlaceName}" Header="Tên địa điểm"/>
+                                <DataGridTextColumn IsReadOnly="True" Width="3*" CanUserResize="True" Binding="{Binding PlaceAddress}" Header="Địa chỉ"/>
+                                <DataGridTextColumn IsReadOnly="True" Width="2*" CanUserResize="True" Binding="{Binding PlaceDescription}" Header="Mô tả"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
 
-            <Grid Grid.Row="2" Grid.Column="1" Grid.RowSpan="2">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
+                <Border x:Name="ExpensePart" 
+                        CornerRadius="20"
+                    Padding="15"
+                        Grid.Row="4">
 
-                <DataGrid Name="DataGrid_MemberList" 
-                          Margin="20 10 10 10" 
-                          ItemsSource="{Binding MemberList}"
-                          HeadersVisibility="All" RowHeaderWidth="80" AutoGenerateColumns="False">
-                    <DataGrid.RowHeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
-                        </DataTemplate>
-                    </DataGrid.RowHeaderTemplate>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn IsReadOnly="True" Width="1*" CanUserResize="True" Binding="{Binding MemberName}" Header="Tên thành viên"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                    <Border.Background>
+                        <SolidColorBrush Color="White"
+                                         Opacity="0.7"/>
+                    </Border.Background>
+                    <StackPanel>
+                        <Grid>
+                            <TextBlock Text="Thêm chi tiêu"
+                           Style="{DynamicResource SubTitleStyle}"
+                           HorizontalAlignment="Left"
+                           Margin="6 0 0 0"/>
+                            <Button Name="Button_AddExpense"
+                                    HorizontalAlignment="Right"                                
+                                    Style="{DynamicResource ButtonPrimary}"
+                                    Margin="6 0 0 0"
+                                    Content="Thêm chi tiêu"
+                                    Click="Button_AddExpense_Click"
+                                    hc:BorderElement.CornerRadius="15"/>
 
-                <DataGrid Name="DataGrid_ExpenseList"
+                        </Grid>
+
+                        <DataGrid Name="DataGrid_ExpenseList"
                           ItemsSource="{Binding ExpenseList}"
-                          Grid.Column="1" Margin="10 10 20 10"
                           HeadersVisibility="All" RowHeaderWidth="80"
-                          AutoGenerateColumns="False">
-                    <DataGrid.RowHeaderTemplate>
-                        <DataTemplate>
-                            <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
-                        </DataTemplate>
-                    </DataGrid.RowHeaderTemplate>
-                    <DataGrid.Columns>
-                        <DataGridTextColumn IsReadOnly="True" Width="1*" CanUserResize="True" Binding="{Binding ExpenseDescription}"
+                          AutoGenerateColumns="False"
+                                  Background="Transparent">
+                            <DataGrid.RowHeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                                </DataTemplate>
+                            </DataGrid.RowHeaderTemplate>
+                            <DataGrid.Columns>
+                                <DataGridTextColumn IsReadOnly="True" Width="1*" CanUserResize="True" Binding="{Binding ExpenseDescription}"
                                             Header="Chi phí"/>
-                        <DataGridTextColumn IsReadOnly="True" Width="1*" CanUserResize="True" Binding="{Binding ExpenseMoney}" 
+                                <DataGridTextColumn IsReadOnly="True" Width="1*" CanUserResize="True" Binding="{Binding ExpenseMoney}" 
                                             Header="Số tiền"/>
-                        <DataGridTextColumn IsReadOnly="True" Width="1*" CanUserResize="True" Binding="{Binding ExpenseMember, Converter={StaticResource MemberIDToNameConverter}}"
+                                <DataGridTextColumn IsReadOnly="True" Width="1*" CanUserResize="True" Binding="{Binding ExpenseMember, Converter={StaticResource MemberIDToNameConverter}}"
                                             Header="Người ứng trước"/>
-                    </DataGrid.Columns>
-                </DataGrid>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </StackPanel>
+                </Border>
+
             </Grid>
-        </Grid>
-    </DockPanel>
+
+        </ScrollViewer>
+
+
+    </Grid>
 </Page>
