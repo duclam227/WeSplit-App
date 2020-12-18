@@ -1,0 +1,118 @@
+﻿<Page x:Class="GUI_WeSplit.MemberListPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GUI_WeSplit"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MemberListPage" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <Style x:Key="NameStyle"
+               TargetType="TextBlock">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Bree Serif"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+
+        <Style x:Key="InfoStyle"
+               TargetType="TextBlock">
+            <Setter Property="FontSize" Value="25"/>
+            <Setter Property="FontFamily" Value="Bree Serif"/>
+            <Setter Property="Foreground" Value="#0cebeb"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
+    </Page.Resources>
+
+    <ListView x:Name="MemberList"
+              Background="Transparent"
+              HorizontalContentAlignment="Stretch"
+              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+              MinHeight="50"
+              MinWidth="50"
+              BorderThickness="0">
+
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <StackPanel>
+                    <Expander Background="White"
+                              Header="{Binding}"
+                              Content="{Binding}">
+
+                        <Expander.HeaderTemplate>
+                            <DataTemplate>
+                                <Grid Background="CornflowerBlue"
+                                      HorizontalAlignment="{Binding Path=HorizontalAlignment, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentPresenter}}, Mode=OneWayToSource}" >
+                                    <DockPanel Margin="0 5 0 0">
+                                        <TextBlock x:Name="MemberNameTextBlock" 
+                                                   Text="{Binding MemberName}"
+                                                   Grid.Column="1"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Style="{DynamicResource NameStyle}"/>
+                                    </DockPanel>
+
+                                </Grid>
+                            </DataTemplate>
+                        </Expander.HeaderTemplate>
+
+                        <Expander.ContentTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="7*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                        <RowDefinition Height="*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    
+                                    <Border x:Name="MemberAvatarBorder"
+                                            Height="250" MinHeight="50"
+                                            Width="200" MinWidth="50"
+                                            CornerRadius="15"
+                                            BorderThickness="5"
+                                            Grid.Column="0"
+                                            Grid.RowSpan="2">
+                                        <Border.BorderBrush>
+                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                                <GradientStop Color="#91EAE4" Offset="0.0" />
+                                                <GradientStop Color="#20e3b2" Offset="0.25" />
+                                                <GradientStop Color="#0cebeb" Offset="0.75" />
+                                            </LinearGradientBrush>
+                                        </Border.BorderBrush>
+                                        <Border.Background>
+                                            <ImageBrush x:Name="MemberAvatarImage" 
+                                                        ImageSource="{Binding MemberAvatar}"
+                                                        RenderOptions.BitmapScalingMode="HighQuality"
+                                                        Stretch="UniformToFill"></ImageBrush>
+                                        </Border.Background>
+                                    </Border>
+
+                                    <TextBlock Text="{Binding MemberName}"
+                                               Grid.Row="0"
+                                               Grid.Column="1"
+                                               Background="Aquamarine"></TextBlock>
+
+                                    <TextBlock x:Name="MemberDOBTextBlock"
+                                               Text="{Binding MemberDOB}"
+                                               Grid.Row="1"
+                                               Grid.Column="1"></TextBlock>
+                                    
+                                </Grid>
+                            </DataTemplate>
+                        </Expander.ContentTemplate>
+                    </Expander>
+                </StackPanel>
+
+            </DataTemplate>
+
+        </ListView.ItemTemplate>
+
+    </ListView>
+
+
+</Page>

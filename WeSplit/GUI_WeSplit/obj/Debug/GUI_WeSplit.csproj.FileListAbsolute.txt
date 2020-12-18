@@ -1,0 +1,63 @@
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\GUI_WeSplit.exe.config
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\GUI_WeSplit.exe
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\GUI_WeSplit.pdb
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\BUS_WeSplit.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\DTO_WeSplit.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\BUS_WeSplit.pdb
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\DTO_WeSplit.pdb
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csprojAssemblyReference.cache
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\MainWindow.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\MemberListPage.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\App.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit_MarkupCompile.cache
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit_MarkupCompile.lref
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\MainWindow.baml
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\MemberListPage.baml
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.g.resources
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.Properties.Resources.resources
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.GenerateResource.cache
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CoreCompileInputs.cache
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CopyComplete
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.exe
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.pdb
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\DAO_WeSplit.dll
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\DAO_WeSplit.pdb
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\TripDetailPage.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\TripDetailPage.baml
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\HomePage.g.cs
+C:\Users\WinXs\OneDrive - VNU-HCMUS\Uni\Nam 3 - HKI\Lap trinh Windows\Do an 2 - WeSplit\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\HomePage.baml
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csprojAssemblyReference.cache
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\HomePage.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\MainWindow.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\MemberListPage.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\TripDetailPage.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\App.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit_MarkupCompile.cache
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit_MarkupCompile.lref
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.exe
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.pdb
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\CreateTripPage.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\SearchPage.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GeneratedInternalTypeHelper.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\GUI_WeSplit.exe.config
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\GUI_WeSplit.exe
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\GUI_WeSplit.pdb
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\BUS_WeSplit.dll
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\DTO_WeSplit.dll
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\DAO_WeSplit.dll
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\BUS_WeSplit.pdb
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\DTO_WeSplit.pdb
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\bin\Debug\DAO_WeSplit.pdb
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\LabelTextBox.baml
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\LabelTextBox.g.cs
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\CreateTripPage.baml
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\HomePage.baml
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\MainWindow.baml
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\MemberListPage.baml
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\SearchPage.baml
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\TripDetailPage.baml
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.g.resources
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.Properties.Resources.resources
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.GenerateResource.cache
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CoreCompileInputs.cache
+F:\LapTrinhWindows\WeSplit-App\WeSplit\GUI_WeSplit\obj\Debug\GUI_WeSplit.csproj.CopyComplete

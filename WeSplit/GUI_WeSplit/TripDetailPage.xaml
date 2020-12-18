@@ -1,0 +1,183 @@
+﻿<Page x:Class="GUI_WeSplit.TripDetailPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GUI_WeSplit"
+      mc:Ignorable="d" 
+      d:DesignHeight="{Binding SystemParameters.PrimaryScreenHeight}" 
+      d:DesignWidth="{Binding SystemParameters.PrimaryScreenWidth}"
+      Title="TripDetailPage" Loaded="Page_Loaded">
+
+    <Page.Resources>
+        <Style x:Key="SidebarStyle"
+               TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="TextBlock.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.5"
+                                             From="20"
+                                             To="22"
+                                             Storyboard.TargetProperty="(TextBlock.FontSize)"></DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="TextBlock.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.5"
+                                             From="22"
+                                             To="20"
+                                             Storyboard.TargetProperty="(TextBlock.FontSize)"></DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+            
+        </Style>
+
+        <Style x:Key="SidebarHoverStyle"
+               TargetType="Button">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel x:Name="Sidebar"
+                 HorizontalAlignment="Left"
+                    VerticalAlignment="Stretch"
+                 Width="50"
+                 Panel.ZIndex="5"
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+
+            <StackPanel.Triggers>
+                <EventTrigger RoutedEvent="StackPanel.MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.5" 
+                                             From="50"
+                                             To="220" 
+                                             Storyboard.TargetName="Sidebar"
+                                             Storyboard.TargetProperty="(StackPanel.Width)"></DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="StackPanel.MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Duration="0:0:0.5" 
+                                             From="220"
+                                             To="50" 
+                                             Storyboard.TargetName="Sidebar"
+                                             Storyboard.TargetProperty="(StackPanel.Width)"></DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </StackPanel.Triggers>
+
+            <StackPanel x:Name="GeneralInfoButton"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        PreviewMouseDown="GeneralInfoButton_Click"
+                        Height="50">
+                <Image Source="Images/Rina002.png"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Stretch="UniformToFill"
+                       Height="50" 
+                       Width="50"/>
+                <TextBlock Text=" "></TextBlock>
+                <Border Height="50" Background="Transparent">
+                    <TextBlock Style="{DynamicResource SidebarStyle}">Thông tin chung</TextBlock>
+                </Border>
+            </StackPanel>
+
+            <StackPanel x:Name="MemberListButton"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        PreviewMouseDown="MemberListButton_PreviewMouseDown">
+                <Image Source="Images/Rina002.png"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Stretch="UniformToFill"
+                       Height="50" 
+                       Width="50"/>
+                <TextBlock Text=" "></TextBlock>
+                <Border Height="50" Background="Transparent">
+                    <TextBlock Style="{DynamicResource SidebarStyle}">Thành viên</TextBlock>
+                </Border>
+            </StackPanel>
+
+            <StackPanel x:Name="DestinationListButton"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        PreviewMouseDown="DestinationListButton_PreviewMouseDown">
+                <Image Source="Images/Rina002.png"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Stretch="UniformToFill"
+                       Height="50" 
+                       Width="50"/>
+                <TextBlock Text=" "></TextBlock>
+                <Border Height="50" Background="Transparent">
+                    <TextBlock Style="{DynamicResource SidebarStyle}">Địa điểm đi qua</TextBlock>
+                </Border>
+            </StackPanel>
+
+            <StackPanel x:Name="ExpenseHistoryButton"
+                        Orientation="Horizontal"
+                        VerticalAlignment="Center"
+                        PreviewMouseDown="ExpenseHistoryButton_PreviewMouseDown">
+
+                <Image Source="Images/Rina002.png"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Stretch="UniformToFill"
+                       Height="50" 
+                       Width="50"/>
+                <TextBlock Text=" "></TextBlock>
+                <Border Height="50" Background="Transparent">
+                    <TextBlock Style="{DynamicResource SidebarStyle}">Lịch sử chi tiêu</TextBlock>
+                </Border>
+
+            </StackPanel>
+        </StackPanel>
+
+
+        <Grid Grid.Column="1"
+              Width="4">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="50"/>
+            </Grid.RowDefinitions>
+
+            <Border x:Name="ActiveIndicator"
+                    Background="Pink"
+                    Grid.Row="0"></Border>
+        </Grid>
+
+        <Frame x:Name="TripDetailFrame"
+               NavigationUIVisibility="Hidden"
+               Grid.Column="2">
+
+        </Frame>
+    </Grid>
+</Page>
