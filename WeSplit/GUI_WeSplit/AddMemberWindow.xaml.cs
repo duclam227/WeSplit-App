@@ -26,9 +26,6 @@ namespace GUI_WeSplit
         private string _memberName;
         private DateTime _dateOfBirth;
 
-        public EventHandler<AddNewMemberEventArgs> AddNewMemberEventHandler;
-
-        
         public string AvatarSrc { get => _avatarSrc; set => _avatarSrc = value; }
         public string MemberName { get => _memberName; set => _memberName = value; }
         public DateTime DateOfBirth { get => _dateOfBirth; set => _dateOfBirth = value; }
@@ -72,28 +69,22 @@ namespace GUI_WeSplit
 
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)
         {
-            if (AddNewMemberEventHandler != null)
-            {
-                if (!String.IsNullOrWhiteSpace(AvatarSrc) &&
-                    !String.IsNullOrWhiteSpace(_dateOfBirth.ToShortDateString()))
-                {
-                    _member.MemberAvatar = AvatarSrc;
-                    _member.MemberDOB = _dateOfBirth;
-                    _member.MemberName = MemberName;
-                    _member.MemberSex = (bool)Radio_Male.IsChecked;
-                    AddNewMemberEventHandler(this, new AddNewMemberEventArgs(_member));
-                    this.Close();
-                }
-            }  
-        }
+            bool canReturn = true;
 
-        public class AddNewMemberEventArgs : EventArgs
-        {
-            DTO_Member newMember;
-            public AddNewMemberEventArgs(DTO_Member member)
+            if (String.IsNullOrWhiteSpace(AvatarSrc) || _dateOfBirth == null
+                || String.IsNullOrWhiteSpace(MemberName) )
+                canReturn = false;
+
+            if (canReturn)
             {
-                this.newMember = member;
+                _member.MemberAvatar = AvatarSrc;
+                _member.MemberDOB = _dateOfBirth;
+                _member.MemberName = MemberName;
+                _member.MemberSex = (bool)Radio_Male.IsChecked;
+                BUS_WeSplit.BUS_Member.Instance.AddMember(_member);
+                this.Close();
             }
+
         }
     }
 }
