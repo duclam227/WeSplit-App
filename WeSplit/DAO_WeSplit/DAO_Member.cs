@@ -116,5 +116,16 @@ namespace DAO_WeSplit
 
             return data;
         }
+
+        public void AddMember(DTO_Member member)
+        {
+            string addMember = "insert into dbo.Member(MemberID, MemberName, MemberDOB, MemberSex, MemberAvatar) values " +
+                $"({member.MemberID}, N'{member.MemberName}', '{member.MemberDOB}', {member.MemberSex}, '{member.MemberAvatar}')";
+
+            _conn.Open();
+            SqlCommand cmd = new SqlCommand(addMember, _conn);
+            cmd.ExecuteNonQuery();
+            _conn.Close();
+        }
     }
 }

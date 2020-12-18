@@ -166,6 +166,10 @@ namespace BUS_WeSplit
             DAO_Member.Instance.DeleteMemberPerTrip(tripId, memberId);
         }
 
+        public void AddMember(DTO_Member member)
+        {
+            DAO_Member.Instance.AddMember(member);
+        }
 
     }
 }
