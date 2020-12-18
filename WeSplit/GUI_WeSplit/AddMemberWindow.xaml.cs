@@ -36,7 +36,7 @@ namespace GUI_WeSplit
             DataContext = this;
             _member = new DTO_Member()
             {
-                MemberID = memberId
+                MemberID = memberId + 1
             };
         }
 
@@ -52,6 +52,7 @@ namespace GUI_WeSplit
             {
                 BitmapImage img = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
                 AvatarImg.Source = img;
+                AvatarSrc = openFileDialog.FileName;
                 AvatarImg.Visibility = Visibility.Visible;
                 Gravatar.Visibility = Visibility.Hidden;
                 Button_RemoveAvatar.Visibility = Visibility.Visible;
@@ -62,6 +63,7 @@ namespace GUI_WeSplit
         private void Button_RemoveAvatar_Click(object sender, RoutedEventArgs e)
         {
             AvatarImg.Source = null;
+            AvatarSrc = null;
             AvatarImg.Visibility = Visibility.Hidden;
             Gravatar.Visibility = Visibility.Visible;
             Button_RemoveAvatar.Visibility = Visibility.Hidden;
@@ -73,7 +75,7 @@ namespace GUI_WeSplit
             bool canReturn = true;
 
             if (String.IsNullOrWhiteSpace(AvatarSrc) || DateOfBirth == null
-                || String.IsNullOrWhiteSpace(MemberName) )
+                || String.IsNullOrWhiteSpace(LabelTextBox_Name.Text))
                 canReturn = false;
 
             if (canReturn)
@@ -83,12 +85,16 @@ namespace GUI_WeSplit
                 dir += $@"resources\avatars\{_member.MemberID}\";
                 BUS_WeSplit.Utilities.CopyFile(AvatarSrc, dir);
                 dir += filename;
-                _member.MemberAvatar = dir;
+                _member.MemberAvatar = filename;
                 _member.MemberDOB = DateOfBirth;
                 _member.MemberName = MemberName;
                 _member.MemberSex = (bool)Radio_Male.IsChecked;
                 BUS_WeSplit.BUS_Member.Instance.AddMember(_member);
                 this.Close();
+            }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Bạn chưa điền đủ thông tin");
             }
 
         }

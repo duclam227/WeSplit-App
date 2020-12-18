@@ -33,6 +33,13 @@ namespace BUS_WeSplit
                 string avatar = row["MemberAvatar"].ToString();
 
                 DTO_Member tmpMember = new DTO_Member(id, name, dob, sex, avatar);
+                
+                string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+                dir += $@"resources\avatars\{tmpMember.MemberID}\";
+                dir += avatar;
+
+                tmpMember.MemberAvatar = dir;
+
                 result.Add(tmpMember);
             }
 

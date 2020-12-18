@@ -119,8 +119,14 @@ namespace DAO_WeSplit
 
         public void AddMember(DTO_Member member)
         {
+            int mS = 0;
+            if(member.MemberSex == true)
+            {
+                mS = 1;
+            }
+
             string addMember = "insert into dbo.Member(MemberID, MemberName, MemberDOB, MemberSex, MemberAvatar) values " +
-                $"({member.MemberID}, N'{member.MemberName}', '{member.MemberDOB}', {member.MemberSex}, '{member.MemberAvatar}')";
+                $"({member.MemberID}, N'{member.MemberName}', '{member.MemberDOB}', {mS}, '{member.MemberAvatar}')";
 
             _conn.Open();
             SqlCommand cmd = new SqlCommand(addMember, _conn);
