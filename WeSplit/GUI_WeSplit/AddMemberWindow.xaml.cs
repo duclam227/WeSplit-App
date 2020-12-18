@@ -33,6 +33,7 @@ namespace GUI_WeSplit
         public AddMemberWindow(int memberId)
         {
             InitializeComponent();
+            DataContext = this;
             _member = new DTO_Member()
             {
                 MemberID = memberId
@@ -71,14 +72,17 @@ namespace GUI_WeSplit
         {
             bool canReturn = true;
 
-            if (String.IsNullOrWhiteSpace(AvatarSrc) || _dateOfBirth == null
-                || String.IsNullOrWhiteSpace(LabelTextBox_Name.Text) )
+            if (String.IsNullOrWhiteSpace(AvatarSrc) || DateOfBirth == null
+                || String.IsNullOrWhiteSpace(MemberName) )
                 canReturn = false;
 
             if (canReturn)
             {
+                string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+                dir += $@"resources\avatars\{_member.MemberID}\";
+                BUS_WeSplit.Utilities.CopyFile(AvatarSrc, dir); 
                 _member.MemberAvatar = AvatarSrc;
-                _member.MemberDOB = _dateOfBirth;
+                _member.MemberDOB = DateOfBirth;
                 _member.MemberName = MemberName;
                 _member.MemberSex = (bool)Radio_Male.IsChecked;
                 BUS_WeSplit.BUS_Member.Instance.AddMember(_member);
