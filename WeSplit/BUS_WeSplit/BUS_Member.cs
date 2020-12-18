@@ -67,6 +67,18 @@ namespace BUS_WeSplit
             return result;
         }
 
+        public int GetAmountOfMember(int tripID)
+        {
+            int result;
+            DataTable data = DAO_Member.Instance.GetAmountOfMember(tripID);
+
+            DataRow row = data.Rows[0];
+
+            result = int.Parse(row["Amount"].ToString());
+
+            return result;
+        }
+
         public List<Tuple<DTO_Member, double?, double?>> GetMembersOfTrip(int tripID)
         {
             DataTable data = new DataTable();
@@ -93,7 +105,7 @@ namespace BUS_WeSplit
                 double? change = 0;
                 if (tmpString != "")
                 {
-                    paid = double.Parse(tmpString);
+                    change = double.Parse(tmpString);
                 }
 
                 DTO_Member tmpMember = new DTO_Member(id, name, dob, sex, avatar);
@@ -122,9 +134,38 @@ namespace BUS_WeSplit
             return result;
         }
 
+        public List<DTO_Member> GetAvailableMembers(int tripID)
+        {
+            List<DTO_Member> result = new List<DTO_Member>();
+            DataTable data = new DataTable();
+
+            data = DAO_Member.Instance.GetAvailableMembers(tripID);
+
+            foreach (DataRow row in data.Rows)
+            {
+                int id = int.Parse(row["MemberID"].ToString());
+                string name = row["MemberName"].ToString();
+                DateTime dob = (DateTime)row["MemberDOB"];
+                bool sex = (bool)row["MemberSex"];
+                string avatar = row["MemberAvatar"].ToString();
+
+                DTO_Member tmpMember = new DTO_Member(id, name, dob, sex, avatar);
+                result.Add(tmpMember);
+            }
+
+            return result;
+        }
+
+        public void AddMemberPerTrip(int memberID, int tripId)
+        {
+            DAO_Member.Instance.AddMemberPerTrip(memberID, tripId);
+        }
+
         public void DeleteMemberPerTrip(int tripId, int memberId)
         {
             DAO_Member.Instance.DeleteMemberPerTrip(tripId, memberId);
         }
+
+
     }
 }

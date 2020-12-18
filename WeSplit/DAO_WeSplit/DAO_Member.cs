@@ -52,19 +52,23 @@ namespace DAO_WeSplit
         public void AddMemberPerTrip(int memberId, int tripId)
         {
             string addMemberPerTrip =
-                "insert into dbo.MemberPerTrip(TripID, MemberID) values " +
-                $"('{tripId}', '{memberId}')";
+                "insert into dbo.MemberPerTrip(TripID, MemberID, Paid) values " +
+                $"('{tripId}', '{memberId}', 0)";
 
+            _conn.Open();
             SqlCommand cmd = new SqlCommand(addMemberPerTrip, _conn);
             cmd.ExecuteNonQuery();
+            _conn.Close();
         }
 
-        public void DeleteMemberPerTrip(int memberId, int tripId)
+        public void DeleteMemberPerTrip(int tripId, int memberId)
         {
-            string addMemberPerTrip = $"delete from dbo.MemberPerTrip where MemberID = {memberId} and TripID = {tripId};";
+            string deleteMemberPerTrip = $"delete from MemberPerTrip where MemberID = {memberId} and TripID = {tripId}";
 
-            SqlCommand cmd = new SqlCommand(addMemberPerTrip, _conn);
+            _conn.Open();
+            SqlCommand cmd = new SqlCommand(deleteMemberPerTrip, _conn);
             cmd.ExecuteNonQuery();
+            _conn.Close();
         }
 
         public DataTable GetAmountOfMember()
@@ -78,10 +82,34 @@ namespace DAO_WeSplit
             return data;
         }
 
+        public DataTable GetAmountOfMember(int tripID)
+        {
+            DataTable data = new DataTable();
+            string query = $"select count(MemberID) as Amount from MemberPerTrip where TripID = {tripID}";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(data);
+
+            return data;
+        }
+
         public DataTable GetMembersOfTrip(int tripID)
         {
             DataTable data = new DataTable();
-            string query = $"select * from Member, MemberPerTrip where Member.MemberID = MemberPerTrip.MemberID and TripID = {tripID}";
+            string query = $"select MPT.MemberID, MPT.TripID, MPT.Paid, MPT.Paid - T.TripAverage as Change, MPT.Paid, MPT.TripID, MPT.MemberID, M.MemberName, M.MemberDOB, M.MemberSex, M.MemberAvatar " +
+                $"from MemberPerTrip MPT, Trip T, Member M " +
+                $"where MPT.TripID = T.TripID and T.TripID = {tripID} and M.MemberID = MPT.MemberID";
+
+            SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
+            adapter.Fill(data);
+
+            return data;
+        }
+
+        public DataTable GetAvailableMembers(int tripID)
+        {
+            DataTable data = new DataTable();
+            string query = $"select * from Member where MemberID not in (select Member.MemberID from Member, MemberPerTrip where Member.MemberID = MemberPerTrip.MemberID and MemberPerTrip.TripID = {tripID})";
 
             SqlDataAdapter adapter = new SqlDataAdapter(query, _conn);
             adapter.Fill(data);

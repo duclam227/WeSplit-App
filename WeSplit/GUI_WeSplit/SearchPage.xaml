@@ -120,7 +120,7 @@
                   Background="Transparent"
                   SelectionChanged="ResultDataGrid_SelectionChanged"
                   Visibility="Collapsed"
-                  RowHeaderWidth="50">
+                  RowHeaderWidth="0">
                 <DataGrid.RowHeaderTemplate>
                     <DataTemplate>
                         <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>

@@ -64,6 +64,33 @@ namespace DAO_WeSplit
             }
         }
 
+        public void AddExpense(DTO_Expense expense, int tripID)
+        {
+            try
+            {
+                _conn.Open();
+            }
+            catch (Exception ex)
+            {
+
+            }
+            string addExpense =
+                "insert into dbo.Expense(TripID, ExpenseID, ExpenseMoney, ExpenseMember, ExpenseDescription, ExpenseDate) values " +
+                $"({tripID}, {expense.ExpenseId + 1}, {expense.ExpenseMoney}, {expense.ExpenseMember}, N'{expense.ExpenseDescription}', '{expense.ExpenseDate}')";
+
+            SqlCommand cmd = new SqlCommand(addExpense, _conn);
+            cmd.ExecuteNonQuery();
+
+            try
+            {
+                _conn.Close();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         public void DeleteExpense(DTO_Expense expense)
         {
             try

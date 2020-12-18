@@ -16,6 +16,8 @@ using System.Windows.Shapes;
 using DTO_WeSplit;
 using BUS_WeSplit;
 using System.Collections.ObjectModel;
+using System.IO;
+using Path = System.IO.Path;
 
 namespace GUI_WeSplit
 {
@@ -30,7 +32,9 @@ namespace GUI_WeSplit
         ObservableCollection<DTO_Place> PlaceList;
         ObservableCollection<DTO_Expense> ExpenseList;
         ObservableCollection<BitmapImage> ImagesList;
-        
+        ObservableCollection<DTO_Member> AvailableMemberList;
+        ObservableCollection<Tuple<DTO_Member, double?, double?>> MemberList;
+
         public TripDetailPage()
         {
             InitializeComponent();
@@ -39,6 +43,9 @@ namespace GUI_WeSplit
         public TripDetailPage(int id)
         {
             InitializeComponent();
+
+            AvailableMemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAvailableMembers(id));
+
             trip = BUS_WeSplit.BUS_Trip.Instance.GetTripByID(id);
             listOfMember = BUS_WeSplit.BUS_Member.Instance.GetMembersOfTrip(id);
             trip.TripMemberList = BUS_Member.Instance.GetMembersPerTrip(id);
@@ -50,27 +57,29 @@ namespace GUI_WeSplit
             this.DataContext = trip;
             PlaceList = new ObservableCollection<DTO_Place>(trip.TripDestinationList);
             ExpenseList  = new ObservableCollection<DTO_Expense>(trip.TripExpenseList);
+            MemberList = new ObservableCollection<Tuple<DTO_Member, double?, double?>>(BUS_Member.Instance.GetMembersOfTrip(trip.TripId).ToList());
+            ImagesList = new ObservableCollection<BitmapImage>(BUS_Trip.Instance.GetImagesOfTrip(trip.TripId));
 
-            var temp = Utilities.FilePathListToBitmapImageList(trip.TripImagesList);
-            if (temp != null)
-            {
-                ImagesList = new ObservableCollection<BitmapImage>(temp);
-            } 
-            else
-            {
-                ImagesList = new ObservableCollection<BitmapImage>();
-            }
+            //var temp = Utilities.FilePathListToBitmapImageList(trip.TripImagesList);
+            //if (temp != null)
+            //{
+            //    ImagesList = new ObservableCollection<BitmapImage>(temp);
+            //} 
+            //else
+            //{
+            //    ImagesList = new ObservableCollection<BitmapImage>();
+            //}
 
             PlaceListDataGrid.ItemsSource = PlaceList;
             ExpenseListDataGrid.ItemsSource = ExpenseList;
             TripImagesCarousel.ItemsSource = ImagesList;
-            MemberListDataGrid.ItemsSource = listOfMember.ToList();
-
+            MemberListDataGrid.ItemsSource = MemberList;
+            AvailableMembersList.ItemsSource = AvailableMemberList;
         }
 
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
         {
-            AddExpenseWindow addExpenseWindow = new AddExpenseWindow(trip.TripId, trip.TripExpenseList.Count(), trip.TripMemberList);
+            AddExpenseWindow addExpenseWindow = new AddExpenseWindow(trip.TripId, ExpenseList.Count(), trip.TripMemberList);
             addExpenseWindow.AddExpenseEventHandler += (s, args) =>
              {
                  DTO_Expense newExpense = args.NewExpense;
@@ -78,6 +87,8 @@ namespace GUI_WeSplit
                  ExpenseList.Add(newExpense);
              };
             addExpenseWindow.ShowDialog();
+
+            RefreshMemberList();
         }
 
         private void Button_AddDestination_Click(object sender, RoutedEventArgs e)
@@ -95,6 +106,14 @@ namespace GUI_WeSplit
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)
         {
             //todo: Add Member bằng cách GetAll trừ đi đã có
+            DTO_Member selected = (DTO_Member)AvailableMembersList.SelectedItem;
+            if (selected != null)
+            {
+                AvailableMemberList.Remove(selected);
+                BUS_Member.Instance.AddMemberPerTrip(selected.MemberID, trip.TripId);
+
+                RefreshMemberList();
+            }
         }
 
         private void Button_AddImage_Click(object sender, RoutedEventArgs e)
@@ -109,9 +128,15 @@ namespace GUI_WeSplit
             {
                 string filename = openFileDialog.FileName;
                 BitmapImage img = new BitmapImage(new Uri(filename, UriKind.Absolute));
-                trip.AddImage(filename);
+
+                string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+                dir += $@"resources\{trip.TripId}";
+                Utilities.CopyFile(filename, dir);
+                //trip.AddImage(filename);
                 ImagesList.Add(img);
-            }
+                BUS_Trip.Instance.AddImageToTrip(trip.TripId, ImagesList.Count() - 1, System.IO.Path.GetFileName(filename));
+            }         
+
         }
 
         private void MemberListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -158,11 +183,13 @@ namespace GUI_WeSplit
 
         private void Button_DeleteMember_Click(object sender, RoutedEventArgs e)
         {
-            //foreach (var item in MemberListDataGrid.SelectedItems)
-            //{
-            //    DTO_Member member = (DTO_Member)item;
-            //    BUS_Member.Instance.DeleteMemberPerTrip(trip.TripId, member.MemberID);
-            //}
+            foreach (var item in MemberListDataGrid.SelectedItems)
+            {
+                Tuple<DTO_Member, double?, double?> member = (Tuple<DTO_Member, double?, double?>)item;
+                BUS_Member.Instance.DeleteMemberPerTrip(trip.TripId, member.Item1.MemberID);
+            }
+
+            RefreshMemberList();
         }
 
         private void Button_DeleteDestination_Click(object sender, RoutedEventArgs e)
@@ -183,6 +210,8 @@ namespace GUI_WeSplit
                 BUS_Expense.Instance.DeleteExpense((DTO_Expense)item);
                 ExpenseList.Remove((DTO_Expense)item);
             }
+
+            RefreshMemberList();
         }
 
         private void PlaceListDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
@@ -222,5 +251,18 @@ namespace GUI_WeSplit
                 }
             }
         }
+
+        private void RefreshMemberList()
+        {
+            BUS_Trip.Instance.AddAverageToTrip(trip.TripId, BUS_Trip.Instance.CalculateAverage(trip.TripId));
+
+            trip.TripMemberList = BUS_Member.Instance.GetMembersPerTrip(trip.TripId);
+            MemberList = new ObservableCollection<Tuple<DTO_Member, double?, double?>>(BUS_Member.Instance.GetMembersOfTrip(trip.TripId).ToList());
+            MemberListDataGrid.ItemsSource = MemberList;
+
+            AverageTextBlock.Text = BUS_Trip.Instance.CalculateAverage(trip.TripId).ToString();
+            TotalTextBlock.Text = BUS_Trip.Instance.GetExpenseTotal(trip.TripId).ToString();
+        }
     }
+
 }

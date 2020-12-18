@@ -45,7 +45,7 @@ namespace GUI_WeSplit
             {
                 case "newtrip":
                     {
-                        int noOfTrips = 0;
+                        int noOfTrips = BUS_WeSplit.BUS_Trip.Instance.GetNumberOfTrips();
                         CreateTripPage addTrip = new CreateTripPage(noOfTrips);
                         MainFrame.Navigate(addTrip);
                         break;

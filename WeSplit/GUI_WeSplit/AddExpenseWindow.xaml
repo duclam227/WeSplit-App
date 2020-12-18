@@ -10,7 +10,7 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="AddExpenseWindow" Height="470" Width="400"
-        ShowInTaskbar="False">
+        ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
 
     <Grid>
         <Grid.RowDefinitions>

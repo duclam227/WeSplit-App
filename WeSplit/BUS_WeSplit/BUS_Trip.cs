@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using DTO_WeSplit;
 using DAO_WeSplit;
 using System.Data;
+using System.IO;
+using System.Windows.Media.Imaging;
 
 namespace BUS_WeSplit
 {
@@ -56,8 +58,23 @@ namespace BUS_WeSplit
                 }
 
                 DTO_Trip tmpTrip = new DTO_Trip(id, name, date, description, expenseTotal, average, status);
+                tmpTrip.TripImagesList = GetImagesOfTripAsStrings(id);
+
                 result.Add(tmpTrip);
             }
+            return result;
+        }
+
+        public int GetNumberOfTrips()
+        {
+            int result;
+            DataTable data = new DataTable();
+
+            data = DAO_Trip.Instance.GetNumberOfTrips();
+            DataRow row = data.Rows[0];
+
+            result = int.Parse(row["Amount"].ToString());
+
             return result;
         }
 
@@ -131,6 +148,7 @@ namespace BUS_WeSplit
 
             return result;
         }
+
         public List<DTO_Trip> SearchTripsByName(String tripName)
         {
             DataTable data;
@@ -170,6 +188,7 @@ namespace BUS_WeSplit
 
             result.TripDestinationList = BUS_Place.GetPlacesOfTrip(id);
             result.TripExpenseList = BUS_Expense.GetExpensesOfTrip(id);
+            result.TripImagesList = GetImagesOfTripAsStrings(id);
 
             return result;
         }
@@ -192,18 +211,111 @@ namespace BUS_WeSplit
             foreach (DTO_Expense expense in trip.TripExpenseList)
             {
                 amount += expense.ExpenseMoney;
-                DAO_Expense.Instance.AddExpense(expense);
+                DAO_Expense.Instance.AddExpense(expense, trip.TripId);
             }
 
+            int i = 0;
             foreach (string imagePath in trip.TripImagesList)
             {
                 string dir = System.AppDomain.CurrentDomain.BaseDirectory;
-                dir += $"resources/{trip.TripId}";
+                dir += $@"resources\{trip.TripId}";
                 Utilities.CopyFile(imagePath, dir);
+
+                DAO_Trip.Instance.AddImageToTrip(trip.TripId, i, Path.GetFileName(imagePath));
+                i++;
+            }
+        }
+
+        public double CalculateAverage(int tripID)
+        {
+            double result;
+            int noOfMembers = BUS_Member.Instance.GetAmountOfMember(tripID);
+            if(noOfMembers == 0)
+            {
+                result = 0;
+            }
+            else
+            {
+                int expenseTotal = GetExpenseTotal(tripID);
+
+                result = expenseTotal / noOfMembers;
+            }
+            
+            return result;
+        }
+
+        public void AddAverageToTrip(int tripID, double average)
+        {
+            DAO_Trip.Instance.AddAverageToTrip(tripID, average);
+        }
+
+        public int GetExpenseTotal(int tripID)
+        {
+            int result;
+
+            DataTable data = DAO_Trip.Instance.GetExpenseTotal(tripID);
+
+            DataRow row = data.Rows[0];
+
+            result = int.Parse(row["TripExpenseTotal"].ToString());
+
+            return result;
+        }
+    
+        public void AddImageToTrip(int tripID, int imageID, string filename)
+        {
+            DAO_Trip.Instance.AddImageToTrip(tripID, imageID, filename);
+        }
+
+        public List<BitmapImage> GetImagesOfTrip(int tripID)
+        {
+            List<BitmapImage> result = new List<BitmapImage>();
+
+            DataTable data = DAO_Trip.Instance.GetImagesOfTrip(tripID);
+
+            foreach(DataRow row in data.Rows)
+            {
+                string tmpName = row["ImageName"].ToString();
+                string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+                dir += $@"resources\{tripID}\";
+                string filepath = dir + tmpName;
+                BitmapImage tmpImage = new BitmapImage(new Uri(filepath, UriKind.Absolute));
+                result.Add(tmpImage);
             }
 
-            //todo: change trip expense total to variable 'amount' and change trip average
+            return result;
+        }
 
+        public List<string> GetImagesOfTripAsStrings(int tripID)
+        {
+            List<string> result = new List<string>();
+
+            DataTable data = DAO_Trip.Instance.GetImagesOfTrip(tripID);
+
+            foreach (DataRow row in data.Rows)
+            {
+                string tmpName = row["ImageName"].ToString();
+                string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+                dir += $@"resources\{tripID}\";
+                string filepath = dir + tmpName;
+                result.Add(filepath);
+            }
+
+            return result;
+        }
+
+        public string GetHeaderImage(int tripID)
+        {
+            string result;
+            DataTable data = DAO_Trip.Instance.GetImagesOfTrip(tripID);
+            DataRow row = data.Rows[0];
+
+            string tmpName = row["ImageName"].ToString();
+            string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+            dir += $@"resources\{tripID}\";
+            result = dir + tmpName;
+
+            return result;
         }
     }
 }

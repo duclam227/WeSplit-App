@@ -161,6 +161,24 @@
                            HorizontalAlignment="Left"
                            Margin="6 0 0 0"/>
 
+                            <ComboBox Name="AvailableMembersList"
+                              Style="{StaticResource ComboBoxExtend}"
+                              MinWidth="180"
+                                      HorizontalAlignment="Center">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30"></ColumnDefinition>
+                                                <ColumnDefinition Width="auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock Grid.Column="1" Text="{Binding MemberName}"></TextBlock>
+
+                                        </Grid>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            
                             <Button Name="Button_AddMember"
                                     HorizontalAlignment="Right"                                
                                     Style="{DynamicResource ButtonPrimary}"
@@ -201,17 +219,34 @@
                                 <DataGridTextColumn CanUserResize="True"
                                             Header="Ngày sinh"
                                             Binding="{Binding Item1.MemberDOB, Converter={StaticResource DateTimeToStringConverter}}"
-                                            Width="2*"/>
+                                            Width="1*"/>
                                 <DataGridTextColumn CanUserResize="True"
                                             Header="Số tiền ứng"
                                             Binding="{Binding Item2}"
                                             Width="1*"/>
                                 <DataGridTextColumn CanUserResize="True"
-                                            Header="Số tiền được trả"
+                                            Header="Số tiền nhận"
                                             Binding="{Binding Item3}"
                                             Width="1*"/>
                             </DataGrid.Columns>
                         </DataGrid>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Trung bình 1 người: "
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       FontSize="15"
+                                       HorizontalAlignment="Left"
+                                       Margin="6 0 0 0"/>
+                            <TextBlock x:Name="AverageTextBlock"
+                                       Text="{Binding TripAverage}"
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       FontSize="14"
+                                       VerticalAlignment="Bottom"/>
+                            <TextBlock Text=" VND"
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       FontSize="14"
+                                       VerticalAlignment="Bottom"/>
+                        </StackPanel>
                     </StackPanel>
                 </Border>
 
@@ -296,6 +331,7 @@
                            Style="{DynamicResource SubTitleStyle}"
                            HorizontalAlignment="Left"
                            Margin="6 0 0 0"/>
+
                             <Button Name="Button_AddExpense"
                                     HorizontalAlignment="Right"                                
                                     Style="{DynamicResource ButtonPrimary}"
@@ -347,6 +383,24 @@
                                             Width="3*"/>
                             </DataGrid.Columns>
                         </DataGrid>
+
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Tổng tiền đã chi: "
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       FontSize="15"
+                                        HorizontalAlignment="Left"
+                                       Margin="6 0 0 0"/>
+                            <TextBlock x:Name="TotalTextBlock"
+                                       Text="{Binding TripExpenseTotal}"
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       FontSize="14"
+                                       VerticalAlignment="Bottom"/>
+                            <TextBlock Text=" VND"
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       FontSize="14"
+                                       VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                        
                     </StackPanel>
                 </Border>
 

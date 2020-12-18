@@ -40,6 +40,7 @@ namespace GUI_WeSplit
             listToShow.Clear();
             listToShow = BUS_WeSplit.BUS_Trip.Instance.GetFinishedTrips().ToList();
             FinishedTripListView.ItemsSource = listToShow;
+
         }
 
         private void FinishListButton_Click(object sender, RoutedEventArgs e)

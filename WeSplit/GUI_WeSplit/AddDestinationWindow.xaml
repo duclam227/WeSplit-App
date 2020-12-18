@@ -9,7 +9,8 @@
         xmlns:rules="clr-namespace:GUI_WeSplit.Validation"
 
         mc:Ignorable="d"
-        Title="AddDestinationWindow" Height="400" Width="400" ShowInTaskbar="False">
+        Title="AddDestinationWindow" Height="400" Width="400" 
+        ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>

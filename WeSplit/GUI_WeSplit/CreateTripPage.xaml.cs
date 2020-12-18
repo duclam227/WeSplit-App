@@ -111,14 +111,24 @@ namespace GUI_WeSplit
                 newTrip.TripName = TripName;
                 newTrip.TripDescription = TripDescription;
                 newTrip.TripStartDate = (DateTime)DatePicker_StartDate.SelectedDate;
-                newTrip.TripEndDate = (DateTime)DatePicker_EndDate.SelectedDate;
+                if(DatePicker_EndDate.SelectedDate != null)
+                {
+                    newTrip.TripEndDate = (DateTime)DatePicker_EndDate.SelectedDate;
+                    newTrip.TripStatus = false;
+                }
+                else
+                {
+                    newTrip.TripEndDate = null;
+                    newTrip.TripStatus = true;
+                }
                 newTrip.TripExpenseList = ExpenseList.ToList<DTO_Expense>();
                 newTrip.TripDestinationList = DestinationList.ToList<DTO_Place>();
                 newTrip.TripStatus = true;
                 newTrip.TripImagesList = imagesList;
-
+                newTrip.TripMemberList = MemberList.ToList();
 
                 BUS_Trip.Instance.AddTrip(newTrip);
+                BUS_Trip.Instance.AddAverageToTrip(newTrip.TripId, BUS_Trip.Instance.CalculateAverage(newTrip.TripId));
 
                 this.NavigationService.GoBack();
             }
@@ -136,7 +146,6 @@ namespace GUI_WeSplit
                 };
             addExpenseWindow.ShowDialog();
         }
-
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)
         {
             DTO_Member selected = (DTO_Member)ComboBox_MemberList.SelectedItem;
@@ -156,7 +165,6 @@ namespace GUI_WeSplit
               };
             addDestinationWindow.ShowDialog();
         }
-
         private void Button_AddImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
@@ -174,14 +182,10 @@ namespace GUI_WeSplit
                 
             }
         }
-
         private void LabelTextBox_TripName_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
-
-        
-
     }
     
 }
