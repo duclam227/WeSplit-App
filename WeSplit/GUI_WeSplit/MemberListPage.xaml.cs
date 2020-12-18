@@ -28,7 +28,7 @@ namespace GUI_WeSplit
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            MemberList.ItemsSource = BUS_Member.Instance.GetAllMembers().ToList();
+            MemberDataGrid.ItemsSource = BUS_Member.Instance.GetAllMembers().ToList();
         }
     }
 }

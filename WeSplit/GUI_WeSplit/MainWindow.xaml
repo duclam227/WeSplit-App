@@ -20,27 +20,34 @@
         <Color x:Key="ContentBorderBG">Black</Color>
         <SolidColorBrush x:Key="ContentForeground">white</SolidColorBrush>
 
-        <SolidColorBrush x:Key="MenuForeground">Black</SolidColorBrush>
+        <SolidColorBrush x:Key="MenuForeground">white</SolidColorBrush>
         <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
-        <System:Double x:Key="MainBorderOpacity">0.6</System:Double>
+        <System:Double x:Key="MainBorderOpacity">0.5</System:Double>
         <System:Double x:Key="ButtonSize">18</System:Double>
         
         
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource MenuForeground}"/>
-            <Setter Property="FontSize" Value="17.5"/>
+            <Setter Property="FontSize" Value="16"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
-        
-        
+
+        <Style x:Key="ButtonStyle"
+               TargetType="Border">
+            <Setter Property="CornerRadius" Value="20"/>
+            <Setter Property="Padding" Value="2"/>
+        </Style>
+
+
     </Window.Resources>
 
     <Grid ShowGridLines="False">
+        
         <Border CornerRadius="20"
                 Panel.ZIndex="2"
                 BorderBrush="White"
-                BorderThickness="2">
+                BorderThickness="1">
 
             <Grid>
                 <Grid.RowDefinitions>
@@ -101,7 +108,7 @@
                     <Border x:Name="ResizeButton"
                             Height="{DynamicResource ButtonSize}"
                             Width="{DynamicResource ButtonSize}"
-                            Background="#FEEA25"
+                            Background="#54FF27"
                             CornerRadius="50"
                             PreviewMouseDown="ResizeButton_PreviewMouseDown"
                             ToolTip="Thay đổi kích thước cửa sổ">
@@ -110,7 +117,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="#FEEA25"
+                                                From="#54FF27"
                                                 To="White"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="ResizeButton"></ColorAnimation>
@@ -123,23 +130,19 @@
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
                                                 From="White"
-                                                To="#FEEA25"
+                                                To="#54FF27"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="ResizeButton"></ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                         </Border.Triggers>
-                        <!--<Image x:Name="ResizeIcon"
-                       Source="Images/powerIcon.png"
-                       RenderOptions.BitmapScalingMode="HighQuality"
-                       Height="15" Margin="0 0 0 1"/>-->
                     </Border>
                     <TextBlock Text=" "/>
                     <Border x:Name="MinimizeButton"
                             Height="{DynamicResource ButtonSize}"
                             Width="{DynamicResource ButtonSize}"
-                            Background="#54FF27"
+                            Background="#FEEA25"
                             CornerRadius="50"
                             PreviewMouseDown="MinimizeButton_PreviewMouseDown"
                             ToolTip="Thu nhỏ cửa sổ">
@@ -148,7 +151,7 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="#54FF27"
+                                                From="#FEEA25"
                                                 To="White"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="MinimizeButton"></ColorAnimation>
@@ -161,7 +164,7 @@
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
                                                 From="White"
-                                                To="#54FF27"
+                                                To="#FEEA25"
                                                 Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
                                                 Storyboard.TargetName="MinimizeButton"></ColorAnimation>
                                     </Storyboard>
@@ -185,8 +188,13 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="5"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="5"/>
                         <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="5"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="5"/>
                         <ColumnDefinition Width="1*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
@@ -196,30 +204,60 @@
 
                     <Border Grid.Row="0" 
                             Grid.Column="0"
-                            Background="Transparent"
-                            PreviewMouseDown="HomePageButton_Click">
-                        <TextBlock >Trang chủ</TextBlock>
-                    </Border>
-
-                    <Border Grid.Row="0" 
-                            Grid.Column="1"
-                            PreviewMouseDown="UnfinishedButton_Click"
-                            Background="Transparent">
-                        <TextBlock >Chuyến đi</TextBlock>
+                            PreviewMouseDown="HomePageButton_Click"
+                            Style="{StaticResource ButtonStyle}">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource ContentBorderBG}"
+                                             Opacity="{DynamicResource MainBorderOpacity}"/>
+                        </Border.Background>
+                        
+                        <TextBlock>Trang chủ</TextBlock>
                     </Border>
 
                     <Border Grid.Row="0" 
                             Grid.Column="2"
-                            Background="Transparent"
-                            PreviewMouseDown="FinishedButton_Click">
+                            PreviewMouseDown="TripListButton_Click"
+                            Style="{DynamicResource ButtonStyle}">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource ContentBorderBG}"
+                                             Opacity="{DynamicResource MainBorderOpacity}"/>
+                        </Border.Background>
+                        <TextBlock >Chuyến đi</TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="0" 
+                            Grid.Column="4"
+                            Style="{DynamicResource ButtonStyle}"
+                            PreviewMouseDown="MemberListButton_Click">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource ContentBorderBG}"
+                                             Opacity="{DynamicResource MainBorderOpacity}"/>
+                        </Border.Background>
                         <TextBlock >Thành viên</TextBlock>
                     </Border>
 
                     <Border Grid.Row="0" 
-                            Grid.Column="3"
-                            Background="Transparent"
+                            Grid.Column="6"
+                            Style="{DynamicResource ButtonStyle}"
+                            PreviewMouseDown="SearchButton_Click">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource ContentBorderBG}"
+                                             Opacity="{DynamicResource MainBorderOpacity}"/>
+                        </Border.Background>
+                        <TextBlock >Tìm kiếm</TextBlock>
+                    </Border>
+
+                    <Border Grid.Row="0" 
+                            Grid.Column="8"
+                            Style="{DynamicResource ButtonStyle}"
                             PreviewMouseDown="AboutUsButton_Click">
-                        <TextBlock >About us</TextBlock>
+
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource ContentBorderBG}"
+                                             Opacity="{DynamicResource MainBorderOpacity}"/>
+                        </Border.Background>
+
+                        <TextBlock>AboutUs</TextBlock>
                     </Border>
 
                     <Polygon x:Name="ActiveIndicator"
@@ -248,16 +286,16 @@
                     </Border.Background>
                     <Grid Margin="10">
                         <Frame x:Name="MainFrame"
-                           NavigationUIVisibility="Hidden"
+                               NavigationUIVisibility="Hidden"
                                Grid.Column="0"
                                Grid.Row="0"
-                               Panel.ZIndex="2">
+                               Panel.ZIndex="2"
+                               BorderThickness="0">
                         </Frame>
                     </Grid>
-                   
-                    
+
+
                 </Border>
-                
 
             </Grid>
 
@@ -267,7 +305,7 @@
         <Border x:Name="WindowBackgroundImage"
                 CornerRadius="20">
             <Border.Background>
-                <ImageBrush ImageSource="Images/Rina002.png"
+                <ImageBrush ImageSource="Images/bg.png"
                         Stretch="UniformToFill"/>
             </Border.Background>
         </Border>

@@ -20,9 +20,28 @@ namespace GUI_WeSplit
     /// </summary>
     public partial class HomePage : Page
     {
+        public delegate void PassCommandToMain(string command);
+
+        public event PassCommandToMain eventPassCommand;
+
         public HomePage()
         {
             InitializeComponent();
+        }
+
+        private void AddNewTripButton_Click(object sender, RoutedEventArgs e)
+        {
+            eventPassCommand("newtrip");
+        }
+
+        private void ExploreButton_Click(object sender, RoutedEventArgs e)
+        {
+            eventPassCommand("explore");
+        }
+
+        private void AddNewMemberButton_Click(object sender, RoutedEventArgs e)
+        {
+            eventPassCommand("newmember");
         }
     }
 }

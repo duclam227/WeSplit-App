@@ -20,18 +20,63 @@ namespace GUI_WeSplit
     /// </summary>
     public partial class MainWindow : Window
     {
+        HomePage homePage = new HomePage();
+        SearchPage searchPage;
+        //TripDetailPage tripPage = new TripDetailPage();
+        //MemberListPage memberListPage = new MemberListPage();
+
         public MainWindow()
         {
             InitializeComponent();
+            HandyControl.Tools.ConfigHelper.Instance.SetLang("en");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //HomePage hp = new HomePage();
-            //MainFrame.Navigate(hp);
+            MainFrame.Navigate(homePage);
+            homePage.eventPassCommand += homePage_eventPassCommand;
+        }
 
-            SearchPage searchPage = new SearchPage();
-            MainFrame.Navigate(searchPage);
+        private void homePage_eventPassCommand(string command)
+        {
+            //ActiveIndicator.Visibility = Visibility.Collapsed;
+
+            switch (command)
+            {
+                case "newtrip":
+                    {
+                        int noOfTrips = BUS_WeSplit.BUS_Trip.Instance.GetNumberOfTrips();
+                        CreateTripPage addTrip = new CreateTripPage(noOfTrips);
+                        MainFrame.Navigate(addTrip);
+                        break;
+                    }
+                case "newmember":
+                    {
+                        int noOfMembers = BUS_WeSplit.BUS_Member.Instance.GetAmountOfMember();
+                        AddMemberWindow addMember = new AddMemberWindow(noOfMembers);                       
+                        addMember.ShowDialog();
+                        break;
+                    }
+                case "explore":
+                    {
+                        Grid.SetColumn(ActiveIndicator, 4);
+                        searchPage = new SearchPage();
+                        searchPage.eventPassIDToMain += SearchPage_eventPassIDToMain;
+                        MainFrame.Navigate(searchPage);
+                        break;
+                    }
+                default:
+                    {
+                        break;
+                    }
+            }
+
+        }
+
+        private void SearchPage_eventPassIDToMain(int id)
+        {
+            TripDetailPage detailPage = new TripDetailPage(id);
+            MainFrame.Navigate(detailPage);
         }
 
         private void ExitButton_PreviewMouseDown(object sender, MouseButtonEventArgs e)
@@ -76,30 +121,49 @@ namespace GUI_WeSplit
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 0);
 
-            HomePage hp = new HomePage();
-            MainFrame.Navigate(hp);
+            //HomePage hp = new HomePage();
+            MainFrame.Navigate(homePage);
         }
 
-        private void UnfinishedButton_Click(object sender, MouseButtonEventArgs e)
-        {
-            //MainFrame.Visibility = Visibility.Collapsed;
-
-            ActiveIndicator.Visibility = Visibility.Visible;
-            Grid.SetColumn(ActiveIndicator, 1);
-
-            //MemberListPage memberList = new MemberListPage();
-            //TripDetailPage tripPage = new TripDetailPage();
-            //MainFrame.Navigate(tripPage);
-            //CreateTripPage createTripPage = new CreateTripPage(1);
-            //MainFrame.Navigate(createTripPage);
-        }
-
-        private void FinishedButton_Click(object sender, MouseButtonEventArgs e)
+        private void TripListButton_Click(object sender, MouseButtonEventArgs e)
         {
             //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
             Grid.SetColumn(ActiveIndicator, 2);
+
+            //TripDetailPage tripPage = new TripDetailPage();
+            //MemberListPage memberList = new MemberListPage();
+            TripListPage tripListPage = new TripListPage();
+            tripListPage.eventPassIDToMain += TripListPage_eventPassIDToMain;
+            MainFrame.Navigate(tripListPage);
+        }
+
+        private void TripListPage_eventPassIDToMain(int id)
+        {
+            TripDetailPage detailPage = new TripDetailPage(id);
+            MainFrame.Navigate(detailPage);
+        }
+
+        private void MemberListButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            //MainFrame.Visibility = Visibility.Collapsed;
+
+            ActiveIndicator.Visibility = Visibility.Visible;
+            Grid.SetColumn(ActiveIndicator, 4);
+
+            MemberListPage memberListPage = new MemberListPage();
+            MainFrame.Navigate(memberListPage);
+        }
+
+        private void SearchButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            ActiveIndicator.Visibility = Visibility.Visible;
+            Grid.SetColumn(ActiveIndicator, 6);
+
+            searchPage = new SearchPage();
+            searchPage.eventPassIDToMain += SearchPage_eventPassIDToMain;
+            MainFrame.Navigate(searchPage);
         }
 
         private void AboutUsButton_Click(object sender, MouseButtonEventArgs e)
@@ -107,9 +171,12 @@ namespace GUI_WeSplit
             //MainFrame.Visibility = Visibility.Collapsed;
 
             ActiveIndicator.Visibility = Visibility.Visible;
-            Grid.SetColumn(ActiveIndicator, 3);
+            Grid.SetColumn(ActiveIndicator, 8);
+
+            AboutUsPage aboutUs = new AboutUsPage();
+            MainFrame.Navigate(aboutUs);
         }
 
-        
+      
     }
 }

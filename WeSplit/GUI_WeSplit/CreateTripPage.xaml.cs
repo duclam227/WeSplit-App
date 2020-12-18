@@ -17,6 +17,7 @@ using System.ComponentModel;
 using System.Globalization;
 using System.Collections.ObjectModel;
 using BUS_WeSplit;
+using System.Windows.Forms;
 
 namespace GUI_WeSplit
 {
@@ -26,35 +27,19 @@ namespace GUI_WeSplit
     public partial class CreateTripPage : Page
     {
         private DTO_Trip newTrip;
-        private ObservableCollection<DTO_Member> AddedMemberList;
-        private ObservableCollection<DTO_Member> MemberList;
+
         private ObservableCollection<DTO_Member> AvailableMemberList;
-        private ObservableCollection<DTO_Expense> ExpenseList;
+        private ObservableCollection<BitmapImage> Images;
+        public ObservableCollection<DTO_Place> DestinationList;
+        public ObservableCollection<DTO_Expense> ExpenseList;
+        public ObservableCollection<DTO_Member> MemberList;
 
-        private double _expenseAmount;
-        private string _expenseDescription;
+        private List<string> imagesList = new List<string>();
+
         private string _tripName;
-
-
-        public EventHandler<AddNewTripEventArgs> AddNewTripEventHandler;
-
-        public string ExpenseAmount
-        {
-            get => _expenseAmount.ToString();
-            set
-            {
-                try
-                {
-                    _expenseAmount = Double.Parse(value);
-                }
-                catch
-                {
-
-                }
-            }
-        }
-        public string ExpenseDescription { get => _expenseDescription; set => _expenseDescription = value; }
+        private string _tripDescription;
         public string TripName { get => _tripName; set => _tripName = value; }
+        public string TripDescription { get => _tripDescription; set => _tripDescription = value; }
 
         private CreateTripPage()
         {
@@ -65,81 +50,141 @@ namespace GUI_WeSplit
         public CreateTripPage(int tripID)
         {
             InitializeComponent();
-            AddedMemberList = new ObservableCollection<DTO_Member>();
-            MemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAllMembers());
+
+            Images = new ObservableCollection<BitmapImage>();
+            MemberList = new ObservableCollection<DTO_Member>();
             AvailableMemberList = new ObservableCollection<DTO_Member>(BUS_Member.Instance.GetAllMembers());
+            DestinationList = new ObservableCollection<DTO_Place>();
             ExpenseList = new ObservableCollection<DTO_Expense>();
-            newTrip = new DTO_Trip();
-            newTrip.TripId = tripID;
+            DestinationList = new ObservableCollection<DTO_Place>();
+
+            newTrip = new DTO_Trip()
+            {
+                TripId = tripID
+            };
+
+            DataContext = this;
         }
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ListView_Destination.ItemsSource = newTrip.TripDestinationList;
-            ListView_MemberList.ItemsSource = AddedMemberList;
+            DataGrid_Destination.ItemsSource = DestinationList;
+            DataGrid_MemberList.ItemsSource = MemberList;
             ComboBox_MemberList.ItemsSource = AvailableMemberList;
-            ListView_Expense.ItemsSource = ExpenseList;
+            DataGrid_ExpenseList.ItemsSource = ExpenseList;
+            carouselImages.ItemsSource = Images;
         }
         private void CheckBox_Description_Checked(object sender, RoutedEventArgs e)
         {
             LabelTextBox_Description.Visibility = Visibility.Visible;
         }
-
         private void CheckBox_Description_Unchecked(object sender, RoutedEventArgs e)
         {
             LabelTextBox_Description.Visibility = Visibility.Collapsed;
         }
         private void Button_CreateNewTrip_Click(object sender, RoutedEventArgs e)
         {
-            if (AddNewTripEventHandler != null)
+            bool canReturn = true;
+
+            if(imagesList.Count() == 0)
             {
-                if (LabelTextBox_TripName.Text != "")
-                {
-
-                }
-                AddNewTripEventHandler(this, new AddNewTripEventArgs(this.newTrip));
+                canReturn = false;
             }
-            this.NavigationService.GoBack();
+
+            if (String.IsNullOrWhiteSpace(TripName))
+            {
+                canReturn = false;
+            }
+
+            if (CheckBox_Description.IsChecked == true && String.IsNullOrWhiteSpace(LabelTextBox_Description.Text))
+            {
+                canReturn = false;
+            }
+
+            if (DatePicker_EndDate.SelectedDate == null || DatePicker_StartDate.SelectedDate == null)
+            {
+                canReturn = false;
+            }
+
+            if (canReturn)
+            {
+                newTrip.TripName = TripName;
+                newTrip.TripDescription = TripDescription;
+                newTrip.TripStartDate = (DateTime)DatePicker_StartDate.SelectedDate;
+                if(DatePicker_EndDate.SelectedDate != null)
+                {
+                    newTrip.TripEndDate = (DateTime)DatePicker_EndDate.SelectedDate;
+                    newTrip.TripStatus = false;
+                }
+                else
+                {
+                    newTrip.TripEndDate = null;
+                    newTrip.TripStatus = true;
+                }
+                newTrip.TripExpenseList = ExpenseList.ToList<DTO_Expense>();
+                newTrip.TripDestinationList = DestinationList.ToList<DTO_Place>();
+                newTrip.TripStatus = true;
+                newTrip.TripImagesList = imagesList;
+                newTrip.TripMemberList = MemberList.ToList();
+
+                BUS_Trip.Instance.AddTrip(newTrip);
+                BUS_Trip.Instance.AddAverageToTrip(newTrip.TripId, BUS_Trip.Instance.CalculateAverage(newTrip.TripId));
+
+                this.NavigationService.GoBack();
+            }
+            else
+            {
+                System.Windows.MessageBox.Show("Bạn chưa điền đầy đủ thông tin");
+            }
         }
-
-        private void ListView_Destination_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
-        private void ListView_Destination_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
         {
-            AddExpenseWindow addExpenseWindow = new AddExpenseWindow();
+            AddExpenseWindow addExpenseWindow = new AddExpenseWindow(ExpenseList.Count, MemberList);
+            addExpenseWindow.AddExpenseEventHandler += (s, args) =>
+                {
+                    ExpenseList.Add(args.NewExpense);
+                };
             addExpenseWindow.ShowDialog();
         }
-
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)
         {
             DTO_Member selected = (DTO_Member)ComboBox_MemberList.SelectedItem;
             if (selected != null)
             {
-                AddedMemberList.Add(selected);
+                MemberList.Add(selected);
                 AvailableMemberList.Remove(selected);
             }
         }
-
-        public class AddNewTripEventArgs : EventArgs
+        private void Button_AddDestination_Click(object sender, RoutedEventArgs e)
         {
-            public DTO_Trip NewTrip;
+            int placeId = this.DestinationList.Count();
+            AddDestinationWindow addDestinationWindow = new AddDestinationWindow(newTrip.TripId, placeId);
+            addDestinationWindow.AddDestinationEventHandler += (s, args) =>
+              {
+                  DestinationList.Add(args.NewDestination);
+              };
+            addDestinationWindow.ShowDialog();
+        }
+        private void Button_AddImage_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Title = "Select a picture";
+            openFileDialog.Filter = "All supported graphics|*.jpg;*.jpeg;*.png|" +
+          "JPEG (*.jpg;*.jpeg)|*.jpg;*.jpeg|" +
+          "Portable Network Graphic (*.png)|*.png";
 
-            public AddNewTripEventArgs(DTO_Trip newTrip)
+            if (openFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                this.NewTrip = newTrip;
+                string filename = openFileDialog.FileName;
+                BitmapImage img = new BitmapImage(new Uri(filename, UriKind.Absolute));
+                imagesList.Add(filename);
+                Images.Add(img);
+                
             }
         }
-
-        private void Button_AddDestination_Click(object sender, RoutedEventArgs e)
+        private void LabelTextBox_TripName_Loaded(object sender, RoutedEventArgs e)
         {
 
         }
     }
+    
 }

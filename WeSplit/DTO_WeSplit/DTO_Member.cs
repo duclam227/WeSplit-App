@@ -10,13 +10,13 @@ namespace DTO_WeSplit
     {
         private int _memberID;
         private string _memberName;
-        private string _memberDOB;
+        private DateTime _memberDOB;
         private bool _memberSex;
         private string _memberAvatar;
 
         public int MemberID { get => _memberID; set => _memberID = value; }
         public string MemberName { get => _memberName; set => _memberName = value; }
-        public string MemberDOB { get => _memberDOB; set => _memberDOB = value; }
+        public DateTime MemberDOB { get => _memberDOB; set => _memberDOB = value; }
         public bool MemberSex { get => _memberSex; set => _memberSex = value; }
         public string MemberAvatar { get => _memberAvatar; set => _memberAvatar = value; }
 
@@ -24,7 +24,7 @@ namespace DTO_WeSplit
         {
 
         }
-        public DTO_Member(int id, string name, string dob, bool sex, string avatar)
+        public DTO_Member(int id, string name, DateTime dob, bool sex, string avatar)
         {
             MemberID = id;
             MemberName = name;

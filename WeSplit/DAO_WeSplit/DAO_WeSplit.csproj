@@ -42,7 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DAO_Expense.cs" />
     <Compile Include="DAO_Member.cs" />
+    <Compile Include="DAO_Place.cs" />
     <Compile Include="DAO_Trip.cs" />
     <Compile Include="DBConnect.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

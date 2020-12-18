@@ -26,9 +26,6 @@ namespace GUI_WeSplit
         private string _memberName;
         private DateTime _dateOfBirth;
 
-        public EventHandler<AddNewMemberEventArgs> AddNewMemberEventHandler;
-
-        
         public string AvatarSrc { get => _avatarSrc; set => _avatarSrc = value; }
         public string MemberName { get => _memberName; set => _memberName = value; }
         public DateTime DateOfBirth { get => _dateOfBirth; set => _dateOfBirth = value; }
@@ -36,9 +33,10 @@ namespace GUI_WeSplit
         public AddMemberWindow(int memberId)
         {
             InitializeComponent();
+            DataContext = this;
             _member = new DTO_Member()
             {
-                MemberID = memberId
+                MemberID = memberId + 1
             };
         }
 
@@ -54,6 +52,7 @@ namespace GUI_WeSplit
             {
                 BitmapImage img = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));
                 AvatarImg.Source = img;
+                AvatarSrc = openFileDialog.FileName;
                 AvatarImg.Visibility = Visibility.Visible;
                 Gravatar.Visibility = Visibility.Hidden;
                 Button_RemoveAvatar.Visibility = Visibility.Visible;
@@ -64,6 +63,7 @@ namespace GUI_WeSplit
         private void Button_RemoveAvatar_Click(object sender, RoutedEventArgs e)
         {
             AvatarImg.Source = null;
+            AvatarSrc = null;
             AvatarImg.Visibility = Visibility.Hidden;
             Gravatar.Visibility = Visibility.Visible;
             Button_RemoveAvatar.Visibility = Visibility.Hidden;
@@ -72,28 +72,31 @@ namespace GUI_WeSplit
 
         private void Button_AddMember_Click(object sender, RoutedEventArgs e)
         {
-            if (AddNewMemberEventHandler != null)
-            {
-                if (!String.IsNullOrWhiteSpace(AvatarSrc) &&
-                    !String.IsNullOrWhiteSpace(_dateOfBirth.ToShortDateString()))
-                {
-                    _member.MemberAvatar = AvatarSrc;
-                    _member.MemberDOB = _dateOfBirth.ToShortDateString();
-                    _member.MemberName = MemberName;
-                    _member.MemberSex = (bool)Radio_Male.IsChecked;
-                    AddNewMemberEventHandler(this, new AddNewMemberEventArgs(_member));
-                    this.Close();
-                }
-            }  
-        }
+            bool canReturn = true;
 
-        public class AddNewMemberEventArgs : EventArgs
-        {
-            DTO_Member newMember;
-            public AddNewMemberEventArgs(DTO_Member member)
+            if (String.IsNullOrWhiteSpace(AvatarSrc) || DateOfBirth == null
+                || String.IsNullOrWhiteSpace(LabelTextBox_Name.Text))
+                canReturn = false;
+
+            if (canReturn)
             {
-                this.newMember = member;
+                string filename = System.IO.Path.GetFileName(AvatarSrc);
+                string dir = System.AppDomain.CurrentDomain.BaseDirectory;
+                dir += $@"resources\avatars\{_member.MemberID}\";
+                BUS_WeSplit.Utilities.CopyFile(AvatarSrc, dir);
+                dir += filename;
+                _member.MemberAvatar = filename;
+                _member.MemberDOB = DateOfBirth;
+                _member.MemberName = MemberName;
+                _member.MemberSex = (bool)Radio_Male.IsChecked;
+                BUS_WeSplit.BUS_Member.Instance.AddMember(_member);
+                this.Close();
             }
+            else
+            {
+                System.Windows.Forms.MessageBox.Show("Bạn chưa điền đủ thông tin");
+            }
+
         }
     }
 }

@@ -3,80 +3,162 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       xmlns:local="clr-namespace:GUI_WeSplit"
+      xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="SearchPage">
 
+    <Page.Resources>
+        <SolidColorBrush x:Key="IndicatorColor">Black</SolidColorBrush>
+
+        <Color x:Key="ContentBorderBG">Black</Color>
+        <SolidColorBrush x:Key="ContentForeground">white</SolidColorBrush>
+
+        <SolidColorBrush x:Key="MenuForeground">white</SolidColorBrush>
+        <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
+        <System:Double x:Key="MainBorderOpacity">0.3</System:Double>
+        <System:Double x:Key="ButtonSize">18</System:Double>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="{DynamicResource ContentForeground}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+        </Style>
+
+        <Style TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <Border Padding="0 0 0 5">
+                            <Border BorderThickness="0.5 0 0 0"
+                                BorderBrush="{DynamicResource ContentForeground}"
+                                Background="Transparent"
+                                Padding="2">
+                                <TextBlock x:Name="ContentHeader" 
+                                       Text="{TemplateBinding Content}" 
+                                       Padding="5" 
+                                       Width="{TemplateBinding Width}" 
+                                       TextAlignment="Center"
+                                       Foreground="{DynamicResource ContentForeground}"
+                                       FontSize="16"
+                                       FontWeight="DemiBold"/>
+                            </Border>
+                        </Border>
+                       
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="12" />
+        </Style>
+
+        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+        <converters:MemberIDToNameConverter x:Key="MemberIDToNameConverter"/>
+    </Page.Resources>
+    
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="3*"/>
-        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="1"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <TextBox 
-            Name="SearchBar"
-            Grid.Column="0"
-            Grid.Row="0"
-            Background="Transparent"
-            Foreground="White"
-            TextChanged="SearchBar_TextChanged"
-            />
+        <StackPanel x:Name="TopPart"
+                    Orientation="Horizontal"
+                    Grid.Row="0">
+            <Border x:Name="SearchBoxBorder"
+                    BorderBrush="{DynamicResource ContentForeground}"
+                    BorderThickness="0 0 0 0.3"
+                    Width="300"
+                    Height="25"
+                    CornerRadius="15">
+                <TextBox Name="SearchBar"
+                         Grid.Row="0"
+                         Background="Transparent"
+                         Foreground="{DynamicResource ContentForeground}"
+                         CaretBrush="{DynamicResource ContentForeground}"
+                         BorderThickness="0"
+                         VerticalAlignment="Center"
+                         HorizontalContentAlignment="Center"
+                         TextChanged="SearchBar_TextChanged"/>
+            </Border>
 
-        <ListView
-            Name="ResultListView"
-            Grid.Column="1"
-            Grid.Row="0"
-            Grid.RowSpan="2"
-            SelectionChanged="ResultListView_SelectionChanged">
-            <ListView.View>
-                <GridView x:Name="myGridView">
-                    <GridViewColumn 
-                        Header="TripName" 
-                        Width="100" 
-                        DisplayMemberBinding="{Binding TripName}"/>
-                    <GridViewColumn 
-                        Header="TripDate" 
-                        Width="100" 
-                        DisplayMemberBinding="{Binding TripDate}"/>
-                    <GridViewColumn 
-                        Header="TripDescription" 
-                        Width="150" 
-                        DisplayMemberBinding="{Binding TripDescription}"/>
-                    <GridViewColumn 
-                        Header="TripBudget" 
-                        Width="100" 
-                        DisplayMemberBinding="{Binding TripBudget}"/>
-                    <GridViewColumn 
-                        Header="TripAverage" 
-                        Width="100" 
-                        DisplayMemberBinding="{Binding TripAverage}"/>
-
-                </GridView>
-            </ListView.View>
-        </ListView>
-
-        <StackPanel Orientation="Horizontal"
-                    Grid.Row="1"
-                    Grid.Column="0">
-            <RadioButton
-                Content="Trip Name"
-                Name="radionBtn_SearchTrip"
-                GroupName="radio_Search"
-                Margin="10"
-                IsChecked="True"
-                Checked="radionBtn_SearchTrip_Checked"/>
-            <RadioButton
-                Content="Member Name"
-                Name="radioBtn_SearchMember"
-                GroupName="radio_Search"
-                Margin="10"
-                Checked="radioBtn_SearchMember_Checked"/>
+            <RadioButton Content="Tìm theo chuyến đi"
+                         Name="radionBtn_SearchTrip"
+                         GroupName="radio_Search"
+                         IsChecked="True"
+                         Checked="radionBtn_SearchTrip_Checked"/>
+            
+            <RadioButton Content="Tìm kiếm theo thành viên"
+                         Name="radioBtn_SearchMember"
+                         GroupName="radio_Search"
+                         Checked="radioBtn_SearchMember_Checked"/>
         </StackPanel>
+
+        <Separator Height="1"
+                   Background="{DynamicResource ContentForeground}"
+                   Grid.Row="1"/>
+        <Border x:Name="ResultPart" 
+                CornerRadius="20"
+                Padding="15"
+                Grid.Row="2">
+
+            <Border.Background>
+                <SolidColorBrush Color="White" Opacity="0.7"/>
+            </Border.Background>
+
+            <DataGrid Name="ResultDataGrid" 
+                  ItemsSource="{Binding searchingTrips}"
+                  HeadersVisibility="All" 
+                  AutoGenerateColumns="False"
+                  Background="Transparent"
+                  SelectionChanged="ResultDataGrid_SelectionChanged"
+                  Visibility="Collapsed"
+                  RowHeaderWidth="0">
+                <DataGrid.RowHeaderTemplate>
+                    <DataTemplate>
+                        <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                    </DataTemplate>
+                </DataGrid.RowHeaderTemplate>
+                <DataGrid.Columns>
+                    <DataGridTextColumn IsReadOnly="True" Width="2*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripName}" 
+                                                    Header="Tên chuyến đi"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="3*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripDescription}" 
+                                                    Header="Mô tả"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripStartDate, Converter={StaticResource DateTimeToStringConverter}}" 
+                                                    Header="Ngày bắt đầu"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripExpenseTotal}" 
+                                                    Header="Chi tiêu"/>
+                    <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                                    CanUserResize="True" 
+                                                    Binding="{Binding TripAverage}" 
+                                                    Header="Phí/người"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Border>
+
+        <TextBlock x:Name="SearchResultNotice" 
+                   Text="Không có kết quả"
+                   Grid.Row="2"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Foreground="{DynamicResource ContentForeground}"
+                   FontSize="20"
+                   Visibility="Collapsed"/>
 
     </Grid>
 

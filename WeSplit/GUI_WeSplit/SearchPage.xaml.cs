@@ -24,9 +24,12 @@ namespace GUI_WeSplit
     {
         private BUS_Trip bus_trip = BUS_Trip.Instance;
 
-        private GridViewColumn columnMember = null;
         private List<DTO_Trip> searchingTrips;
         private List<Tuple<DTO_Trip, String>> searchByMember;
+        private DataGridTextColumn columnMember =  null;
+
+        public delegate void PassIDToMain(int id);
+        public event PassIDToMain eventPassIDToMain;
 
         public SearchPage()
         {
@@ -36,14 +39,15 @@ namespace GUI_WeSplit
         private void SearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             String text = SearchBar.Text;
-
+            ResultDataGrid.UnselectAll();
 
             if (text != "")
             {
+                ResultDataGrid.Visibility = Visibility.Visible;
                 if (radionBtn_SearchTrip.IsChecked == true)
                 {
                     searchingTrips = bus_trip.SearchTripsByName(text);
-                    ResultListView.ItemsSource = searchingTrips;
+                    ResultDataGrid.ItemsSource = searchingTrips;
                 }
                 else if (radioBtn_SearchMember.IsChecked == true)
                 {
@@ -57,18 +61,29 @@ namespace GUI_WeSplit
                         tempObj.TripName = item.Item1.TripName;
                         tempObj.TripStartDate = item.Item1.TripStartDate;
                         tempObj.TripDescription = item.Item1.TripDescription;
-                        tempObj.TripBudget = item.Item1.TripBudget;
+                        tempObj.TripBudget = item.Item1.TripExpenseTotal;
                         tempObj.TripAverage = item.Item1.TripAverage;
                         tempObj.MemberName = item.Item2;
                         trip_MemberNames.Add(tempObj);
-                    }    
+                    }
 
-                    ResultListView.ItemsSource = trip_MemberNames;
+                    ResultDataGrid.ItemsSource = trip_MemberNames;
                 }
             }
             else
             {
-                ResultListView.ItemsSource = null;
+                ResultDataGrid.ItemsSource = null;
+                ResultDataGrid.Visibility = Visibility.Collapsed;
+            }
+
+            if(ResultDataGrid.Items.Count == 0)
+            {
+                ResultDataGrid.Visibility = Visibility.Collapsed;
+                SearchResultNotice.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SearchResultNotice.Visibility = Visibility.Collapsed;
             }
 
         }
@@ -76,10 +91,10 @@ namespace GUI_WeSplit
         private class Trip_MemberName {
             public int TripId { get ; set; }
             public string TripName { get; set; }
-            public string TripStartDate { get; set; }
+            public DateTime TripStartDate { get; set; }
             public string TripDescription { get; set; }
             public double TripBudget { get; set; }
-            public double TripAverage { get; set; }
+            public double? TripAverage { get; set; }
             public string MemberName { get; set; }
 
 
@@ -89,7 +104,7 @@ namespace GUI_WeSplit
         {
             if (columnMember != null)
             {
-                myGridView.Columns.Remove(columnMember);
+                ResultDataGrid.Columns.Remove(columnMember);
             }
         }
 
@@ -97,33 +112,40 @@ namespace GUI_WeSplit
         {
             if (columnMember == null)
             {
-                columnMember = new GridViewColumn();
-                columnMember.Width = 150;
-                columnMember.Header = "Member's Name";
-                columnMember.DisplayMemberBinding = new Binding("MemberName");
+                columnMember = new DataGridTextColumn();
+                columnMember.Header = "Tên thành viên";
+                columnMember.Binding = new Binding("MemberName");
             }
 
-            myGridView.Columns.Add(columnMember);
+            ResultDataGrid.Columns.Add(columnMember);
 
         }
 
-        private void ResultListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void ResultDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int tripID;
-            TripDetailPage tripDetailPage = new TripDetailPage();
-            int position = ResultListView.SelectedIndex;
+            int position = ResultDataGrid.SelectedIndex;
+                   
 
-            if(radioBtn_SearchMember.IsChecked == true)
+            if (position > -1)
             {
-                tripID = searchingTrips[position].TripId;
-                  
+                if (radioBtn_SearchMember.IsChecked == false)
+                {
+                    tripID = searchingTrips[position].TripId;
+
+                }
+                else
+                {
+                    tripID = searchByMember[position].Item1.TripId;
+                }
+
+                eventPassIDToMain(tripID);
             }
             else
             {
-                tripID = searchByMember[position].Item1.TripId;
+                //do nothing
             }
-
-            NavigationService.Navigate(tripDetailPage, tripID);
+            
         }
     }
 }

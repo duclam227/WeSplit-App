@@ -15,97 +15,294 @@
         <SolidColorBrush x:Key="IndicatorColor">Black</SolidColorBrush>
 
         <Color x:Key="ContentBorderBG">Black</Color>
+
         <SolidColorBrush x:Key="ContentForeground">white</SolidColorBrush>
 
-        <SolidColorBrush x:Key="MenuForeground">Black</SolidColorBrush>
+        <SolidColorBrush x:Key="MenuForeground">white</SolidColorBrush>
         <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
         <System:Double x:Key="MainBorderOpacity">0.8</System:Double>
         <System:Double x:Key="ButtonSize">18</System:Double>
 
+        <System:Double x:Key="ButtonOpacity">0.4</System:Double>
 
-        <Style TargetType="TextBlock">
+        <Style TargetType="Button">
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Padding" Value="5 0 5 0"/>
+            <Setter Property="Width" Value="250"/>
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" 
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="Transparent"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="TitleStyle"
+               TargetType="TextBlock">
             <Setter Property="Foreground" Value="{DynamicResource ContentForeground}"/>
-            <Setter Property="FontSize" Value="17.5"/>
+            <Setter Property="FontSize" Value="25"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
         </Style>
 
+        <Style x:Key="MainButtonStyle"
+               TargetType="Border">
+            <!--<Setter Property="Width" Value="250"/>-->
+            <Setter Property="Height" Value="60"/>
+            <Setter Property="CornerRadius" Value="30"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="BorderBrush" Value="White"/>
+            <Setter Property="Padding" Value="20 0 0 0"/>
+
+
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0.2"
+                                                    From="Black"
+                                                    To="White"
+                                                    Storyboard.TargetProperty="Background.Color"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <ColorAnimation Duration="0:0:0.2"
+                                                    From="White"
+                                                    To="Black"
+                                                    Storyboard.TargetProperty="Background.Color"/>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+            
+        </Style>
+
+        <Style x:Key="ButtonTextStyle"
+               TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{DynamicResource ContentForeground}"/>
+            <Setter Property="FontSize" Value="22"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+        </Style>
 
     </Page.Resources>
 
     <Grid>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"/>
-            <RowDefinition Height="5*"/>
             <RowDefinition Height="1*"/>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="10"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
-            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="10"/>
         </Grid.ColumnDefinitions>
-
+        
         <StackPanel Grid.Row="1"
-                   Grid.Column="1" Grid.ColumnSpan="4">
-            <TextBlock  HorizontalAlignment="Stretch"
-                   FontSize="50" FontWeight="Black">WeSplit</TextBlock>
+                    Grid.Column="1">
 
-            <TextBlock 
+            <StackPanel>
+                <TextBlock  HorizontalAlignment="Stretch"
+                   FontSize="100" FontWeight="Black"
+                            Style="{DynamicResource TitleStyle}">WeSplit</TextBlock>
+
+                <TextBlock 
                    HorizontalAlignment="Stretch"
-                   FontSize="30">Lưu giữ những chuyến đi tuyệt vời!</TextBlock>
+                   FontSize="50"
+                    Style="{DynamicResource TitleStyle}">Lưu giữ những chuyến đi tuyệt vời!</TextBlock>
+            </StackPanel>
+            <TextBlock/>
+            <Separator Height="5"
+                   Background="White"/>
+            <TextBlock/>
+            <StackPanel x:Name="ButtonListStackPanel"
+                    Orientation="Horizontal">
+                
+                <Button x:Name="ExploreButton"
+                Click="ExploreButton_Click">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.2"
+                                                     From="0"
+                                                     To="1"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     Storyboard.TargetName="ButtonImage1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.2"
+                                                     From="1"
+                                                     To="0"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     Storyboard.TargetName="ButtonImage1"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <Border Style="{DynamicResource MainButtonStyle}"
+                            Width="250">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource ContentBorderBG}" 
+                                             Opacity="{DynamicResource ButtonOpacity}"/>
+                        </Border.Background>
+                        <Grid Width="auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <TextBlock Style="{DynamicResource ButtonTextStyle}"
+                                       Grid.Column="0">Khám phá!</TextBlock>
+                            <Image x:Name="ButtonImage1" 
+                                   Source="Images/goIcon.png"
+                                   Height="25"
+                                   Grid.Column="1"
+                                   Opacity="0"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Grid>
+                        
+                    </Border>
+                </Button>
+                
+                <TextBlock Text="    "/>
+                
+                <Button x:Name="AddNewTripButotn"
+                Click="AddNewTripButton_Click"
+                        Width="300">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.2"
+                                                     From="0"
+                                                     To="1"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     Storyboard.TargetName="ButtonImage2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.2"
+                                                     From="1"
+                                                     To="0"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     Storyboard.TargetName="ButtonImage2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <Border Style="{DynamicResource MainButtonStyle}"
+                            Width="290">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource ContentBorderBG}" 
+                                             Opacity="{DynamicResource ButtonOpacity}"/>
+                        </Border.Background>
+                        <Grid Width="auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Style="{DynamicResource ButtonTextStyle}"
+                                       Grid.Column="0">Tạo chuyến đi mới</TextBlock>
+                            <Image x:Name="ButtonImage2" 
+                                   Source="Images/goIcon.png"
+                                   Height="25"
+                                   Grid.Column="1"
+                                   Opacity="0"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Grid>
+
+                    </Border>
+                </Button>
+                
+                <TextBlock Text="    "/>
+                
+                <Button x:Name="AddNewMemberButton"
+                Click="AddNewMemberButton_Click"
+                        Width="265">
+                    <Button.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.2"
+                                                     From="0"
+                                                     To="1"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     Storyboard.TargetName="ButtonImage3"/>
+                                    <!--<ColorAnimation Duration="0:0:0.2"
+                                                    From="Black"
+                                                    To="White"
+                                                    Storyboard.TargetProperty="Background.Color"
+                                                    Storyboard.TargetName="ButtonBorder3"/>-->
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.2"
+                                                     From="1"
+                                                     To="0"
+                                                     Storyboard.TargetProperty="Opacity"
+                                                     Storyboard.TargetName="ButtonImage3"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Button.Triggers>
+                    <Border Style="{DynamicResource MainButtonStyle}"
+                            Width="260">
+                        <Border.Background>
+                            <SolidColorBrush Color="{DynamicResource ContentBorderBG}" 
+                                             Opacity="{DynamicResource ButtonOpacity}"/>
+                        </Border.Background>
+                        <Grid Width="auto">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="3*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <TextBlock Style="{DynamicResource ButtonTextStyle}"
+                                       Grid.Column="0">Thêm thành viên</TextBlock>
+                            <Image x:Name="ButtonImage3" 
+                                   Source="Images/goIcon.png"
+                                   Height="25"
+                                   Grid.Column="1"
+                                   Opacity="0"
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Grid>
+
+                    </Border>
+                </Button>
+            </StackPanel>
         </StackPanel>
-
-
-        <Border x:Name="SeachBorder"
-                Grid.Column="1" Grid.ColumnSpan="4"
-                Grid.Row="2"
-                Height="25"
-                Width="400"
-                CornerRadius="5"
-                BorderBrush="{DynamicResource ContentForeground}"
-                BorderThickness="0 0 0 0.2"
-                Padding="5 0 0 0"
-                Background="Transparent">
-
-            <Border.Triggers>
-                <EventTrigger RoutedEvent="Border.MouseEnter">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ThicknessAnimation Duration="0:0:0.1"
-                                                 From="0 0 0 0.2"
-                                                 To="0 0 0 0.5"
-                                                 Storyboard.TargetProperty="(Border.BorderThickness)"
-                                                 Storyboard.TargetName="SeachBorder"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-                <EventTrigger RoutedEvent="Border.MouseLeave">
-                    <BeginStoryboard>
-                        <Storyboard>
-                            <ThicknessAnimation Duration="0:0:0.1"
-                                                 From="0 0 0 0.5"
-                                                 To="0 0 0 0.2"
-                                                 Storyboard.TargetProperty="(Border.BorderThickness)"
-                                                 Storyboard.TargetName="SeachBorder"/>
-                        </Storyboard>
-                    </BeginStoryboard>
-                </EventTrigger>
-            </Border.Triggers>
-
-            <TextBox x:Name="SearchTextBox"
-                         BorderThickness="0"
-                         Foreground="{DynamicResource ContentForeground}"
-                         Background="Transparent"
-                         HorizontalContentAlignment="Center"
-                         CaretBrush="White"
-                         Margin="0 5 0 0">
-            </TextBox>
-        </Border>
+       
 
     </Grid>
 

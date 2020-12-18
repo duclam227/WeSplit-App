@@ -4,115 +4,81 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:GUI_WeSplit"
+      xmlns:hc="https://handyorg.github.io/handycontrol"
+      xmlns:uc="clr-namespace:GUI_WeSplit.CustomUserControl"
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:rules="clr-namespace:GUI_WeSplit.Validation"
+      xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MemberListPage" Loaded="Page_Loaded">
 
     <Page.Resources>
-        <Style x:Key="NameStyle"
-               TargetType="TextBlock">
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Bree Serif"/>
-            <Setter Property="Foreground" Value="White"/>
+        <SolidColorBrush x:Key="IndicatorColor">Black</SolidColorBrush>
+
+        <Color x:Key="ContentBorderBG">Black</Color>
+        <SolidColorBrush x:Key="ContentForeground">white</SolidColorBrush>
+
+        <SolidColorBrush x:Key="MenuForeground">white</SolidColorBrush>
+        <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
+        <System:Double x:Key="MainBorderOpacity">0.3</System:Double>
+        <System:Double x:Key="ButtonSize">18</System:Double>
+
+        <Style TargetType="RadioButton">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Foreground" Value="{DynamicResource ContentForeground}"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
-        <Style x:Key="InfoStyle"
-               TargetType="TextBlock">
-            <Setter Property="FontSize" Value="25"/>
-            <Setter Property="FontFamily" Value="Bree Serif"/>
-            <Setter Property="Foreground" Value="#0cebeb"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center"/>
-        </Style>
+        <converters:DateTimeToStringConverter x:Key="DateTimeToStringConverter"/>
+        <converters:MemberIDToNameConverter x:Key="MemberIDToNameConverter"/>
+        <converters:SexBoolToString x:Key="SexBoolToStringConverter"/>
     </Page.Resources>
 
-    <ListView x:Name="MemberList"
-              Background="Transparent"
-              HorizontalContentAlignment="Stretch"
-              ScrollViewer.HorizontalScrollBarVisibility="Hidden"
-              MinHeight="50"
-              MinWidth="50"
-              BorderThickness="0">
+    <Border x:Name="MemberList" 
+            CornerRadius="20"
+            Padding="15">
 
-        <ListView.ItemTemplate>
-            <DataTemplate>
-                <StackPanel>
-                    <Expander Background="White"
-                              Header="{Binding}"
-                              Content="{Binding}">
+        <Border.Background>
+            <SolidColorBrush Color="White" Opacity="0.7"/>
+        </Border.Background>
 
-                        <Expander.HeaderTemplate>
-                            <DataTemplate>
-                                <Grid Background="CornflowerBlue"
-                                      HorizontalAlignment="{Binding Path=HorizontalAlignment, RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ContentPresenter}}, Mode=OneWayToSource}" >
-                                    <DockPanel Margin="0 5 0 0">
-                                        <TextBlock x:Name="MemberNameTextBlock" 
-                                                   Text="{Binding MemberName}"
-                                                   Grid.Column="1"
-                                                   VerticalAlignment="Center"
-                                                   HorizontalAlignment="Center"
-                                                   Style="{DynamicResource NameStyle}"/>
-                                    </DockPanel>
-
-                                </Grid>
-                            </DataTemplate>
-                        </Expander.HeaderTemplate>
-
-                        <Expander.ContentTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"></ColumnDefinition>
-                                        <ColumnDefinition Width="7*"></ColumnDefinition>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"></RowDefinition>
-                                        <RowDefinition Height="*"></RowDefinition>
-                                    </Grid.RowDefinitions>
-                                    
-                                    <Border x:Name="MemberAvatarBorder"
-                                            Height="250" MinHeight="50"
-                                            Width="200" MinWidth="50"
-                                            CornerRadius="15"
-                                            BorderThickness="5"
-                                            Grid.Column="0"
-                                            Grid.RowSpan="2">
-                                        <Border.BorderBrush>
-                                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                                                <GradientStop Color="#91EAE4" Offset="0.0" />
-                                                <GradientStop Color="#20e3b2" Offset="0.25" />
-                                                <GradientStop Color="#0cebeb" Offset="0.75" />
-                                            </LinearGradientBrush>
-                                        </Border.BorderBrush>
-                                        <Border.Background>
-                                            <ImageBrush x:Name="MemberAvatarImage" 
-                                                        ImageSource="{Binding MemberAvatar}"
-                                                        RenderOptions.BitmapScalingMode="HighQuality"
-                                                        Stretch="UniformToFill"></ImageBrush>
-                                        </Border.Background>
-                                    </Border>
-
-                                    <TextBlock Text="{Binding MemberName}"
-                                               Grid.Row="0"
-                                               Grid.Column="1"
-                                               Background="Aquamarine"></TextBlock>
-
-                                    <TextBlock x:Name="MemberDOBTextBlock"
-                                               Text="{Binding MemberDOB}"
-                                               Grid.Row="1"
-                                               Grid.Column="1"></TextBlock>
-                                    
-                                </Grid>
-                            </DataTemplate>
-                        </Expander.ContentTemplate>
-                    </Expander>
-                </StackPanel>
-
-            </DataTemplate>
-
-        </ListView.ItemTemplate>
-
-    </ListView>
-
-
+        <DataGrid Name="MemberDataGrid" 
+                  HeadersVisibility="All" 
+                  AutoGenerateColumns="False"
+                  Background="Transparent"
+                  RowHeaderWidth="0">
+            <DataGrid.RowHeaderTemplate>
+                <DataTemplate>
+                    <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
+                </DataTemplate>
+            </DataGrid.RowHeaderTemplate>
+            <DataGrid.Columns>
+                <DataGridTemplateColumn IsReadOnly="True" Width="1*"
+                                        CanUserResize="True"
+                                        Header="Hình ảnh"
+                                        x:Name="AvatarColumn">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding MemberAvatar}"
+                                   Stretch="UniformToFill"                                   
+                                   RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn IsReadOnly="True" Width="1.5*" 
+                                    CanUserResize="True" 
+                                    Binding="{Binding MemberName}" 
+                                    Header="Tên thành viên"/>
+                <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                    CanUserResize="True" 
+                                    Binding="{Binding MemberDOB, Converter={StaticResource DateTimeToStringConverter}}" 
+                                    Header="Ngày sinh"/>
+                <DataGridTextColumn IsReadOnly="True" Width="1*" 
+                                    CanUserResize="True" 
+                                    Binding="{Binding MemberSex, Converter={StaticResource SexBoolToStringConverter}}" 
+                                    Header="Giới tính"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Border>
 </Page>
