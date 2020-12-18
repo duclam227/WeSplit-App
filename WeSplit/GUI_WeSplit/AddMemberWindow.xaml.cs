@@ -78,10 +78,12 @@ namespace GUI_WeSplit
 
             if (canReturn)
             {
+                string filename = System.IO.Path.GetFileName(AvatarSrc);
                 string dir = System.AppDomain.CurrentDomain.BaseDirectory;
                 dir += $@"resources\avatars\{_member.MemberID}\";
-                BUS_WeSplit.Utilities.CopyFile(AvatarSrc, dir); 
-                _member.MemberAvatar = AvatarSrc;
+                BUS_WeSplit.Utilities.CopyFile(AvatarSrc, dir);
+                dir += filename;
+                _member.MemberAvatar = dir;
                 _member.MemberDOB = DateOfBirth;
                 _member.MemberName = MemberName;
                 _member.MemberSex = (bool)Radio_Male.IsChecked;
