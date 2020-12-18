@@ -72,7 +72,7 @@ namespace GUI_WeSplit
             bool canReturn = true;
 
             if (String.IsNullOrWhiteSpace(AvatarSrc) || _dateOfBirth == null
-                || String.IsNullOrWhiteSpace(MemberName) )
+                || String.IsNullOrWhiteSpace(LabelTextBox_Name.Text) )
                 canReturn = false;
 
             if (canReturn)
