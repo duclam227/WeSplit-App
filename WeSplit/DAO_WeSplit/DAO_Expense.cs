@@ -48,7 +48,7 @@ namespace DAO_WeSplit
 
             }
             string addExpense =
-                "insert into dbo.Expense(TripID, ExpenseID, ExpenseMoney, ExpenseMember, ExpenseDescription, ExpenseDate) values " +
+                "insert into Expense(TripID, ExpenseID, ExpenseMoney, ExpenseMember, ExpenseDescription, ExpenseDate) values " +
                 $"({expense.TripId}, {expense.ExpenseId + 1}, {expense.ExpenseMoney}, {expense.ExpenseMember}, N'{expense.ExpenseDescription}', '{expense.ExpenseDate}')";
 
             SqlCommand cmd = new SqlCommand(addExpense, _conn);
@@ -101,7 +101,7 @@ namespace DAO_WeSplit
             {
 
             }
-            string deleteExpense = $"delete from dbo.Expense where TripID = {expense.TripId} and ExpenseID = {expense.ExpenseId};";
+            string deleteExpense = $"delete from Expense where TripID = {expense.TripId} and ExpenseID = {expense.ExpenseId}";
 
             SqlCommand cmd = new SqlCommand(deleteExpense, _conn);
             cmd.ExecuteNonQuery();

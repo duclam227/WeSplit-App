@@ -49,7 +49,7 @@ namespace DAO_WeSplit
             }
             string addPlace =
                 "insert into dbo.Place(PlaceID, TripID, PlaceName, PlaceAddress, PlaceDescription) values " +
-                $"({place.PlaceId},{place.TripId}, N'{place.PlaceName}', N'{place.PlaceAddress}', N'{place.PlaceDescription}')";
+                $"({place.PlaceId + 1},{place.TripId}, N'{place.PlaceName}', N'{place.PlaceAddress}', N'{place.PlaceDescription}')";
 
             SqlCommand cmd = new SqlCommand(addPlace, _conn);
             cmd.ExecuteNonQuery();

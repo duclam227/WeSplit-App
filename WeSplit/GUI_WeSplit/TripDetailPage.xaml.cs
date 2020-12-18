@@ -88,7 +88,7 @@ namespace GUI_WeSplit
 
         private void Button_AddDestination_Click(object sender, RoutedEventArgs e)
         {
-            AddDestinationWindow addDestinationWindow = new AddDestinationWindow(trip.TripId, trip.TripDestinationList.Count);
+            AddDestinationWindow addDestinationWindow = new AddDestinationWindow(trip.TripId, PlaceList.Count);
             addDestinationWindow.AddDestinationEventHandler += (s, args) =>
             {
                 DTO_Place newDest = args.NewDestination;
