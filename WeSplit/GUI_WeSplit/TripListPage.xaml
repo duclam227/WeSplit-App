@@ -164,72 +164,10 @@
     </Page.Resources>
 
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="7*"/>
-        </Grid.RowDefinitions>
 
-        <StackPanel Orientation="Horizontal"
-                       Grid.Row="0"
-                        HorizontalAlignment="Center">
 
-            <Button x:Name="FinishListButton"
-                Click="FinishListButton_Click">
-                <Border Style="{DynamicResource MainButtonStyle}"
-                            Width="120">
-                    <Border.Background>
-                        <SolidColorBrush Color="{DynamicResource ContentBorderBG}" 
-                                             Opacity="{DynamicResource ButtonOpacity}"/>
-                    </Border.Background>
-                    <TextBlock Style="{DynamicResource ButtonTextStyle}"
-                               Text="Đã hoàn thành"/>
-                </Border>
-            </Button>
-
-            <Button x:Name="UnfinishListButton"
-                Click="UnfinishListButton_Click">
-                <Border Style="{DynamicResource MainButtonStyle}"
-                            Width="130">
-                    <Border.Background>
-                        <SolidColorBrush Color="{DynamicResource ContentBorderBG}" 
-                                             Opacity="{DynamicResource ButtonOpacity}"/>
-                    </Border.Background>
-                    <TextBlock Style="{DynamicResource ButtonTextStyle}"
-                               Text="Chưa hoàn thành"/>
-                </Border>
-            </Button>
-
-        </StackPanel>
-
-        <ListBox x:Name="UnfinishedTripListView"
+        <ListBox x:Name="TripListView"
                   Background="Transparent"
-                      Grid.Column="0"
-                      Grid.Row="1"
-                      Grid.ColumnSpan="2"
-                      VerticalAlignment="Stretch"
-                      VerticalContentAlignment="Center"
-                 HorizontalAlignment="Center"
-                      BorderThickness="0"
-                      Style="{DynamicResource ListBoxCustom}"
-                 Visibility="Collapsed"
-                 ItemTemplate="{DynamicResource TripDataTemplate}"
-                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                 ScrollViewer.VerticalScrollBarVisibility="Auto"
-                 SelectionChanged="UnfinishedTripListView_SelectionChanged">
-
-            <ListBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <WrapPanel/>
-                </ItemsPanelTemplate>
-            </ListBox.ItemsPanel>
-
-        </ListBox>
-
-        <ListBox x:Name="FinishedTripListView"
-                  Background="Transparent"
-                      Grid.Column="0"
-                      Grid.Row="1"
-                      Grid.ColumnSpan="2"
                       VerticalAlignment="Stretch"
                       VerticalContentAlignment="Center"
                  HorizontalAlignment="Center"
@@ -246,8 +184,6 @@
                     <WrapPanel/>
                 </ItemsPanelTemplate>
             </ListBox.ItemsPanel>
-
         </ListBox>
-
     </Grid>
 </Page>

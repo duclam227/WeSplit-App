@@ -79,10 +79,10 @@ namespace BUS_WeSplit
             return result;
         }
 
-        public List<Tuple<DTO_Member, double?, double?>> GetMembersOfTrip(int tripID)
+        public List<Tuple<DTO_Member, double, double>> GetMembersOfTrip(int tripID)
         {
             DataTable data = new DataTable();
-            List<Tuple<DTO_Member, double?, double?>> result = new List<Tuple<DTO_Member, double?, double?>>();
+            List<Tuple<DTO_Member, double, double>> result = new List<Tuple<DTO_Member, double, double>>();
 
             data = DAO_Member.Instance.GetMembersOfTrip(tripID);
 
@@ -95,21 +95,21 @@ namespace BUS_WeSplit
                 string avatar = row["MemberAvatar"].ToString();
                 string tmpString;
                 tmpString = row["Paid"].ToString();
-                double? paid = 0;
+                double paid = 0;
                 if (tmpString != "")
                 {
                     paid = double.Parse(tmpString);
                 }
 
                 tmpString = row["Change"].ToString();
-                double? change = 0;
+                double change = 0;
                 if (tmpString != "")
                 {
                     change = double.Parse(tmpString);
                 }
 
                 DTO_Member tmpMember = new DTO_Member(id, name, dob, sex, avatar);
-                Tuple<DTO_Member, double?, double?> tmpTuple = new Tuple<DTO_Member, double?, double?>(tmpMember, paid, change);
+                Tuple<DTO_Member, double, double> tmpTuple = new Tuple<DTO_Member, double, double>(tmpMember, paid, change);
                 result.Add(tmpTuple);
             }
 

@@ -176,6 +176,7 @@ namespace BUS_WeSplit
             result.TripId = int.Parse(row["TripID"].ToString());
             result.TripName = row["TripName"].ToString();
             result.TripStartDate = (DateTime)row["TripStartDate"];
+            result.TripEndDate = (DateTime)row["TripEndDate"];
             result.TripDescription = row["TripDescription"].ToString();
             result.TripExpenseTotal = double.Parse(row["TripExpenseTotal"].ToString());
             string tmpAverage = row["TripAverage"].ToString();

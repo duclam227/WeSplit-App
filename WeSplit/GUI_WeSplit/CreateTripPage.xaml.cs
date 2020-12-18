@@ -77,7 +77,6 @@ namespace GUI_WeSplit
         {
             LabelTextBox_Description.Visibility = Visibility.Visible;
         }
-
         private void CheckBox_Description_Unchecked(object sender, RoutedEventArgs e)
         {
             LabelTextBox_Description.Visibility = Visibility.Collapsed;
@@ -96,7 +95,7 @@ namespace GUI_WeSplit
                 canReturn = false;
             }
 
-            if (CheckBox_Description.IsChecked == true && String.IsNullOrWhiteSpace(TripDescription))
+            if (CheckBox_Description.IsChecked == true && String.IsNullOrWhiteSpace(LabelTextBox_Description.Text))
             {
                 canReturn = false;
             }

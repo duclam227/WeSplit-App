@@ -77,96 +77,100 @@
                 VerticalAlignment="Bottom"
                 Click="Button_CreateNewTrip_Click">Thêm chuyến đi mới</Button>
 
-        <Border x:Name="FirstColumn" Grid.Column="0"
+        <ScrollViewer VerticalScrollBarVisibility="auto"
+                      Grid.Column="0"
+                      Padding="10 0 10 0">
+            <Border x:Name="FirstColumn" Grid.Column="0"
                 CornerRadius="20"
                 Padding="10"
                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                 ScrollViewer.VerticalScrollBarVisibility="Auto">
 
-            <Border.Background>
-                <SolidColorBrush Color="White" Opacity="0.7"/>
-            </Border.Background>
+                <Border.Background>
+                    <SolidColorBrush Color="White" Opacity="0.7"/>
+                </Border.Background>
 
-            <StackPanel>
-                <uc:LabelTextBox x:Name="LabelTextBox_TripName" 
+                <StackPanel>
+                    <uc:LabelTextBox x:Name="LabelTextBox_TripName" 
                                  Grid.Row="0"
                                  Grid.ColumnSpan="2"
                                  Margin="20 0 20 0"
                                  Title="Tên chuyến đi" 
                                  Loaded="LabelTextBox_TripName_Loaded">
-                    <uc:LabelTextBox.Text>
-                        <Binding Path="TripName" Mode="TwoWay">
-                            <Binding.ValidationRules>
-                                <rules:NotNullRule/>
-                            </Binding.ValidationRules>
-                        </Binding>
-                    </uc:LabelTextBox.Text>
-                </uc:LabelTextBox>
+                        <uc:LabelTextBox.Text>
+                            <Binding Path="TripName" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <rules:NotNullRule/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </uc:LabelTextBox.Text>
+                    </uc:LabelTextBox>
 
 
-                <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="20 10 20 0">
-                    <CheckBox Name="CheckBox_Description"
+                    <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="20 10 20 0">
+                        <CheckBox Name="CheckBox_Description"
                           HorizontalAlignment="Left" 
                           Content="Thêm mô tả"
                           Checked="CheckBox_Description_Checked"
                           Unchecked="CheckBox_Description_Unchecked"/>
-                    <TextBlock Text=" "/>
-                    <uc:LabelTextBox x:Name="LabelTextBox_Description"
+                        <TextBlock Text=" "/>
+                        <uc:LabelTextBox x:Name="LabelTextBox_Description"
                                      Visibility="Collapsed"/>
-                </StackPanel>
+                    </StackPanel>
 
-                <TextBlock Text=" "/>
+                    <TextBlock Text=" "/>
 
-                <StackPanel Margin="20 10 20 0">
-                    <TextBlock 
+                    <StackPanel Margin="20 10 20 0">
+                        <TextBlock 
                         HorizontalAlignment="Left"
                         TextWrapping="NoWrap">
                         Ngày bắt đầu
-                    </TextBlock>
-                    <DatePicker Name="DatePicker_StartDate"/>
-                </StackPanel>
+                        </TextBlock>
+                        <DatePicker Name="DatePicker_StartDate"/>
+                    </StackPanel>
 
-                <StackPanel Margin="20 10 20 0">
-                    <TextBlock 
+                    <StackPanel Margin="20 10 20 0">
+                        <TextBlock 
                         HorizontalAlignment="Left"
                         TextWrapping="NoWrap">
                         Ngày kết thúc
-                    </TextBlock>
-                    <DatePicker Name="DatePicker_EndDate"/>
-                </StackPanel>
+                        </TextBlock>
+                        <DatePicker Name="DatePicker_EndDate"/>
+                    </StackPanel>
 
-                <TextBlock Text=" "/>
+                    <TextBlock Text=" "/>
 
-                <hc:Carousel Name="carouselImages" 
+                    <hc:Carousel Name="carouselImages" 
                              HorizontalAlignment="Center"
                              AutoRun="True" 
                              Width="{Binding ActualWidth, ElementName=FirstColumn}"
                              Height="200">
 
-                    <hc:Carousel.ItemTemplate>
-                        <DataTemplate>
-                            <Image HorizontalAlignment="Center"
+                        <hc:Carousel.ItemTemplate>
+                            <DataTemplate>
+                                <Image HorizontalAlignment="Center"
 							VerticalAlignment  = "Center"
                                    Source="{Binding}" 
                                    Stretch="UniformToFill" 
                                    Width="{Binding ActualWidth, ElementName=carouselImages}"
                                    RenderOptions.BitmapScalingMode="HighQuality"/>
-                        </DataTemplate>
-                    </hc:Carousel.ItemTemplate>
+                            </DataTemplate>
+                        </hc:Carousel.ItemTemplate>
 
-                </hc:Carousel>
+                    </hc:Carousel>
 
-                <Button Name="Button_AddImage"
+                    <Button Name="Button_AddImage"
                 Grid.Row="5" Grid.ColumnSpan="2"
                 Style="{DynamicResource ButtonPrimary}"
                 Margin="0 0 0 10"
                 Content="Thêm hình ảnh" Click="Button_AddImage_Click"
                 hc:BorderElement.CornerRadius="15"/>
 
-                <TextBlock Text=" "/>
-            </StackPanel>
-        </Border>
-
+                    <TextBlock Text=" "/>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+        
         <ScrollViewer VerticalScrollBarVisibility="auto"
                       Grid.Column="1"
                       Padding="10 0 10 0">

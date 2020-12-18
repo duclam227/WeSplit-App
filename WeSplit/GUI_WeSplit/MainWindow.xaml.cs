@@ -156,22 +156,27 @@ namespace GUI_WeSplit
             MainFrame.Navigate(memberListPage);
         }
 
-        private void AboutUsButton_Click(object sender, MouseButtonEventArgs e)
-        {
-            //MainFrame.Visibility = Visibility.Collapsed;
-
-            ActiveIndicator.Visibility = Visibility.Visible;
-            Grid.SetColumn(ActiveIndicator, 6);
-        }
-
         private void SearchButton_Click(object sender, MouseButtonEventArgs e)
         {
             ActiveIndicator.Visibility = Visibility.Visible;
-            Grid.SetColumn(ActiveIndicator, 8);
+            Grid.SetColumn(ActiveIndicator, 6);
 
             searchPage = new SearchPage();
             searchPage.eventPassIDToMain += SearchPage_eventPassIDToMain;
             MainFrame.Navigate(searchPage);
         }
+
+        private void AboutUsButton_Click(object sender, MouseButtonEventArgs e)
+        {
+            //MainFrame.Visibility = Visibility.Collapsed;
+
+            ActiveIndicator.Visibility = Visibility.Visible;
+            Grid.SetColumn(ActiveIndicator, 8);
+
+            AboutUsPage aboutUs = new AboutUsPage();
+            MainFrame.Navigate(aboutUs);
+        }
+
+      
     }
 }

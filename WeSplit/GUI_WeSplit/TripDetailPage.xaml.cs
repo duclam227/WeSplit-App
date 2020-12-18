@@ -17,7 +17,8 @@ using DTO_WeSplit;
 using BUS_WeSplit;
 using System.Collections.ObjectModel;
 using System.IO;
-using Path = System.IO.Path;
+using LiveCharts;
+using LiveCharts.Wpf;
 
 namespace GUI_WeSplit
 {
@@ -27,13 +28,15 @@ namespace GUI_WeSplit
     public partial class TripDetailPage : Page
     {
         private DTO_WeSplit.DTO_Trip trip = new DTO_WeSplit.DTO_Trip();
-        private List<Tuple<DTO_WeSplit.DTO_Member, double?, double?>> listOfMember = new List<Tuple<DTO_WeSplit.DTO_Member, double?, double?>>();
+        private List<Tuple<DTO_WeSplit.DTO_Member, double, double>> listOfMember = new List<Tuple<DTO_WeSplit.DTO_Member, double, double>>();
 
         ObservableCollection<DTO_Place> PlaceList;
         ObservableCollection<DTO_Expense> ExpenseList;
         ObservableCollection<BitmapImage> ImagesList;
         ObservableCollection<DTO_Member> AvailableMemberList;
-        ObservableCollection<Tuple<DTO_Member, double?, double?>> MemberList;
+        ObservableCollection<Tuple<DTO_Member, double, double>> MemberList;
+
+        LiveCharts.SeriesCollection psc;
 
         public TripDetailPage()
         {
@@ -57,24 +60,16 @@ namespace GUI_WeSplit
             this.DataContext = trip;
             PlaceList = new ObservableCollection<DTO_Place>(trip.TripDestinationList);
             ExpenseList  = new ObservableCollection<DTO_Expense>(trip.TripExpenseList);
-            MemberList = new ObservableCollection<Tuple<DTO_Member, double?, double?>>(BUS_Member.Instance.GetMembersOfTrip(trip.TripId).ToList());
+            MemberList = new ObservableCollection<Tuple<DTO_Member, double, double>>(BUS_Member.Instance.GetMembersOfTrip(trip.TripId).ToList());
             ImagesList = new ObservableCollection<BitmapImage>(BUS_Trip.Instance.GetImagesOfTrip(trip.TripId));
-
-            //var temp = Utilities.FilePathListToBitmapImageList(trip.TripImagesList);
-            //if (temp != null)
-            //{
-            //    ImagesList = new ObservableCollection<BitmapImage>(temp);
-            //} 
-            //else
-            //{
-            //    ImagesList = new ObservableCollection<BitmapImage>();
-            //}
 
             PlaceListDataGrid.ItemsSource = PlaceList;
             ExpenseListDataGrid.ItemsSource = ExpenseList;
             TripImagesCarousel.ItemsSource = ImagesList;
             MemberListDataGrid.ItemsSource = MemberList;
             AvailableMembersList.ItemsSource = AvailableMemberList;
+
+            LoadPieChartData();
         }
 
         private void Button_AddExpense_Click(object sender, RoutedEventArgs e)
@@ -185,7 +180,7 @@ namespace GUI_WeSplit
         {
             foreach (var item in MemberListDataGrid.SelectedItems)
             {
-                Tuple<DTO_Member, double?, double?> member = (Tuple<DTO_Member, double?, double?>)item;
+                Tuple<DTO_Member, double, double> member = (Tuple<DTO_Member, double, double>)item;
                 BUS_Member.Instance.DeleteMemberPerTrip(trip.TripId, member.Item1.MemberID);
             }
 
@@ -257,11 +252,35 @@ namespace GUI_WeSplit
             BUS_Trip.Instance.AddAverageToTrip(trip.TripId, BUS_Trip.Instance.CalculateAverage(trip.TripId));
 
             trip.TripMemberList = BUS_Member.Instance.GetMembersPerTrip(trip.TripId);
-            MemberList = new ObservableCollection<Tuple<DTO_Member, double?, double?>>(BUS_Member.Instance.GetMembersOfTrip(trip.TripId).ToList());
+            MemberList = new ObservableCollection<Tuple<DTO_Member, double, double>>(BUS_Member.Instance.GetMembersOfTrip(trip.TripId).ToList());
             MemberListDataGrid.ItemsSource = MemberList;
 
             AverageTextBlock.Text = BUS_Trip.Instance.CalculateAverage(trip.TripId).ToString();
             TotalTextBlock.Text = BUS_Trip.Instance.GetExpenseTotal(trip.TripId).ToString();
+
+            LoadPieChartData();
+        }
+
+        private void LoadPieChartData()
+        {
+            psc = new SeriesCollection();
+            foreach (var item in MemberList)
+            {
+                LiveCharts.Wpf.PieSeries tmpPie = new LiveCharts.Wpf.PieSeries
+                {
+                    Values = new LiveCharts.ChartValues<double> { item.Item2 },
+                    Title = item.Item1.MemberName,
+                    DataLabels = true
+                };
+                psc.Add(tmpPie);
+            }
+
+            ExpensePie.Series.Clear();
+
+            foreach(var piece in psc)
+            {
+                ExpensePie.Series.Add(piece);
+            }
         }
     }
 

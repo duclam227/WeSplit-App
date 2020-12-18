@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:hc="https://handyorg.github.io/handycontrol"
-      
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
       xmlns:local="clr-namespace:GUI_WeSplit"
       xmlns:converters="clr-namespace:GUI_WeSplit.Converters"
       mc:Ignorable="d"
@@ -59,50 +59,72 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
 
-        <Border x:Name="FirstColumn" Grid.Column="0"
+        <ScrollViewer VerticalScrollBarVisibility="auto"
+                      Grid.Column="0"
+                      Padding="10 0 10 0">
+            <Border x:Name="FirstColumn" Grid.Column="0"
                 CornerRadius="20"
                 Padding="10">
 
-            <Border.Background>
-                <SolidColorBrush Color="White" Opacity="0.7"/>
-            </Border.Background>
+                <Border.Background>
+                    <SolidColorBrush Color="White" Opacity="0.7"/>
+                </Border.Background>
 
-            <StackPanel>
-                <TextBlock x:Name="TripTitleTextBlock"
+                <StackPanel>
+                    <TextBlock x:Name="TripTitleTextBlock"
                    Text="{Binding TripName}"
                            Style="{DynamicResource TitleStyle}"/>
 
-                <Separator Height="1"
+                    <Separator Height="1"
                            Background="{DynamicResource IndicatorColor}"/>
 
-                <TextBlock x:Name="TripDescriptionTextBlock"
-                   Text="{Binding TripDescription}"
+                    <TextBlock x:Name="TripDescriptionTextBlock"
+                    Text="{Binding TripDescription}"
                            Style="{DynamicResource DescriptionStyle}"/>
 
-                <TextBlock Text=" "/>
+                    <TextBlock Text=" " FontSize="5"/>
 
-                <hc:Carousel Name="TripImagesCarousel" 
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Từ ngày: "
+                                   Style="{DynamicResource DescriptionStyle}"/>
+                        <TextBlock x:Name="TripStartDateTextBlock"
+                               Text="{Binding TripStartDate, Converter={StaticResource DateTimeToStringConverter}}"
+                               Style="{DynamicResource DescriptionStyle}"/>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Đến ngày: "
+                                   Style="{DynamicResource DescriptionStyle}"/>
+                        <TextBlock x:Name="TripEndDateTextBlock"
+                               Text="{Binding TripEndDate, Converter={StaticResource DateTimeToStringConverter}}"
+                               Style="{DynamicResource DescriptionStyle}"/>
+                    </StackPanel>
+
+                    <TextBlock Text=" " FontSize="5"/>
+
+                    <hc:Carousel Name="TripImagesCarousel" 
                              HorizontalAlignment="Center"
                              AutoRun="True" 
                              Width="{Binding ActualWidth, ElementName=FirstColumn}"
-                             Height="200">
+                             Height="300">
 
-                    <hc:Carousel.ItemTemplate>
-                        <DataTemplate>
-                            <Image HorizontalAlignment="Center"
-							VerticalAlignment  = "Center"
-                                   Source="{Binding}" 
-                                   Stretch="UniformToFill" 
-                                   Width="{Binding ActualWidth, ElementName=TripImagesCarousel}"
-                                   RenderOptions.BitmapScalingMode="HighQuality"/>
-                        </DataTemplate>
-                    </hc:Carousel.ItemTemplate>
+                        <hc:Carousel.ItemTemplate>
+                            <DataTemplate>
+                                <Image x:Name="Image" 
+                                       HorizontalAlignment="Center"
+							           VerticalAlignment  = "Center"
+                                       Source="{Binding}" 
+                                       Stretch="UniformToFill" 
+                                       Width="{Binding ActualWidth, ElementName=TripImagesCarousel}"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </DataTemplate>
+                        </hc:Carousel.ItemTemplate>
 
-                </hc:Carousel>
+                    </hc:Carousel>
 
-                <TextBlock Text=" "/>
+                    <TextBlock Text=" " FontSize="5"/>
 
-                <Button Name="Button_AddImage"
+                    <Button Name="Button_AddImage"
                                     HorizontalAlignment="Center"                                
                                     Style="{DynamicResource ButtonPrimary}"
                                     Margin="6 0 0 0"
@@ -110,28 +132,34 @@
                                     Click="Button_AddImage_Click"
                                     hc:BorderElement.CornerRadius="15"/>
 
-                <TextBlock Text=" "/>
+                    <TextBlock Text=" "/>
 
-                <Border x:Name="ExpenseChartPart" 
+                    <Border x:Name="ExpenseChartPart" 
                         CornerRadius="20"
                         Padding="15">
 
-                    <Border.Background>
-                        <SolidColorBrush Color="White"
+                        <Border.Background>
+                            <SolidColorBrush Color="White"
                                          Opacity="0.7"/>
-                    </Border.Background>
-                    <StackPanel>
-                        <TextBlock Text="Biểu đồ chi tiêu"
+                        </Border.Background>
+                        <StackPanel>
+                            <TextBlock Text="Biểu đồ chi tiêu"
                            Style="{DynamicResource SubTitleStyle}"
                            HorizontalAlignment="Left"
                            Margin="6 0 0 0"/>
 
-                    </StackPanel>
-                </Border>
+                            <lvc:PieChart Name="ExpensePie"
+                                          Hoverable="True"
+                                          Height="200">
+                            </lvc:PieChart>
 
-            </StackPanel>
-        </Border>
+                        </StackPanel>
+                    </Border>
 
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+        
         <ScrollViewer VerticalScrollBarVisibility="auto"
                       Grid.Column="1"
                       Padding="10 0 10 0">

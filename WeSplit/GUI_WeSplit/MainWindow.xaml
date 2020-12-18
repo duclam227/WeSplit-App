@@ -137,10 +137,6 @@
                                 </BeginStoryboard>
                             </EventTrigger>
                         </Border.Triggers>
-                        <!--<Image x:Name="ResizeIcon"
-                       Source="Images/powerIcon.png"
-                       RenderOptions.BitmapScalingMode="HighQuality"
-                       Height="15" Margin="0 0 0 1"/>-->
                     </Border>
                     <TextBlock Text=" "/>
                     <Border x:Name="MinimizeButton"
@@ -243,25 +239,25 @@
                     <Border Grid.Row="0" 
                             Grid.Column="6"
                             Style="{DynamicResource ButtonStyle}"
-                            PreviewMouseDown="AboutUsButton_Click">
+                            PreviewMouseDown="SearchButton_Click">
                         <Border.Background>
                             <SolidColorBrush Color="{DynamicResource ContentBorderBG}"
                                              Opacity="{DynamicResource MainBorderOpacity}"/>
                         </Border.Background>
-                        <TextBlock >About us</TextBlock>
+                        <TextBlock >Tìm kiếm</TextBlock>
                     </Border>
 
                     <Border Grid.Row="0" 
                             Grid.Column="8"
                             Style="{DynamicResource ButtonStyle}"
-                            PreviewMouseDown="SearchButton_Click">
+                            PreviewMouseDown="AboutUsButton_Click">
 
                         <Border.Background>
                             <SolidColorBrush Color="{DynamicResource ContentBorderBG}"
                                              Opacity="{DynamicResource MainBorderOpacity}"/>
                         </Border.Background>
 
-                        <TextBlock >Tìm kiếm</TextBlock>
+                        <TextBlock>AboutUs</TextBlock>
                     </Border>
 
                     <Polygon x:Name="ActiveIndicator"

@@ -32,62 +32,15 @@ namespace GUI_WeSplit
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            FinishedTripListView.Visibility = Visibility.Visible;
-            UnfinishedTripListView.Visibility = Visibility.Collapsed;
-            FinishListButton.Opacity = 1;
-            UnfinishListButton.Opacity = 0.3;
-
             listToShow.Clear();
-            listToShow = BUS_WeSplit.BUS_Trip.Instance.GetFinishedTrips().ToList();
-            FinishedTripListView.ItemsSource = listToShow;
-
-        }
-
-        private void FinishListButton_Click(object sender, RoutedEventArgs e)
-        {
-            FinishedTripListView.Visibility = Visibility.Visible;
-            UnfinishedTripListView.Visibility = Visibility.Collapsed;
-            FinishListButton.Opacity = 1;
-            UnfinishListButton.Opacity = 0.5;
-
-            listToShow.Clear();
-            listToShow = BUS_WeSplit.BUS_Trip.Instance.GetFinishedTrips().ToList();
-            FinishedTripListView.ItemsSource = listToShow;
-        }
-
-        private void UnfinishListButton_Click(object sender, RoutedEventArgs e)
-        {
-            UnfinishedTripListView.Visibility = Visibility.Visible;
-            FinishedTripListView.Visibility = Visibility.Collapsed;
-            FinishListButton.Opacity = 0.5;
-            UnfinishListButton.Opacity = 1;
-
-            listToShow.Clear();
-            listToShow = BUS_WeSplit.BUS_Trip.Instance.GetUnfinishedTrips().ToList();
-            UnfinishedTripListView.ItemsSource = listToShow;
-        }
-
-        private void UnfinishedTripListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int tripID;
-            int position = UnfinishedTripListView.SelectedIndex;
-
-            if (position > -1)
-            {
-                tripID = listToShow[position].TripId;
-                //MessageBox.Show($"{tripID}");
-                eventPassIDToMain(tripID);
-            }
-            else
-            {
-                //do nothing
-            }
+            listToShow = BUS_WeSplit.BUS_Trip.Instance.GetAllTrips().ToList();
+            TripListView.ItemsSource = listToShow;
         }
 
         private void FinishedTripListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int tripID;
-            int position = FinishedTripListView.SelectedIndex;
+            int position = TripListView.SelectedIndex;
 
             if (position > -1)
             {

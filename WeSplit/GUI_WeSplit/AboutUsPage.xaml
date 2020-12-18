@@ -1,0 +1,126 @@
+﻿<Page x:Class="GUI_WeSplit.AboutUsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:GUI_WeSplit"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AboutUsPage">
+
+
+    <Page.Resources>
+        <Style x:Key="MyButton" TargetType="Button">
+            <Setter Property="Background" Value="{x:Null}"></Setter>
+            <Setter Property="BorderThickness" Value="0"></Setter>
+            <Setter Property="OverridesDefaultStyle" Value="True" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="0" BorderBrush="Black" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Opacity" Value="0.8" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="MemberNameText" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"></Setter>
+            <Setter Property="FontSize" Value="20"></Setter>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="DemiBold"></Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid Name="FavoritePart"
+              ShowGridLines="False" 
+              Panel.ZIndex="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel x:Name="KimPanel"
+                        Grid.Column="0"
+                        VerticalAlignment="Center">
+                <Border CornerRadius="200"
+                        BorderThickness="2"
+                        BorderBrush="White"
+                        Height="300"
+                        Width="300"
+                        MinHeight="100"
+                        MinWidth="100"
+                        ClipToBounds="True">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Images/KimImage.png"
+                                    Stretch="UniformToFill"></ImageBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock></TextBlock>
+                <TextBlock Text="Nguyễn Duy Thiên Kim"
+                           Style="{StaticResource MemberNameText}"></TextBlock>
+                <TextBlock Text="18120047"
+                           Style="{StaticResource MemberNameText}"></TextBlock>
+            </StackPanel>
+
+            <StackPanel x:Name="DucPanel"
+                        Grid.Column="1"
+                        VerticalAlignment="Center">
+                <Border CornerRadius="200"
+                        BorderThickness="2"
+                        BorderBrush="White"
+                        Height="300"
+                        Width="300"
+                        MinHeight="100"
+                        MinWidth="100"
+                        ClipToBounds="True">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Images/DucImage.jpg"
+                                    Stretch="UniformToFill"></ImageBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock></TextBlock>
+                <TextBlock Text="Lâm Xương Đức"
+                           Style="{StaticResource MemberNameText}"></TextBlock>
+                <TextBlock Text="18120163"
+                           Style="{StaticResource MemberNameText}"></TextBlock>
+            </StackPanel>
+            <StackPanel x:Name="LamPanel"
+                        Grid.Column="2"
+                        VerticalAlignment="Center">
+                <Border CornerRadius="200"
+                        BorderThickness="2"
+                        BorderBrush="White"
+                        Height="300"
+                        Width="300"
+                        MinHeight="100"
+                        MinWidth="100"
+                        ClipToBounds="True">
+                    <Border.Background>
+                        <ImageBrush ImageSource="Images/LamImage.png"
+                                    Stretch="UniformToFill"></ImageBrush>
+                    </Border.Background>
+                </Border>
+                <TextBlock></TextBlock>
+                <TextBlock Text="Võ Minh Lâm"
+                           Style="{StaticResource MemberNameText}"></TextBlock>
+                <TextBlock Text="18120192"
+                           Style="{StaticResource MemberNameText}"></TextBlock>
+            </StackPanel>
+
+        </Grid>
+    </Grid>
+</Page>
