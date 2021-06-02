@@ -13,18 +13,6 @@ using GUI_WeSplit;
 using GUI_WeSplit.Converters;
 using GUI_WeSplit.CustomUserControl;
 using GUI_WeSplit.Validation;
-using HandyControl.Controls;
-using HandyControl.Data;
-using HandyControl.Expression.Media;
-using HandyControl.Expression.Shapes;
-using HandyControl.Interactivity;
-using HandyControl.Media.Animation;
-using HandyControl.Media.Effects;
-using HandyControl.Properties.Langs;
-using HandyControl.Themes;
-using HandyControl.Tools;
-using HandyControl.Tools.Converter;
-using HandyControl.Tools.Extension;
 using System;
 using System.Diagnostics;
 using System.Windows;
@@ -91,7 +79,7 @@ namespace GUI_WeSplit {
                 return;
             }
             _contentLoaded = true;
-            System.Uri resourceLocater = new System.Uri("/GUI_WeSplit;component/memberlistpage.xaml", System.UriKind.Relative);
+            System.Uri resourceLocater = new System.Uri("/WeSplit;component/memberlistpage.xaml", System.UriKind.Relative);
             
             #line 1 "..\..\MemberListPage.xaml"
             System.Windows.Application.LoadComponent(this, resourceLocater);

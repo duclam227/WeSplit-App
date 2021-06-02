@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO_WeSplit", "DAO_WeSplit\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BUS_WeSplit", "BUS_WeSplit\BUS_WeSplit.csproj", "{CA48BB35-8D3D-4D09-98EA-DBC2DD1F4976}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUI_WeSplit", "GUI_WeSplit\GUI_WeSplit.csproj", "{2D779D51-7269-4CB0-AA44-17AB44E8D76A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeSplit", "GUI_WeSplit\WeSplit.csproj", "{2D779D51-7269-4CB0-AA44-17AB44E8D76A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

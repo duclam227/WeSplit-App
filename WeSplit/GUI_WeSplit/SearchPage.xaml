@@ -35,17 +35,17 @@
                     <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
                         <Border Padding="0 0 0 5">
                             <Border BorderThickness="0.5 0 0 0"
-                                BorderBrush="{DynamicResource ContentForeground}"
-                                Background="Transparent"
-                                Padding="2">
+                                    BorderBrush="{DynamicResource ContentForeground}"
+                                    Background="Transparent"
+                                    Padding="2">
                                 <TextBlock x:Name="ContentHeader" 
-                                       Text="{TemplateBinding Content}" 
-                                       Padding="5" 
-                                       Width="{TemplateBinding Width}" 
-                                       TextAlignment="Center"
-                                       Foreground="{DynamicResource ContentForeground}"
-                                       FontSize="16"
-                                       FontWeight="DemiBold"/>
+                                           Text="{TemplateBinding Content}" 
+                                           Padding="5" 
+                                           Width="{TemplateBinding Width}" 
+                                           TextAlignment="Center"
+                                           Foreground="{DynamicResource ContentForeground}"
+                                           FontSize="16"
+                                           FontWeight="DemiBold"/>
                             </Border>
                         </Border>
                        
@@ -89,13 +89,13 @@
                          TextChanged="SearchBar_TextChanged"/>
             </Border>
 
-            <RadioButton Content="Tìm theo chuyến đi"
+            <RadioButton Content=" Tìm theo chuyến đi         "
                          Name="radionBtn_SearchTrip"
                          GroupName="radio_Search"
                          IsChecked="True"
                          Checked="radionBtn_SearchTrip_Checked"/>
             
-            <RadioButton Content="Tìm kiếm theo thành viên"
+            <RadioButton Content=" Tìm kiếm theo thành viên"
                          Name="radioBtn_SearchMember"
                          GroupName="radio_Search"
                          Checked="radioBtn_SearchMember_Checked"/>
@@ -114,13 +114,13 @@
             </Border.Background>
 
             <DataGrid Name="ResultDataGrid" 
-                  ItemsSource="{Binding searchingTrips}"
-                  HeadersVisibility="All" 
-                  AutoGenerateColumns="False"
-                  Background="Transparent"
-                  SelectionChanged="ResultDataGrid_SelectionChanged"
-                  Visibility="Collapsed"
-                  RowHeaderWidth="0">
+                      ItemsSource="{Binding searchingTrips}"
+                      HeadersVisibility="All" 
+                      AutoGenerateColumns="False"
+                      Background="Transparent"
+                      SelectionChanged="ResultDataGrid_SelectionChanged"
+                      Visibility="Collapsed"
+                      RowHeaderWidth="0">
                 <DataGrid.RowHeaderTemplate>
                     <DataTemplate>
                         <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
@@ -128,25 +128,25 @@
                 </DataGrid.RowHeaderTemplate>
                 <DataGrid.Columns>
                     <DataGridTextColumn IsReadOnly="True" Width="2*" 
-                                                    CanUserResize="True" 
-                                                    Binding="{Binding TripName}" 
-                                                    Header="Tên chuyến đi"/>
+                                        CanUserResize="True" 
+                                        Binding="{Binding TripName}" 
+                                        Header="Tên chuyến đi"/>
                     <DataGridTextColumn IsReadOnly="True" Width="3*" 
-                                                    CanUserResize="True" 
-                                                    Binding="{Binding TripDescription}" 
-                                                    Header="Mô tả"/>
+                                        CanUserResize="True" 
+                                        Binding="{Binding TripDescription}" 
+                                        Header="Mô tả"/>
                     <DataGridTextColumn IsReadOnly="True" Width="1*" 
-                                                    CanUserResize="True" 
-                                                    Binding="{Binding TripStartDate, Converter={StaticResource DateTimeToStringConverter}}" 
-                                                    Header="Ngày bắt đầu"/>
+                                        CanUserResize="True" 
+                                        Binding="{Binding TripStartDate, Converter={StaticResource DateTimeToStringConverter}}" 
+                                        Header="Ngày bắt đầu"/>
                     <DataGridTextColumn IsReadOnly="True" Width="1*" 
-                                                    CanUserResize="True" 
-                                                    Binding="{Binding TripExpenseTotal}" 
-                                                    Header="Chi tiêu"/>
+                                        CanUserResize="True" 
+                                        Binding="{Binding TripExpenseTotal}" 
+                                        Header="Chi tiêu"/>
                     <DataGridTextColumn IsReadOnly="True" Width="1*" 
-                                                    CanUserResize="True" 
-                                                    Binding="{Binding TripAverage}" 
-                                                    Header="Phí/người"/>
+                                        CanUserResize="True" 
+                                        Binding="{Binding TripAverage}" 
+                                        Header="Phí/người"/>
                 </DataGrid.Columns>
             </DataGrid>
         </Border>

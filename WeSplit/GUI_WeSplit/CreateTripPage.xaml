@@ -81,10 +81,10 @@
                       Grid.Column="0"
                       Padding="10 0 10 0">
             <Border x:Name="FirstColumn" Grid.Column="0"
-                CornerRadius="20"
-                Padding="10"
-                ScrollViewer.HorizontalScrollBarVisibility="Disabled"
-                ScrollViewer.VerticalScrollBarVisibility="Auto">
+                    CornerRadius="20"
+                    Padding="10"
+                    ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto">
 
                 <Border.Background>
                     <SolidColorBrush Color="White" Opacity="0.7"/>
@@ -92,11 +92,11 @@
 
                 <StackPanel>
                     <uc:LabelTextBox x:Name="LabelTextBox_TripName" 
-                                 Grid.Row="0"
-                                 Grid.ColumnSpan="2"
-                                 Margin="20 0 20 0"
-                                 Title="Tên chuyến đi" 
-                                 Loaded="LabelTextBox_TripName_Loaded">
+                                     Grid.Row="0"
+                                     Grid.ColumnSpan="2"
+                                     Margin="20 0 20 0"
+                                     Title="Tên chuyến đi" 
+                                     Loaded="LabelTextBox_TripName_Loaded">
                         <uc:LabelTextBox.Text>
                             <Binding Path="TripName" Mode="TwoWay">
                                 <Binding.ValidationRules>
@@ -109,30 +109,28 @@
 
                     <StackPanel Grid.Row="1" Grid.ColumnSpan="2" Margin="20 10 20 0">
                         <CheckBox Name="CheckBox_Description"
-                          HorizontalAlignment="Left" 
-                          Content="Thêm mô tả"
-                          Checked="CheckBox_Description_Checked"
-                          Unchecked="CheckBox_Description_Unchecked"/>
+                                  HorizontalAlignment="Left" 
+                                  Content="Thêm mô tả"
+                                  Checked="CheckBox_Description_Checked"
+                                  Unchecked="CheckBox_Description_Unchecked"/>
                         <TextBlock Text=" "/>
                         <uc:LabelTextBox x:Name="LabelTextBox_Description"
-                                     Visibility="Collapsed"/>
+                                         Visibility="Collapsed"/>
                     </StackPanel>
 
                     <TextBlock Text=" "/>
 
                     <StackPanel Margin="20 10 20 0">
-                        <TextBlock 
-                        HorizontalAlignment="Left"
-                        TextWrapping="NoWrap">
+                        <TextBlock HorizontalAlignment="Left"
+                                   TextWrapping="NoWrap">
                         Ngày bắt đầu
                         </TextBlock>
                         <DatePicker Name="DatePicker_StartDate"/>
                     </StackPanel>
 
                     <StackPanel Margin="20 10 20 0">
-                        <TextBlock 
-                        HorizontalAlignment="Left"
-                        TextWrapping="NoWrap">
+                        <TextBlock HorizontalAlignment="Left"
+                                   TextWrapping="NoWrap">
                         Ngày kết thúc
                         </TextBlock>
                         <DatePicker Name="DatePicker_EndDate"/>
@@ -141,30 +139,30 @@
                     <TextBlock Text=" "/>
 
                     <hc:Carousel Name="carouselImages" 
-                             HorizontalAlignment="Center"
-                             AutoRun="True" 
-                             Width="{Binding ActualWidth, ElementName=FirstColumn}"
-                             Height="200">
+                                 HorizontalAlignment="Center"
+                                 AutoRun="True" 
+                                 Width="{Binding ActualWidth, ElementName=FirstColumn}"
+                                 Height="200">
 
                         <hc:Carousel.ItemTemplate>
                             <DataTemplate>
                                 <Image HorizontalAlignment="Center"
-							VerticalAlignment  = "Center"
-                                   Source="{Binding}" 
-                                   Stretch="UniformToFill" 
-                                   Width="{Binding ActualWidth, ElementName=carouselImages}"
-                                   RenderOptions.BitmapScalingMode="HighQuality"/>
+							           VerticalAlignment  = "Center"
+                                       Source="{Binding}" 
+                                       Stretch="UniformToFill" 
+                                       Width="{Binding ActualWidth, ElementName=carouselImages}"
+                                       RenderOptions.BitmapScalingMode="HighQuality"/>
                             </DataTemplate>
                         </hc:Carousel.ItemTemplate>
 
                     </hc:Carousel>
 
                     <Button Name="Button_AddImage"
-                Grid.Row="5" Grid.ColumnSpan="2"
-                Style="{DynamicResource ButtonPrimary}"
-                Margin="0 0 0 10"
-                Content="Thêm hình ảnh" Click="Button_AddImage_Click"
-                hc:BorderElement.CornerRadius="15"/>
+                            Grid.Row="5" Grid.ColumnSpan="2"
+                            Style="{DynamicResource ButtonPrimary}"
+                            Margin="0 0 0 10"
+                            Content="Thêm hình ảnh" Click="Button_AddImage_Click"
+                            hc:BorderElement.CornerRadius="15"/>
 
                     <TextBlock Text=" "/>
                 </StackPanel>
@@ -185,7 +183,7 @@
 
                 <Border x:Name="MemberPart" 
                         CornerRadius="20"
-                    Padding="15"
+                        Padding="15"
                         Grid.Row="0">
 
                     <Border.Background>
@@ -196,13 +194,13 @@
                     <StackPanel>
                         <Grid>
                             <TextBlock Text="Thành viên tham gia"
-                           Style="{DynamicResource SubTitleStyle}"
-                           HorizontalAlignment="Left"
-                           Margin="6 0 0 0"/>
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       HorizontalAlignment="Left"
+                                       Margin="6 0 0 0"/>
 
                             <ComboBox Name="ComboBox_MemberList"
-                              Style="{StaticResource ComboBoxExtend}"
-                              MinWidth="180"
+                                      Style="{StaticResource ComboBoxExtend}"
+                                      MinWidth="180"
                                       HorizontalAlignment="Center">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -227,8 +225,8 @@
 
                         </Grid>
                         <DataGrid Name="DataGrid_MemberList" 
-                          ItemsSource="{Binding MemberList}"
-                          HeadersVisibility="All" RowHeaderWidth="80" 
+                                  ItemsSource="{Binding MemberList}"
+                                  HeadersVisibility="All" RowHeaderWidth="80" 
                                   AutoGenerateColumns="False"
                                   Background="Transparent">
                             <DataGrid.RowHeaderTemplate>
@@ -252,7 +250,7 @@
 
                 <Border x:Name="DestinationPart" 
                         CornerRadius="20"
-                    Padding="15"
+                        Padding="15"
                         Grid.Row="2">
 
                     <Border.Background>
@@ -263,9 +261,9 @@
                     <StackPanel>
                         <Grid>
                             <TextBlock Text="Thêm địa điểm"
-                           Style="{DynamicResource SubTitleStyle}"
-                           HorizontalAlignment="Left"
-                           Margin="6 0 0 0"/>
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       HorizontalAlignment="Left"
+                                       Margin="6 0 0 0"/>
                             <Button Name="Button_AddDestination"
                                     HorizontalAlignment="Right"                                
                                     Style="{DynamicResource ButtonPrimary}"
@@ -276,11 +274,11 @@
 
                         </Grid>
                         <DataGrid Name="DataGrid_Destination" 
-                          HeadersVisibility="All" 
-                          RowHeaderWidth="80" 
-                          AutoGenerateColumns="False" 
-                          ItemsSource="{Binding DestinationList}"
-                          Background="Transparent">
+                                  HeadersVisibility="All" 
+                                  RowHeaderWidth="80" 
+                                  AutoGenerateColumns="False" 
+                                  ItemsSource="{Binding DestinationList}"
+                                  Background="Transparent">
                             <DataGrid.RowHeaderTemplate>
                                 <DataTemplate>
                                     <CheckBox IsChecked="{Binding IsSelected,RelativeSource={RelativeSource AncestorType=DataGridRow}}"/>
@@ -298,7 +296,7 @@
 
                 <Border x:Name="ExpensePart" 
                         CornerRadius="20"
-                    Padding="15"
+                        Padding="15"
                         Grid.Row="4">
 
                     <Border.Background>
@@ -308,9 +306,9 @@
                     <StackPanel>
                         <Grid>
                             <TextBlock Text="Thêm chi tiêu"
-                           Style="{DynamicResource SubTitleStyle}"
-                           HorizontalAlignment="Left"
-                           Margin="6 0 0 0"/>
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       HorizontalAlignment="Left"
+                                       Margin="6 0 0 0"/>
                             <Button Name="Button_AddExpense"
                                     HorizontalAlignment="Right"                                
                                     Style="{DynamicResource ButtonPrimary}"
@@ -322,9 +320,9 @@
                         </Grid>
 
                         <DataGrid Name="DataGrid_ExpenseList"
-                          ItemsSource="{Binding ExpenseList}"
-                          HeadersVisibility="All" RowHeaderWidth="80"
-                          AutoGenerateColumns="False"
+                                  ItemsSource="{Binding ExpenseList}"
+                                  HeadersVisibility="All" RowHeaderWidth="80"
+                                  AutoGenerateColumns="False"
                                   Background="Transparent">
                             <DataGrid.RowHeaderTemplate>
                                 <DataTemplate>

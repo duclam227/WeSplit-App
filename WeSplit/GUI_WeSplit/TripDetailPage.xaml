@@ -63,8 +63,8 @@
                       Grid.Column="0"
                       Padding="10 0 10 0">
             <Border x:Name="FirstColumn" Grid.Column="0"
-                CornerRadius="20"
-                Padding="10">
+                    CornerRadius="20"
+                    Padding="10">
 
                 <Border.Background>
                     <SolidColorBrush Color="White" Opacity="0.7"/>
@@ -72,15 +72,15 @@
 
                 <StackPanel>
                     <TextBlock x:Name="TripTitleTextBlock"
-                   Text="{Binding TripName}"
-                           Style="{DynamicResource TitleStyle}"/>
+                               Text="{Binding TripName}"
+                               Style="{DynamicResource TitleStyle}"/>
 
                     <Separator Height="1"
-                           Background="{DynamicResource IndicatorColor}"/>
+                               Background="{DynamicResource IndicatorColor}"/>
 
                     <TextBlock x:Name="TripDescriptionTextBlock"
-                    Text="{Binding TripDescription}"
-                           Style="{DynamicResource DescriptionStyle}"/>
+                               Text="{Binding TripDescription}"
+                               Style="{DynamicResource DescriptionStyle}"/>
 
                     <TextBlock Text=" " FontSize="5"/>
 
@@ -88,25 +88,25 @@
                         <TextBlock Text="Từ ngày: "
                                    Style="{DynamicResource DescriptionStyle}"/>
                         <TextBlock x:Name="TripStartDateTextBlock"
-                               Text="{Binding TripStartDate, Converter={StaticResource DateTimeToStringConverter}}"
-                               Style="{DynamicResource DescriptionStyle}"/>
+                                   Text="{Binding TripStartDate, Converter={StaticResource DateTimeToStringConverter}}"
+                                   Style="{DynamicResource DescriptionStyle}"/>
                     </StackPanel>
 
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="Đến ngày: "
                                    Style="{DynamicResource DescriptionStyle}"/>
                         <TextBlock x:Name="TripEndDateTextBlock"
-                               Text="{Binding TripEndDate, Converter={StaticResource DateTimeToStringConverter}}"
-                               Style="{DynamicResource DescriptionStyle}"/>
+                                   Text="{Binding TripEndDate, Converter={StaticResource DateTimeToStringConverter}}"
+                                   Style="{DynamicResource DescriptionStyle}"/>
                     </StackPanel>
 
                     <TextBlock Text=" " FontSize="5"/>
 
                     <hc:Carousel Name="TripImagesCarousel" 
-                             HorizontalAlignment="Center"
-                             AutoRun="True" 
-                             Width="{Binding ActualWidth, ElementName=FirstColumn}"
-                             Height="300">
+                                 HorizontalAlignment="Center"
+                                 AutoRun="True" 
+                                 Width="{Binding ActualWidth, ElementName=FirstColumn}"
+                                 Height="300">
 
                         <hc:Carousel.ItemTemplate>
                             <DataTemplate>
@@ -125,28 +125,28 @@
                     <TextBlock Text=" " FontSize="5"/>
 
                     <Button Name="Button_AddImage"
-                                    HorizontalAlignment="Center"                                
-                                    Style="{DynamicResource ButtonPrimary}"
-                                    Margin="6 0 0 0"
-                                    Content="Thêm hình ảnh"
-                                    Click="Button_AddImage_Click"
-                                    hc:BorderElement.CornerRadius="15"/>
+                            HorizontalAlignment="Center"                                
+                            Style="{DynamicResource ButtonPrimary}"
+                            Margin="6 0 0 0"
+                            Content="Thêm hình ảnh"
+                            Click="Button_AddImage_Click"
+                            hc:BorderElement.CornerRadius="15"/>
 
                     <TextBlock Text=" "/>
 
                     <Border x:Name="ExpenseChartPart" 
-                        CornerRadius="20"
-                        Padding="15">
+                            CornerRadius="20"
+                            Padding="15">
 
                         <Border.Background>
                             <SolidColorBrush Color="White"
-                                         Opacity="0.7"/>
+                                             Opacity="0.7"/>
                         </Border.Background>
                         <StackPanel>
                             <TextBlock Text="Biểu đồ chi tiêu"
-                           Style="{DynamicResource SubTitleStyle}"
-                           HorizontalAlignment="Left"
-                           Margin="6 0 0 0"/>
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       HorizontalAlignment="Left"
+                                       Margin="6 0 0 0"/>
 
                             <lvc:PieChart Name="ExpensePie"
                                           Hoverable="True"
@@ -174,7 +174,7 @@
 
                 <Border x:Name="MemberPart" 
                         CornerRadius="20"
-                    Padding="15"
+                        Padding="15"
                         Grid.Row="0">
 
                     <Border.Background>
@@ -185,13 +185,13 @@
                     <StackPanel>
                         <Grid>
                             <TextBlock Text="Thành viên tham gia"
-                           Style="{DynamicResource SubTitleStyle}"
-                           HorizontalAlignment="Left"
-                           Margin="6 0 0 0"/>
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       HorizontalAlignment="Left"
+                                       Margin="6 0 0 0"/>
 
                             <ComboBox Name="AvailableMembersList"
-                              Style="{StaticResource ComboBoxExtend}"
-                              MinWidth="180"
+                                      Style="{StaticResource ComboBoxExtend}"
+                                      MinWidth="180"
                                       HorizontalAlignment="Center">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -241,21 +241,21 @@
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn CanUserResize="True"
-                                            Header="Họ tên"
-                                            Binding="{Binding Item1.MemberName}"
-                                            Width="2*"/>
+                                                    Header="Họ tên"
+                                                    Binding="{Binding Item1.MemberName}"
+                                                    Width="2*"/>
                                 <DataGridTextColumn CanUserResize="True"
-                                            Header="Ngày sinh"
-                                            Binding="{Binding Item1.MemberDOB, Converter={StaticResource DateTimeToStringConverter}}"
-                                            Width="1*"/>
+                                                    Header="Ngày sinh"
+                                                    Binding="{Binding Item1.MemberDOB, Converter={StaticResource DateTimeToStringConverter}}"
+                                                    Width="1*"/>
                                 <DataGridTextColumn CanUserResize="True"
-                                            Header="Số tiền ứng"
-                                            Binding="{Binding Item2}"
-                                            Width="1*"/>
+                                                    Header="Số tiền ứng"
+                                                    Binding="{Binding Item2}"
+                                                    Width="1*"/>
                                 <DataGridTextColumn CanUserResize="True"
-                                            Header="Số tiền nhận"
-                                            Binding="{Binding Item3}"
-                                            Width="1*"/>
+                                                    Header="Số tiền nhận"
+                                                    Binding="{Binding Item3}"
+                                                    Width="1*"/>
                             </DataGrid.Columns>
                         </DataGrid>
 
@@ -280,7 +280,7 @@
 
                 <Border x:Name="DestinationPart" 
                         CornerRadius="20"
-                    Padding="15"
+                        Padding="15"
                         Grid.Row="2">
 
                     <Border.Background>
@@ -291,9 +291,9 @@
                     <StackPanel>
                         <Grid>
                             <TextBlock Text="Địa điểm đã đi qua"
-                           Style="{DynamicResource SubTitleStyle}"
-                           HorizontalAlignment="Left"
-                           Margin="6 0 0 0"/>
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       HorizontalAlignment="Left"
+                                       Margin="6 0 0 0"/>
                             <Button Name="Button_AddDestination"
                                     HorizontalAlignment="Right"                                
                                     Style="{DynamicResource ButtonPrimary}"
@@ -328,17 +328,17 @@
 
                             <DataGrid.Columns>
                                 <DataGridTextColumn CanUserResize="True"
-                                            Header="Tên điểm đến"
-                                            Binding="{Binding PlaceName}"
-                                            Width="3*"/>
+                                                    Header="Tên điểm đến"
+                                                    Binding="{Binding PlaceName}"
+                                                    Width="3*"/>
                                 <DataGridTextColumn CanUserResize="True"
-                                            Header="Mô tả"
-                                            Binding="{Binding PlaceDescription}"
-                                            Width="5*"/>
+                                                    Header="Mô tả"
+                                                    Binding="{Binding PlaceDescription}"
+                                                    Width="5*"/>
                                 <DataGridTextColumn CanUserResize="True"
-                                            Header="Địa chỉ"
-                                            Binding="{Binding PlaceAddress}"
-                                            Width="7*"/>
+                                                    Header="Địa chỉ"
+                                                    Binding="{Binding PlaceAddress}"
+                                                    Width="7*"/>
                             </DataGrid.Columns>
                         </DataGrid>
                     </StackPanel>
@@ -346,7 +346,7 @@
 
                 <Border x:Name="ExpensePart" 
                         CornerRadius="20"
-                    Padding="15"
+                        Padding="15"
                         Grid.Row="4">
 
                     <Border.Background>
@@ -356,9 +356,9 @@
                     <StackPanel>
                         <Grid>
                             <TextBlock Text="Lịch sử chi tiêu"
-                           Style="{DynamicResource SubTitleStyle}"
-                           HorizontalAlignment="Left"
-                           Margin="6 0 0 0"/>
+                                       Style="{DynamicResource SubTitleStyle}"
+                                       HorizontalAlignment="Left"
+                                       Margin="6 0 0 0"/>
 
                             <Button Name="Button_AddExpense"
                                     HorizontalAlignment="Right"                                
@@ -394,21 +394,23 @@
                             <DataGrid.Columns>
                                 <DataGridTextColumn CanUserResize="True"
                                                     Header="Mô tả"
-                                            Binding="{Binding ExpenseDescription}"
-                                            Width="5*"/>
+                                                    Binding="{Binding ExpenseDescription}"
+                                                    Width="5*"/>
                                 <DataGridTextColumn CanUserResize="True"
                                                     Header="Người ứng trước"
                                                     IsReadOnly="True"
-                                            Binding="{Binding ExpenseMember, Converter={StaticResource MemberIDToNameConverter}}"
-                                            Width="3*"/>
+                                                    Binding="{Binding ExpenseMember, Converter={StaticResource MemberIDToNameConverter}}"
+                                                    Width="3*"/>
                                 <DataGridTextColumn CanUserResize="True"
                                                     Header="Số tiền"
-                                            Binding="{Binding ExpenseMoney}"
-                                            Width="2*"/>
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding ExpenseMoney}"
+                                                    Width="2*"/>
                                 <DataGridTextColumn CanUserResize="True"
                                                     Header="Ngày trả"
-                                            Binding="{Binding ExpenseDate, Converter={StaticResource DateTimeToStringConverter}}"
-                                            Width="3*"/>
+                                                    IsReadOnly="True"
+                                                    Binding="{Binding ExpenseDate, Converter={StaticResource DateTimeToStringConverter}}"
+                                                    Width="3*"/>
                             </DataGrid.Columns>
                         </DataGrid>
 

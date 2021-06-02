@@ -119,23 +119,25 @@
 
             <StackPanel>
                 <TextBlock  HorizontalAlignment="Stretch"
-                   FontSize="100" FontWeight="Black"
+                            FontSize="100" 
+                            FontWeight="Black"
                             Style="{DynamicResource TitleStyle}">WeSplit</TextBlock>
 
-                <TextBlock 
-                   HorizontalAlignment="Stretch"
-                   FontSize="50"
-                    Style="{DynamicResource TitleStyle}">Lưu giữ những chuyến đi tuyệt vời!</TextBlock>
+                <TextBlock HorizontalAlignment="Stretch"
+                           FontSize="50"
+                           Style="{DynamicResource TitleStyle}">
+                    Lưu giữ những chuyến đi tuyệt vời!
+                </TextBlock>
             </StackPanel>
             <TextBlock/>
             <Separator Height="5"
-                   Background="White"/>
+                       Background="White"/>
             <TextBlock/>
             <StackPanel x:Name="ButtonListStackPanel"
-                    Orientation="Horizontal">
+                        Orientation="Horizontal">
                 
                 <Button x:Name="ExploreButton"
-                Click="ExploreButton_Click">
+                        Click="ExploreButton_Click">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
                             <BeginStoryboard>
@@ -189,7 +191,7 @@
                 <TextBlock Text="    "/>
                 
                 <Button x:Name="AddNewTripButotn"
-                Click="AddNewTripButton_Click"
+                        Click="AddNewTripButton_Click"
                         Width="300">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
@@ -244,7 +246,7 @@
                 <TextBlock Text="    "/>
                 
                 <Button x:Name="AddNewMemberButton"
-                Click="AddNewMemberButton_Click"
+                        Click="AddNewMemberButton_Click"
                         Width="265">
                     <Button.Triggers>
                         <EventTrigger RoutedEvent="MouseEnter">
@@ -255,11 +257,6 @@
                                                      To="1"
                                                      Storyboard.TargetProperty="Opacity"
                                                      Storyboard.TargetName="ButtonImage3"/>
-                                    <!--<ColorAnimation Duration="0:0:0.2"
-                                                    From="Black"
-                                                    To="White"
-                                                    Storyboard.TargetProperty="Background.Color"
-                                                    Storyboard.TargetName="ButtonBorder3"/>-->
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>

@@ -22,8 +22,8 @@
 
         <SolidColorBrush x:Key="MenuForeground">white</SolidColorBrush>
         <SolidColorBrush x:Key="MenuForegroundHover">#0e67cc</SolidColorBrush>
-        <System:Double x:Key="MainBorderOpacity">0.5</System:Double>
-        <System:Double x:Key="ButtonSize">18</System:Double>
+        <System:Double x:Key="MainBorderOpacity">0.65</System:Double>
+        <System:Double x:Key="ButtonSize">22</System:Double>
         
         
         <Style TargetType="TextBlock">
@@ -79,10 +79,10 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="#FE2525"
-                                                To="White"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="ExitButton"></ColorAnimation>
+                                                        From="#FE2525"
+                                                        To="White"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="ExitButton"></ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -91,18 +91,14 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="White"
-                                                To="#FE2525"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="ExitButton"></ColorAnimation>
+                                                        From="White"
+                                                        To="#FE2525"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="ExitButton"></ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                         </Border.Triggers>
-                        <!--<Image x:Name="ExitIcon"
-                       Source="Images/powerIcon.png"
-                       RenderOptions.BitmapScalingMode="HighQuality"
-                       Height="15" Margin="0 0 0 1"/>-->
                     </Border>
                     <TextBlock Text=" "/>
                     <Border x:Name="ResizeButton"
@@ -117,10 +113,10 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="#54FF27"
-                                                To="White"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="ResizeButton"></ColorAnimation>
+                                                        From="#54FF27"
+                                                        To="White"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="ResizeButton"></ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -129,10 +125,10 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="White"
-                                                To="#54FF27"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="ResizeButton"></ColorAnimation>
+                                                        From="White"
+                                                        To="#54FF27"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="ResizeButton"></ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -151,10 +147,10 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="#FEEA25"
-                                                To="White"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="MinimizeButton"></ColorAnimation>
+                                                        From="#FEEA25"
+                                                        To="White"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="MinimizeButton"></ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -163,18 +159,14 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Duration="0:0:0.3"
-                                                From="White"
-                                                To="#FEEA25"
-                                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                Storyboard.TargetName="MinimizeButton"></ColorAnimation>
+                                                        From="White"
+                                                        To="#FEEA25"
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        Storyboard.TargetName="MinimizeButton"></ColorAnimation>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
                         </Border.Triggers>
-                        <!--<Image x:Name="MinimizeIcon"
-                       Source="Images/powerIcon.png"
-                       RenderOptions.BitmapScalingMode="HighQuality"
-                       Height="15" Margin="0 0 0 1"/>-->
                     </Border>
                 </StackPanel>
                
@@ -257,7 +249,7 @@
                                              Opacity="{DynamicResource MainBorderOpacity}"/>
                         </Border.Background>
 
-                        <TextBlock>AboutUs</TextBlock>
+                        <TextBlock>About Us</TextBlock>
                     </Border>
 
                     <Polygon x:Name="ActiveIndicator"
@@ -305,7 +297,7 @@
         <Border x:Name="WindowBackgroundImage"
                 CornerRadius="20">
             <Border.Background>
-                <ImageBrush ImageSource="Images/bg.png"
+                <ImageBrush ImageSource="Images/bg.jpg"
                         Stretch="UniformToFill"/>
             </Border.Background>
         </Border>

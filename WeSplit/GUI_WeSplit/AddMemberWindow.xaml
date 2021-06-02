@@ -8,7 +8,7 @@
         xmlns:rules="clr-namespace:GUI_WeSplit.Validation"
         xmlns:hc="https://handyorg.github.io/handycontrol"
         mc:Ignorable="d"
-        Title="AddMemberWindow" Height="500" Width="400"
+        Title="Thêm thành viên" Height="500" Width="400"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>

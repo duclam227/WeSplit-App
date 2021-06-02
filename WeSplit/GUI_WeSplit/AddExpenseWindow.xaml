@@ -9,7 +9,7 @@
         xmlns:hc="https://handyorg.github.io/handycontrol"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="AddExpenseWindow" Height="470" Width="400"
+        Title="Thêm chi tiêu" Height="470" Width="400"
         ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
 
     <Grid>
@@ -25,9 +25,9 @@
         <Label Margin="10" 
                Content="Thêm chi phí"></Label>
         <uc:LabelTextBox x:Name="TextBox_ExpenseDescription"
-                 Grid.Row="1" Margin="20 10 20 10"
-                 Title="Mô tả chi phí"
-                 hc:InfoElement.Placeholder="VD: Ăn uống">
+                         Grid.Row="1" Margin="20 10 20 10"
+                         Title="Mô tả chi phí"
+                         hc:InfoElement.Placeholder="VD: Ăn uống">
             <uc:LabelTextBox.Text>
                 <Binding Path="ExpenseDescription" 
                          UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
@@ -39,9 +39,9 @@
         </uc:LabelTextBox>
 
         <uc:LabelTextBox x:Name="TextBox_ExpenseAmount"
-                 Grid.Row="2" Margin="20 10 20 10"
-                 Title="Số tiền"
-                 hc:InfoElement.Placeholder="VD: 100000">
+                         Grid.Row="2" Margin="20 10 20 10"
+                         Title="Số tiền"
+                         hc:InfoElement.Placeholder="VD: 100000">
             <uc:LabelTextBox.Text>
                 <Binding Path="ExpenseAmount" 
                          UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
@@ -56,7 +56,8 @@
         <ComboBox Name="ComboBox_MemberListExpense"
                   Grid.Row="3"
                   Style="{StaticResource ComboBoxExtend}"
-                  hc:InfoElement.Placeholder="Thành viên" hc:InfoElement.Necessary="True"
+                  hc:InfoElement.Placeholder="Thành viên" 
+                  hc:InfoElement.Necessary="True"
                   hc:InfoElement.Title="Thành viên ứng trước"
                   Margin="20 10 20 10">
             <ComboBox.ItemTemplate>

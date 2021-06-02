@@ -9,7 +9,7 @@
         xmlns:rules="clr-namespace:GUI_WeSplit.Validation"
 
         mc:Ignorable="d"
-        Title="AddDestinationWindow" Height="400" Width="400" 
+        Title="Thêm địa điểm" Height="400" Width="400" 
         ShowInTaskbar="False" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -22,9 +22,9 @@
         <Label Margin="10" 
                Content="Thêm địa điểm"></Label>
         <uc:LabelTextBox x:Name="TextBox_PlaceName"
-                 Grid.Row="1" Margin="20 10 20 10"
-                 Title="Tên địa điểm"
-                 hc:InfoElement.Placeholder="VD: Đà Lạt mộng mơ">
+                         Grid.Row="1" Margin="20 10 20 10"
+                         Title="Tên địa điểm"
+                         hc:InfoElement.Placeholder="VD: Đà Lạt mộng mơ">
             <uc:LabelTextBox.Text>
                 <Binding Path="PlaceName" 
                          UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
@@ -36,9 +36,9 @@
         </uc:LabelTextBox>
 
         <uc:LabelTextBox x:Name="TextBox_Description"
-                 Grid.Row="2" Margin="20 10 20 10"
-                 Title="Mô tả"
-                 hc:InfoElement.Placeholder="VD: Đến khách sạn nghỉ ngơi">
+                         Grid.Row="2" Margin="20 10 20 10"
+                         Title="Mô tả"
+                         hc:InfoElement.Placeholder="VD: Đến khách sạn nghỉ ngơi">
             <uc:LabelTextBox.Text>
                 <Binding Path="PlaceDescription" 
                          UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
@@ -50,9 +50,9 @@
         </uc:LabelTextBox>
 
         <uc:LabelTextBox x:Name="TextBox_Address"
-                 Grid.Row="3" Margin="20 10 20 10"
-                 Title="Địa chỉ"
-                 hc:InfoElement.Placeholder="VD: 32 Đường 3 tháng 4, Thành phố Đà Lạt, Lâm Đồng">
+                         Grid.Row="3" Margin="20 10 20 10"
+                         Title="Địa chỉ"
+                         hc:InfoElement.Placeholder="VD: 32 Đường 3 tháng 4, Thành phố Đà Lạt, Lâm Đồng">
             <uc:LabelTextBox.Text>
                 <Binding Path="PlaceAddress" 
                          UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
