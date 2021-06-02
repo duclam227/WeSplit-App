@@ -12,7 +12,6 @@
 using GUI_WeSplit;
 using GUI_WeSplit.Converters;
 using GUI_WeSplit.CustomUserControl;
-using LiveCharts.Wpf;
 using System;
 using System.Diagnostics;
 using System.Windows;

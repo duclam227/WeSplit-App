@@ -10,9 +10,6 @@
 //------------------------------------------------------------------------------
 
 using GUI_WeSplit;
-using GUI_WeSplit.Converters;
-using GUI_WeSplit.CustomUserControl;
-using GUI_WeSplit.Validation;
 using System;
 using System.Diagnostics;
 using System.Windows;
