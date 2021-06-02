@@ -223,6 +223,9 @@
     <Resource Include="Images\logo.ico" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Images\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
     <Resource Include="Images\SplashScreen01.jpg" />
     <Resource Include="Images\SplashScreen02.jpg" />
     <Resource Include="Images\SplashScreen03.jpg" />
@@ -232,9 +235,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\goIcon.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\bg.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
